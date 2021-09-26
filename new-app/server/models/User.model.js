@@ -4,7 +4,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
-    required: true,
+    //required: true,
     //check regEx to check if email format
     trim: true,
     default: 'unknown'
@@ -12,7 +12,7 @@ const userSchema = new Schema({
 
   name: {
     type: String,
-    required: true,
+    //required: true,
     maxlength: 16,
     trim: true,
     default: 'unknown'
@@ -21,7 +21,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    required: true,
+    //required: true,
     maxlength: 16,
     trim: true,
     default: 'unknown'
@@ -29,7 +29,7 @@ const userSchema = new Schema({
 
   password: {
     type: String,
-    required: true,
+    //required: true,
   },
 
   role: {
@@ -40,7 +40,23 @@ const userSchema = new Schema({
   },
 
   location: {
+    type: {
+      type: String
+    },
+    coordinates: [Number]
     //probar mapbox y googlemaps geometry
+  },
+
+  city: {
+    type: String
+  },
+
+  country: {
+    type: String
+  },
+
+  favoriteGenres: {
+    type: [String],
   },
 
   books: {
@@ -70,26 +86,53 @@ const userSchema = new Schema({
       type: 'String'
     }],
 
+    lent: [{
+      type: Schema.Types.ObjectId,
+      ref: 'ExchangedBooks',
+    }],
+
+    borrowed: [{
+      type: Schema.Types.ObjectId,
+      ref: 'ExchangedBooks',
+    }],
+
+    previouslyExchanged: [{
+      type: Schema.Types.ObjectId,
+      ref: 'ExchangedBooks',
+    }],
   },
 
-  feedback: [{
-    stars: {
-      type: Number
-    },
-    comment: {
-      type: String
-    },
-    owner: {
+  pendingRequests: [{
+    chat: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
-    }
-  }]
+      ref: 'Request'
+    },
 
+  }],
+
+  feedback: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+
+  friends: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  }],
+
+  chats: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Chat',
+  }],
+
+  favoriteQuotes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Quote'
+  }]
 },
+
   { timestamps: true }
 );
 
 const User = model("User", userSchema);
-
 module.exports = User;
