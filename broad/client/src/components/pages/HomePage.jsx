@@ -1,4 +1,4 @@
-import {Container, Row, Column} from '../components/Layout/Grid';
+import {Container, Row, Column} from '../components/Layout/GridLayout/Grid';
 
 function HomePage() {
 	return (

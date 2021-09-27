@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import HomePage from '../../pages/HomePage';
-import Login from '../../pages/auth/Login';
-import Signup from '../../pages/auth/Signup';
+import HomePage from '../../pages/HomePage'
+import Login from '../../pages/auth/Login'
+import Signup from '../../pages/auth/Signup'
 
 import * as PATHS from '../../utils/paths';
 
