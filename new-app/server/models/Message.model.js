@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const messageSchema = new Schema({
+  
   sentDate: {
     Type: Date,
     required: true
@@ -22,9 +23,8 @@ const messageSchema = new Schema({
     Type: Schema.Types.ObjectId,
     ref: 'User',
   }
-},
-  { timestamps: true }
-);
+  
+}, { timestamps: true });
 
 const Message = model("Message", messageSchema);
 
