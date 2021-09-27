@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require('../models/User.model')
 
+
 router.get('/:userId', (req, res) => {
 
   const { userId } = req.params;
