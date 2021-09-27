@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "../App.css";
 import { Container, Row, Column} from '../components/Grid/Grid';
 
@@ -23,6 +24,19 @@ function HomePage() {
     
     </div>
   );
+=======
+import logo from '../B.svg';
+import '../App.css';
+
+function HomePage() {
+	return (
+		<div className='App'>
+			<header className='App-header'>
+				<img src={logo} className='App-logo' alt='logo' />
+			</header>
+		</div>
+	);
+>>>>>>> 7462785354e94eecf5ad787513d7bfca8e78f661
 }
 
 export default HomePage;

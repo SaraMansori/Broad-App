@@ -8,15 +8,15 @@
 |	POST	|	/api/auth/login	|	If the data introduced corresponds to a registered user and the password is correct, the user is logged in, otherwise the user gets an error message.	|
 |	GET	|	/api/auth/logout	|	Ends the current session.	|
 |	POST	|	/api/auth/isloggedin	|	Verifies if a user is logged in and sends the information to the frontend.	|
-|	GET	|	api/users	|		|
-|	GET	|	api/users/:id	|		|
-|	POST	|	api/users/:id/delete	|	Selects	|
-|	POST	|	api/users/:id/edit	|		|
-|	POST	|	api/users/:id/vote	|		|
-|	GET	|	api/user-books/:id	|		|
-|	POST	|	api/user-books/:id/:section/:action/:book_id	|		|
-|	GET	|	api/exchanges	|		|
-|	GET	|	api/exchanges/new/:bookId	|		|
+|	GET	|	/api/users	|		|
+|	GET	|	/api/users/:id	|		|
+|	POST	|	/api/users/:id/delete	|	Selects	|
+|	POST	|	/api/users/:id/edit	|		|
+|	POST	|	/api/users/:id/vote	|		|
+|	GET	|	/api/user-books/:id	|		|
+|	POST	|	/api/user-books/:id/:section/:action/:book_id	|		|
+|	GET	|	/api/exchanges	|		|
+|	GET	|	/api/exchanges/new/:bookId	|		|
 |	GET	|	/api/quotes	|	Obtener todas las quotes	|
 |	POST	|	/api/quotes/create	|		|
 |	POST	|	/api/quotes/edit	|		|

@@ -1,25 +1,28 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
+  
   startDate: {
-    Type: Date,
-    required: true
+    type: Date,
+    required: true,
+    default: Date.now
   },
+  
+  endDate:  Date,
 
-  endDate: {
-    Type: Date,
-    required: true
-  },
-
-  receiver: {
-    Type: Schema.Types.ObjectId,
+  owner: {
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
 
-  swappedBook: {
-    Type: String
-  }
+  receiver: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+
+  bookId: String
 
 },
   { timestamps: true }

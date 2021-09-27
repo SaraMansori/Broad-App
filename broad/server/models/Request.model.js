@@ -8,15 +8,16 @@ const requestSchema = new Schema({
     ref: 'User'
   },
 
-  hasBeenAccepted: {
-    type: Boolean,
-    default: false,
-    required: true
+  receiver: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
   },
 
-  hasBeenRejected: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    enum: ['PENDING', 'ACCEPTED', 'REJECTED'],
+    default: 'PENDING',
     required: true
   },
 
@@ -25,9 +26,9 @@ const requestSchema = new Schema({
     enum: ['FRIENDSHIP', 'CHAT'],
     required: true
   }
-},
-  { timestamps: true }
-)
+
+}, { timestamps: true })
 
 const Request = model("Request", requestSchema);
+
 module.exports = Request;
