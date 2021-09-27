@@ -1,21 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import HomePage from "../../pages/HomePage";
-import Navigator from "../../pages/layout/Signup";
-import Footer from "../../pages/layout/Footer";
+import HomePage from '../../pages/HomePage';
 
-import * as PATHS from "../../utils/paths";
+import * as PATHS from '../../utils/paths';
 
-const Routes = (() => {
+const Routes = () => {
   return (
-    <div className="App">
-      <Navigator />
-      <Switch>
-        <Route exact path={PATHS.HOMEPAGE} component={HomePage} />
-      </Switch>
-      <Footer />
-    </div>
-  )
-})
+    <Switch>
+      <Route exact path={PATHS.HOMEPAGE} component={HomePage} />
+    </Switch>
+  );
+};
 
-export default Routes
+export default Routes;
