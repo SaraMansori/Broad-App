@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const challengeSchema = new Schema({ 
+  
   phrase: {
     type: String,
     required: true,
@@ -23,6 +24,7 @@ const challengeSchema = new Schema({
     ref: 'User',
     required: true
   }
+  
 }, { timestamps: true });
 
 const Challenge = model("Challenge", challengeSchema);

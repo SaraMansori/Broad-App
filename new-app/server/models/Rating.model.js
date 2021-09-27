@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const feedbackSchema = new Schema({
+const ratingSchema = new Schema({
 
   rating: {
     type: Number,
@@ -20,16 +20,25 @@ const feedbackSchema = new Schema({
     required: true
   },
 
+  receiver: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
+
+  type: {
+    type: String,
+    enum: ['QUOTE', 'USER'],
+    required: true
+  },
+
   date: {
     type: Date,
     required: true,
-    default: Date.now()
+    default: Date.now
   }
 
-},
-  { timestamps: true }
-);
+}, { timestamps: true });
 
-const Feedback = model("Feedback", feedbackSchema);
+const Rating = model("Rating", ratingSchema);
 
-module.exports = Feedback;
+module.exports = Rating;

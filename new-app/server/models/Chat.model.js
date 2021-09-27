@@ -13,9 +13,7 @@ const chatSchema = new Schema({
     ref: 'Message',
   }]
 
-},
-  { timestamps: true }
-);
+}, { timestamps: true });
 
 const Chat = model("Chat", chatSchema);
 

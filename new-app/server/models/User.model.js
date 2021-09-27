@@ -1,10 +1,12 @@
 const { Schema, model } = require("mongoose");
+const ExchangedBooks = require("./ExchangedBooks.model");
 
 const userSchema = new Schema({
+
   email: {
     type: String,
     unique: true,
-    //required: true,
+    required: true,
     //check regEx to check if email format
     trim: true,
     default: 'unknown'
@@ -12,7 +14,7 @@ const userSchema = new Schema({
 
   name: {
     type: String,
-    //required: true,
+    required: true,
     maxlength: 16,
     trim: true,
     default: 'unknown'
@@ -21,7 +23,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    //required: true,
+    required: true,
     maxlength: 16,
     trim: true,
     default: 'unknown'
@@ -29,7 +31,7 @@ const userSchema = new Schema({
 
   password: {
     type: String,
-    //required: true,
+    required: true,
   },
 
   role: {
@@ -47,72 +49,31 @@ const userSchema = new Schema({
     //probar mapbox y googlemaps geometry
   },
 
-  city: {
-    type: String
-  },
+  city: String,
 
-  country: {
-    type: String
-  },
+  country: String,
 
-  favoriteGenres: {
-    type: [String],
-  },
+  favoriteGenres: [String],
 
-  books: {
+  books: [{
 
-    wantsToRead: [{
-      type: 'String'
-    }],
-
-    isReading: [{
-      type: 'String',
-      startDate: {
-        type: Date
-      },
-    }],
-
-    hasRead: [{
-      type: 'String',
-      startDate: {
-        type: Date
-      },
-      finishDate: {
-        type: Date
-      },
-    }],
-
-    wantsToGive: [{
-      type: 'String'
-    }],
-
-    lent: [{
-      type: Schema.Types.ObjectId,
-      ref: 'ExchangedBooks',
-    }],
-
-    borrowed: [{
-      type: Schema.Types.ObjectId,
-      ref: 'ExchangedBooks',
-    }],
-
-    previouslyExchanged: [{
-      type: Schema.Types.ObjectId,
-      ref: 'ExchangedBooks',
-    }],
-  },
-
-  pendingRequests: [{
-    chat: {
-      type: Schema.Types.ObjectId,
-      ref: 'Request'
+    id: {
+      type: String,
+      required: true
     },
 
-  }],
+    status: {
+      type: String,
+      enum: ['WANTSTOREAD', 'READING', 'READ'],
+      required: true
+    },
 
-  feedback: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    startDate: Date,
+
+    finishDate: Date,
+
+    wantsToExchange: Boolean,
+
   }],
 
   friends: [{
@@ -120,19 +81,13 @@ const userSchema = new Schema({
     ref: 'User',
   }],
 
-  chats: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Chat',
-  }],
-
-  favoriteQuotes: [{
+  savedQuotes: [{
     type: Schema.Types.ObjectId,
     ref: 'Quote'
   }]
-},
 
-  { timestamps: true }
-);
+}, { timestamps: true });
 
 const User = model("User", userSchema);
+
 module.exports = User;
