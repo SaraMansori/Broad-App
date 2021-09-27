@@ -1,23 +1,26 @@
-import logo from "../B.svg";
 import "../App.css";
+import { Container, Row, Column} from '../components/Grid/Grid';
 
 function HomePage() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Container>
+       <Row>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+          <Column xs='12' sm='6' md='3'>HELLO</Column>
+        </Row>
+      </Container> 
+    
     </div>
   );
 }
