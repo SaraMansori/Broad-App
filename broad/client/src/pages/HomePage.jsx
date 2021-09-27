@@ -1,48 +1,12 @@
-import {Container, Row, Column} from '../components/Layout/Grid';
+import Button from '@material-ui/core/Button';
 
 function HomePage() {
 	return (
 		<div className="App">
-			<Container>
-				<Row>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-					<Column xs="12" sm="6" md="3">
-						HELLO
-					</Column>
-				</Row>
-			</Container>
+			<h1>FUCK</h1>
+			<Button variant="contained" color="primary">
+				Hola Mundo!
+			</Button>
 		</div>
 	);
 }

@@ -1,13 +1,15 @@
-import React from 'react';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 import Routes from './components/Routes';
 
 function App() {
   return (
-    <div className='App'>
+    <>
+      <CssBaseline />
       {/* <NavBar /> */}
       <Routes />
       {/* <Footer /> */}
-    </div>
+    </>
   );
 }
 
