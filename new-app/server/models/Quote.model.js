@@ -25,15 +25,10 @@ const quoteSchema = new Schema({
     trim: true
   },
 
-  hasBeenAccepted: {
-    type: Boolean,
-    default: false,
-    required: true
-  },
-
-  hasBeenRejected: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    enum: ['PENDING', 'ACCEPTED', 'REJECTED'],
+    default: 'PENDING',
     required: true
   },
 

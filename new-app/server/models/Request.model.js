@@ -23,7 +23,7 @@ const requestSchema = new Schema({
 
   type: {
     type: String,
-    enum: ['FRIENDSHIP', 'CHAT'],
+    enum: ['FRIENDSHIP', 'CHAT', 'EXCHANGE'],
     required: true
   }
 
