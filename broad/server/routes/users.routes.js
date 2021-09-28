@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require('./../models/User.model')
-const Rating = require('./../models/Rating.model')
-const ExchangedBooks = require('./../models/ExchangedBook.model')
+const User = require('../models/User.model')
+const Rating = require('../models/Rating.model')
+const ExchangedBooks = require('../models/ExchangedBook.model')
 
 router.get('/', (req, res) => {
 
@@ -58,30 +58,57 @@ router.get('/', (req, res) => {
 
 })
 
+
 router.get('/:id', (req, res) => {
 
-  const { id } = req.params;
+  const { id } = req.params
   User
     .findById(id)
-    .then((user) => {
-      res.status(200).json({ user })
-    })
+    .then(user => res.status(200).json({ user }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
 
 })
 
 router.delete('/:id/delete', (req, res) => {
 
-  const { id } = req.params;
+  const { id } = req.params
 
   User
     .findByIdAndDelete(id)
-    .then(() => {
-      res.status(200).json({ message: 'User succesfully deleted' })
-    })
+    .then(() => res.status(200).json({ message: 'User succesfully deleted' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error deleting user", err }))
 
 })
+
+router.put('/:id/edit/:infoToUpdate', (req, res) => {
+
+  const { id, infoToUpdate } = req.params
+  const newUserInfo = {}
+
+
+  if (infoToUpdate === 'signup-info') {
+    // Location se modifica en front
+    newUserInfo = { name, description, profileImage, location } = req.body
+  }
+  else if (infoToUpdate === 'profile') {
+    // Location se modifica en front
+    // meter cambio de contraseña?
+    newUserInfo = { name, email, username, description, profileImage, location } = req.body
+  }
+  else if (infoToUpdate === 'genres') {
+    newUserInfo = { favoriteGenres } = req.body
+  }
+
+  User
+    .findByIdAndUpdate(id, newUserInfo, { new: true })
+    .then(updatedUser => {
+      req.session.currentUser = updatedUser
+      res.status(200).json({ message: 'User succesfully updated' })
+    })
+    .catch(err => res.status(500).json({ code: 500, message: "Error updating user", err }))
+
+})
+
 
 router.post('/:id/vote', (req, res) => { })
 

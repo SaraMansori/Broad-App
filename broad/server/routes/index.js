@@ -8,5 +8,4 @@ router.use("/quotes", require('./quotes.routes'))
 router.use("/friends", require('./friends.routes'))
 router.use("/chat", require('./chat.routes'))
 router.use("/challenges", require('./challenges.routes'))
-
-module.exports = router;
+router.use("/requests", require('./requests.routes'))
