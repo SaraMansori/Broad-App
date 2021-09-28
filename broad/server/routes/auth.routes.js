@@ -9,9 +9,9 @@ const { isBlank } = require("./../utils")
 
 router.post('/signup', (req, res) => {
 
-  const { name, username, email, pwd } = req.body
+  const { username, email, pwd } = req.body
 
-  if (isBlank(name) || isBlank(username) || isBlank(email) || isBlank(pwd)) {
+  if (isBlank(username) || isBlank(email) || isBlank(pwd)) {
     res.status(400).json({ code: 400, message: 'Please fill in all the fields' })
     return
   }
@@ -39,7 +39,7 @@ router.post('/signup', (req, res) => {
       const hashPass = bcrypt.hashSync(pwd, salt)
 
       User
-        .create({ name, username, email, password: hashPass })
+        .create({ username, email, password: hashPass })
         .then(() => res.json({ code: 200, message: 'User created' }))
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
     })
@@ -85,7 +85,5 @@ router.get('/logout', (req, res) => {
 router.post("/isloggedin", (req, res) => {
   req.session.currentUser ? res.json(req.session.currentUser) : res.status(401).json({ code: 401, message: 'Unauthorized' })
 })
-
-
 
 module.exports = router

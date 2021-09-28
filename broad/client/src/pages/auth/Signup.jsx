@@ -1,8 +1,23 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import {Container, FormControlLabel} from '@mui/material';
 import {Checkbox, Button, Grid} from '@material-ui/core';
 import {Link} from 'react-router-dom';
+import AuthService from '../../services/auth.service';
+
+const authService = new AuthService();
+
+const SignupForm = props => {
+	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	const clearState = () => {
+		setEmail('');
+		setUsername('');
+		setPassword('');
+	};
+};
 
 function Signup() {
 	return (
@@ -18,6 +33,18 @@ function Signup() {
 					label="Email Address"
 					name="email"
 					autoComplete="email"
+					autoFocus
+				/>
+				<TextField
+					variant="outlined"
+					margin="normal"
+					required
+					fullWidth
+					id="username"
+					label="Username"
+					name="username"
+					autoComplete="username"
+					type="text"
 					autoFocus
 				/>
 				<TextField

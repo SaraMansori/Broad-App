@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
-const challengeSchema = new Schema({ 
-  
+const challengeSchema = new Schema({
+
   phrase: {
     type: String,
     required: true,
@@ -9,11 +9,10 @@ const challengeSchema = new Schema({
     maxlength: 250,
     trim: true
   },
-  number: {
+  quantity: {
     type: Number,
     required: true,
-    min: 1,
-    max: 5
+    min: 1
   },
   year: {
     type: String,
@@ -24,7 +23,7 @@ const challengeSchema = new Schema({
     ref: 'User',
     required: true
   }
-  
+
 }, { timestamps: true });
 
 const Challenge = model("Challenge", challengeSchema);

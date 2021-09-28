@@ -5,13 +5,12 @@ const User = require('./../models/User.model')
 const Rating = require('./../models/Rating.model')
 const ExchangedBooks = require('./../models/ExchangedBook.model')
 
-
 router.get('/', (req, res) => {
 
   // lean??? (select método de mongoose)
   const usersRating = Rating.find({ type: 'USER' }).lean().select('score receiver')
   const exchangedBooks = ExchangedBooks.find().lean().select('owner receiver')
-  const users = User.find().select({ username, locationInfo, books })
+  const users = User.find().select('username locationInfo books favoriteGenres')
   //username, city, read books, books exchanged
 
   Promise.all([usersRating, exchangedBooks, users]).then(data => {
@@ -26,14 +25,14 @@ router.get('/', (req, res) => {
 
       let sum = 0
       let average = 0
-      
+
       if (userScoreArr.length !== 0) {
         sum = userScoreArr.reduce(reducer)
         average = (sum / userScoreArr.length).toFixed(1)
       }
 
       const exchangedBooksByUser = exchangedBooks.filter(book => {
-        return book.owner === user._id && book.receiver === user._id
+        return book.owner === user._id || book.receiver === user._id
       })
 
       const readBooks = user.books.filter(book => book.status === 'READ')
@@ -44,7 +43,8 @@ router.get('/', (req, res) => {
         city: user.locationInfo.city,
         rating: average, // sobre 10 (tenerlo en cuenta en front)
         timesRated: sum,
-        exchangedBooksByUser: exchangedBooksByUser.length
+        exchangedBooksByUser: exchangedBooksByUser.length,
+        favoriteGenres: user.favoriteGenres
       }
 
     })
@@ -68,10 +68,9 @@ router.get('/:id', (req, res) => {
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
 
-
 })
 
-router.post('/:id/delete', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
 
   const { id } = req.params;
 
@@ -84,22 +83,7 @@ router.post('/:id/delete', (req, res) => {
 
 })
 
-router.post('/:id/edit', (req, res) => {
-
-  const { id } = req.params;
-  const { } = req.body //depends on the model
-
-  User
-    .findByIdAndUpdate(id, {}, { new: true }) //depends on the model
-    .then(() => {
-      res.status(200).json({ message: 'User succesfully updated' })
-    })
-    .catch(err => res.status(500).json({ code: 500, message: "Error updating user", err }))
-
-})
 
 router.post('/:id/vote', (req, res) => { })
-
-
 
 module.exports = router
