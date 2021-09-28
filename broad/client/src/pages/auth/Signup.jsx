@@ -7,23 +7,35 @@ import AuthService from '../../services/auth.service';
 
 const authService = new AuthService();
 
-const SignupForm = props => {
-	const [email, setEmail] = useState('');
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+const SignupForm = () => {
+	const [formData, setFormData] = useState({email: '', username: '', pwd: ''});
 
 	const clearState = () => {
-		setEmail('');
-		setUsername('');
-		setPassword('');
+		setFormData({email: '', username: '', pwd: ''});
 	};
-};
 
-function Signup() {
+	const handleChange = e => {
+		const {value, name} = e.target;
+		setFormData({...formData, [name]: value});
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		const {email, username, pwd} = formData;
+
+		authService
+			.signup(email, username, pwd)
+			.then(user => {
+				clearState();
+			})
+			.catch(err => console.error(err));
+	};
+
 	return (
 		<Container>
-			<h3>Sign In</h3>
-			<form>
+			<h3>Sign Up</h3>
+			<form onSubmit={handleSubmit}>
 				<TextField
 					variant="outlined"
 					margin="normal"
@@ -34,6 +46,8 @@ function Signup() {
 					name="email"
 					autoComplete="email"
 					autoFocus
+					value={formData.email}
+					onChange={e => handleChange(e)}
 				/>
 				<TextField
 					variant="outlined"
@@ -46,6 +60,8 @@ function Signup() {
 					autoComplete="username"
 					type="text"
 					autoFocus
+					value={formData.username}
+					onChange={e => handleChange(e)}
 				/>
 				<TextField
 					variant="outlined"
@@ -58,13 +74,16 @@ function Signup() {
 					autoComplete="password"
 					type="password"
 					autoFocus
+					value={formData.pwd}
+					onChange={e => handleChange(e)}
 				/>
 				<FormControlLabel
 					control={<Checkbox value="remember" color="primary" />}
 					label="Remember me"
+					//manage the onchange
 				/>
 				<Button type="submit" fullWidth variant="contained" color="primary">
-					Sign In
+					Sign Up
 				</Button>
 			</form>
 
@@ -74,7 +93,7 @@ function Signup() {
 						Forgot password?
 					</Link>
 				</Grid>
-				<Grid item>
+				<Grid item xs>
 					<Link href="/signup" variant="body2">
 						{"Don't have an account? Sign Up"}
 					</Link>
@@ -82,6 +101,6 @@ function Signup() {
 			</Grid>
 		</Container>
 	);
-}
+};
 
-export default Signup;
+export default SignupForm;

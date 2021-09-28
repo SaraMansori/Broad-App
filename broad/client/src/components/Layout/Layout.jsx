@@ -6,11 +6,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Container>
-        {children}
-      </Container>
+      <Container>{children}</Container>
     </>
-  )
-}
+  );
+};
 
 export default Layout;

@@ -36,7 +36,6 @@ const LoginForm = props => {
 		<Container>
 			<h3>Log In</h3>
 			<form onSubmit={handleSubmit}>
-				{/* control inputs con onChange  y value conectado al estado */}
 				{/* <TextField
 					variant="outlined"
 					margin="normal"

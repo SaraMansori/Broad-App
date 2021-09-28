@@ -19,7 +19,7 @@ module.exports = {
   },
 
 
-  isBlank: value => value.length === 0 || !value.match(/\S/),
+  isBlank: value => value?.length === 0 || !value?.match(/\S/),
 
 
   // Crear util para calcular la media de ratings de cada usuario/quote

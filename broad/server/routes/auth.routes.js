@@ -20,11 +20,11 @@ router.post('/signup', (req, res) => {
     .find({ $or: [{ username }, { email }] })
     .then(users => {
 
-      if (users.length === 2) {
+      if (users?.length === 2) {
         res.status(400).json({ code: 400, message: 'Username and email already exist' })
         return
       }
-      else if (users.length === 1) {
+      else if (users?.length === 1) {
         if (users[0].username === username) {
           res.status(400).json({ code: 400, message: 'Username already exists' })
           return

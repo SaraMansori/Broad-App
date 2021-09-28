@@ -80,7 +80,6 @@ router.delete('/:id/delete', (req, res) => {
 
 })
 
-
 router.put('/:id/edit/:infoToUpdate', (req, res) => {
 
   const { id, infoToUpdate } = req.params
