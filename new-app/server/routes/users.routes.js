@@ -8,10 +8,9 @@ const ExchangedBooks = require('./../models/ExchangedBook.model')
 
 router.get('/', (req, res) => {
 
-  // lean???
+  // lean??? (select método de mongoose)
   const usersRating = Rating.find({ type: 'USER' }).lean().select('score receiver')
   const exchangedBooks = ExchangedBooks.find().lean().select('owner receiver')
-  // filtrar esto de abajo
   const users = User.find().select({ username, locationInfo, books })
   //username, city, read books, books exchanged
 
@@ -21,16 +20,21 @@ router.get('/', (req, res) => {
 
     const usersWithFilteredData = users.map(user => {
 
-      const userScoreArr = usersRating.filter(rating => {
-        rating.receiver === user._id
-      })
+      const userScoreArr = usersRating.filter(rating => rating.receiver === user._id)
 
       const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
+      let sum = 0
+      let average = 0
+      
       if (userScoreArr.length !== 0) {
-        const sum = userScoreArr.reduce(reducer)
-        const average = (sum / userScoreArr.length).toFixed(1)
+        sum = userScoreArr.reduce(reducer)
+        average = (sum / userScoreArr.length).toFixed(1)
       }
+
+      const exchangedBooksByUser = exchangedBooks.filter(book => {
+        return book.owner === user._id && book.receiver === user._id
+      })
 
       const readBooks = user.books.filter(book => book.status === 'READ')
 
@@ -40,22 +44,15 @@ router.get('/', (req, res) => {
         city: user.locationInfo.city,
         rating: average, // sobre 10 (tenerlo en cuenta en front)
         timesRated: sum,
-        // TODO: exchangedBooksNo: 
+        exchangedBooksByUser: exchangedBooksByUser.length
       }
 
-      /*
-      user.books.filter(book => book.status === 'READ')
-      user.city = user.locationInfo.city
-      delete user.locationInfo
-      //delete user.locationInfo.country
-      //delete user.locationInfo.address
-      */
     })
 
     // filter locationinfo y books
     // util de rating, number of exchanged books?
 
-    res.status(200).json({ usersRating, exchangedBooks, users })
+    res.status(200).json({ usersWithFilteredData })
   })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving users", err }))
 
