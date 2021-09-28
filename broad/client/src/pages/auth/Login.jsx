@@ -20,7 +20,7 @@ const LoginForm = props => {
 function Login() {
 	return (
 		<Container>
-			<h3>Sign In</h3>
+			<h3>Log In</h3>
 			<form>
 				<TextField
 					variant="outlined"

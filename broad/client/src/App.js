@@ -1,10 +1,9 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Routes from './components/Routes';
-import {createTheme} from '@material-ui/core/styles'
-import {ThemeProvider} from '@material-ui/core'
+import { createTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/core'
 
-import { Button } from '@mui/material';
 
 const theme = createTheme({
 
@@ -34,13 +33,13 @@ const theme = createTheme({
 
 function App() {
   return (
-     <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-     
+
       {/* <NavBar /> */}
       <Routes />
       {/* <Footer /> */}
-      </ThemeProvider>   
+    </ThemeProvider>
   );
 }
 

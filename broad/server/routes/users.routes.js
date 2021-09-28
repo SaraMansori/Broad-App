@@ -83,7 +83,6 @@ router.delete('/:id/delete', (req, res) => {
 
 })
 
-
 router.post('/:id/vote', (req, res) => { })
 
 module.exports = router

@@ -64,7 +64,14 @@ const userSchema = new Schema({
     address: String
   },
 
-  favoriteGenres: [String],
+  favoriteGenres: {
+    type: [String],
+    enum: ['TRAVEL', 'KIDS', 'BUSINESS', 'ART', 'BIOGRAPHY', 'CLASSICS', 'COMICS',
+      'CRIME', 'COOKBOOKS', 'COOKING', 'CRIME', 'FANTASY', 'FICTION', 'QUEER', 'HISTORY', 'HORROR',
+      'COMEDY', 'MANGA', 'MUSIC', 'MYSTERY', 'NONFICTION', 'PARANORMAL', 'PHILOSOPHY', 'POETRY', 'PSYCHOLOGY',
+      'RELIGION', 'ROMANCE', 'SCIENCE', 'SCIENCE FICTION', 'SELFHELP', 'SPORTS', 'SPIRITUALITY', 'THRILLER',
+      'YOUNGADULT', 'SUSPENSE', 'PHOTOGRAPHY', 'POLITICS']
+  },
 
   books: [{
 
