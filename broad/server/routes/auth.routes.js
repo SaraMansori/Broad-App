@@ -10,11 +10,11 @@ const { isBlank } = require("./../utils")
 router.post('/signup', (req, res) => {
 
   const { name, username, email, pwd } = req.body
-
-  if (isBlank(name) || isBlank(username) || isBlank(email) || isBlank(pwd)) {
-    res.status(400).json({ code: 400, message: 'Please fill in all the fields' })
-    return
-  }
+  console.log(req.body)
+  // if (isBlank(name) || isBlank(username) || isBlank(email) || isBlank(pwd)) {
+  //   res.status(400).json({ code: 400, message: 'Please fill in all the fields' })
+  //   return
+  // }
 
   User
     .find({ $or: [{ username }, { email }] })
@@ -35,11 +35,11 @@ router.post('/signup', (req, res) => {
         }
       }
 
-      const salt = bcrypt.genSaltSync(bcryptSalt)
-      const hashPass = bcrypt.hashSync(pwd, salt)
+      // const salt = bcrypt.genSaltSync(bcryptSalt)
+      // const hashPass = bcrypt.hashSync(pwd, salt)
 
       User
-        .create({ name, username, email, password: hashPass })
+        .create({ name, username, email, /*password: hashPass*/ })
         .then(() => res.json({ code: 200, message: 'User created' }))
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
     })

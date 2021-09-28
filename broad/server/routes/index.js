@@ -1,20 +1,15 @@
 const router = require("express").Router()
-const authRouter = require('./auth.routes')
-const usersRouter = require('./users.routes')
-const exchangesRouter = require('./exchanges.routes')
-const userBooksRouter = require('./userBooks.routes')
-const quotesRouter = require('./quotes.routes')
-const friendsRouter = require('./friends.routes')
-const chatRouter = require('./chat.routes')
-const challengesRouter = require('./challenges.routes')
 
-router.use("/auth", authRouter)
-router.use("/users", usersRouter)
-router.use("/exchanges", exchangesRouter)
-router.use("/user-books", userBooksRouter)
-router.use("/quotes", quotesRouter)
-router.use("/friends", friendsRouter)
-router.use("/chat", chatRouter)
-router.use("/challenges", challengesRouter)
+module.exports = router => {
 
-module.exports = router;
+  router.use("/auth", require('./auth.routes'))
+  router.use("/users", require('./users.routes'))
+  router.use("/exchanges", require('./exchanges.routes'))
+  router.use("/user-books", require('./userBooks.routes'))
+  router.use("/quotes", require('./quotes.routes'))
+  router.use("/friends", require('./friends.routes'))
+  router.use("/chat", require('./chat.routes'))
+  router.use("/challenges", require('./challenges.routes'))
+  router.use("/requests", require('./requests.routes'))
+
+}
