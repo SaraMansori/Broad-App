@@ -1,45 +1,22 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+import {BrowserRouter as Router} from 'react-router-dom'
 import Routes from './components/Routes';
-import {createTheme} from '@material-ui/core/styles'
+import CssBaseline from '@mui/material/CssBaseline';
 import {ThemeProvider} from '@material-ui/core'
-
-import { Button } from '@mui/material';
-
-const theme = createTheme({
-
-  palette: {
-    type: 'light',
-    primary: {
-      main: '#805d93',
-    },
-    secondary: {
-      main: '#169873',
-    },
-    background: {
-      paper: '#ffffff',
-      default: '#ffffff',
-    },
-  },
-  typography: {
-    fontFamily: 'Quicksand',
-    fontWeightRegular: 600,
-    fontWeightMedium: 800,
-    fontWeightBold: 900,
-    fontWeightLight: 400,
-  },
-
-});
-
+import LightTheme from './components/Layout/Theme'
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
-     <ThemeProvider theme={theme}>
+     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
-     
-      {/* <NavBar /> */}
-      <Routes />
-      {/* <Footer /> */}
+       <Router>
+        <Layout>   
+          {/* <NavBar /> */}
+          <Routes />
+          {/* <Footer /> */}
+        </Layout>
+       </Router> 
       </ThemeProvider>   
   );
 }
