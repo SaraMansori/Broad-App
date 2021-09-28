@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const ratingSchema = new Schema({
 
-  rating: {
+  score: {
     type: Number,
     min: 0,
     max: 10,

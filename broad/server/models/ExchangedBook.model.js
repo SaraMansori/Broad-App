@@ -22,11 +22,11 @@ const userSchema = new Schema({
     required: true
   },
 
-  bookId: String
+  exchangedBookId: String,
 
-},
-  { timestamps: true }
-);
+  swappedBookId: String
+
+}, { timestamps: true });
 
 const ExchangedBooks = model("ExchangedBooks", userSchema);
 

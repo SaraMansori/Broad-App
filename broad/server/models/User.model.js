@@ -11,14 +11,6 @@ const userSchema = new Schema({
     default: 'unknown'
   },
 
-  name: {
-    type: String,
-    required: true,
-    maxlength: 16,
-    trim: true,
-    default: 'unknown'
-  },
-
   username: {
     type: String,
     unique: true,
@@ -31,6 +23,20 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+
+  name: {
+    type: String,
+    required: true,
+    maxlength: 16,
+    trim: true,
+    default: 'unknown'
+  },
+
+  description: {
+    type: String,
+    maxlength: 250,
+    trim: true,
   },
 
   role: {
@@ -48,9 +54,11 @@ const userSchema = new Schema({
     //probar mapbox y googlemaps geometry
   },
 
-  city: String,
-
-  country: String,
+  locationInfo: {
+    city: String,
+    country: String,
+    address: String
+  },
 
   favoriteGenres: [String],
 
@@ -86,6 +94,7 @@ const userSchema = new Schema({
   }]
 
 }, { timestamps: true });
+
 
 const User = model("User", userSchema);
 
