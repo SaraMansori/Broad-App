@@ -8,7 +8,7 @@ class UsersService {
     })
   }
 
-  updateFavoriteGenres = (favoriteGenres) => this.instance.put("/signup", {})
+  updateFavoriteGenres = (id, favoriteGenres) => this.instance.put(`/${id}/edit/genres`, { favoriteGenres })
 
 }
 

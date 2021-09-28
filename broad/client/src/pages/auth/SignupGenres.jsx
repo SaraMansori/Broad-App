@@ -27,12 +27,14 @@ const SignupGenres = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		usersService
+		console.log(favoriteGenres);
+
+		/* 		usersService
 			.updateFavoriteGenres(favoriteGenres)
 			.then(user => {
 				clearState();
 			})
-			.catch(err => console.error(err));
+			.catch(err => console.error(err)); */
 	};
 
 	return (

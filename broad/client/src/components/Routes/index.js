@@ -10,10 +10,10 @@ import * as PATHS from '../../utils/paths';
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path={PATHS.HOMEPAGE} render={HomePage} />
-      <Route exact path={PATHS.LOGIN} render={Login} />
-      <Route exact path={PATHS.SIGNUP} render={Signup} />
-      <Route exact path={PATHS.SIGNUP_GENRES} render={SignupGenres} />
+      <Route exact path={PATHS.HOMEPAGE} render={() => <HomePage />} />
+      <Route exact path={PATHS.LOGIN} render={() => <Login />} />
+      <Route exact path={PATHS.SIGNUP} render={() => <Signup />} />
+      <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres />} />
     </Switch>
   );
 };

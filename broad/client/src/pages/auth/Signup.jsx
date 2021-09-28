@@ -83,7 +83,7 @@ const SignupForm = () => {
 					//manage the onchange
 				/>
 				<Button type="submit" fullWidth variant="contained" color="primary">
-					Sign In
+					Sign Up
 				</Button>
 			</form>
 
