@@ -29,12 +29,12 @@ const SignupGenres = () => {
 
 		console.log(favoriteGenres);
 
-		/* 		usersService
+		usersService
 			.updateFavoriteGenres(favoriteGenres)
 			.then(user => {
 				clearState();
 			})
-			.catch(err => console.error(err)); */
+			.catch(err => console.error(err));
 	};
 
 	return (

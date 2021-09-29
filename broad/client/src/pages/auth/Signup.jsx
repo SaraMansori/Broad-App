@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
-import {Container, FormControlLabel} from '@mui/material';
+import {FormControlLabel} from '@mui/material';
 import {Checkbox, Button, Grid} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import AuthService from '../../services/auth.service';
@@ -33,7 +33,7 @@ const SignupForm = () => {
 	};
 
 	return (
-		<Container>
+		<>
 			<h3>Sign Up</h3>
 			<form onSubmit={handleSubmit}>
 				<TextField
@@ -99,7 +99,7 @@ const SignupForm = () => {
 					</Link>
 				</Grid>
 			</Grid>
-		</Container>
+		</>
 	);
 };
 

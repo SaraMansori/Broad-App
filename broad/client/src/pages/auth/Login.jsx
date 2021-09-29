@@ -1,39 +1,41 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
-import { Container, FormControlLabel } from '@mui/material';
-import { Checkbox, Button, Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import {FormControlLabel} from '@mui/material';
+import {Checkbox, Button, Grid} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 import AuthService from '../../services/auth.service';
-import { SIGNUP } from '../../utils/paths';
+import {SIGNUP} from '../../utils/paths';
 
 const authService = new AuthService();
 
 const LoginForm = props => {
-
-	const [formData, setFormData] = useState({ username: '', pwd: '' })
+	const [formData, setFormData] = useState({username: '', pwd: ''});
 
 	const clearState = () => {
-		setFormData({ username: '', pwd: '' })
+		setFormData({username: '', pwd: ''});
 	};
 
 	const handleInput = e => {
-		const { name, value } = e.target
-		setFormData({ ...formData, [name]: value })
-	}
+		const {name, value} = e.target;
+		setFormData({...formData, [name]: value});
+	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		const { username, pwd } = formData
+		const {username, pwd} = formData;
 
 		authService
 			.login(username, pwd)
-			.then(() => clearState()) // añadir redirect to /home
-			.catch(err => console.error(err))
-	}
+			.then(res => {
+				props.storeUser(res.data);
+				clearState();
+			}) // añadir redirect to /home
+			.catch(err => console.error(err));
+	};
 
 	return (
-		<Container>
+		<>
 			<h3>Log In</h3>
 			<form onSubmit={handleSubmit}>
 				{/* <TextField
@@ -96,8 +98,8 @@ const LoginForm = props => {
 					</Link>
 				</Grid>
 			</Grid>
-		</Container>
+		</>
 	);
-}
+};
 
 export default LoginForm;
