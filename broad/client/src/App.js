@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './components/Routes';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@material-ui/core'
+import { ThemeProvider, Container } from '@material-ui/core'
 import LightTheme from './components/Layout/Theme'
-import Layout from './components/Layout/Layout';
+import Navbar from './components/Layout/Navbar'
 import AuthService from './services/auth.service';
 
 const authService = new AuthService();
@@ -32,11 +32,11 @@ const App = () => {
     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
       <Router>
-        <Layout>
-          {/* <NavBar /> */}
+        <Navbar />
+        <Container>
           <Routes loggedUser={loggedUser} />
-          {/* <Footer /> */}
-        </Layout>
+        </Container>
+        {/* <Footer /> */}
       </Router>
     </ThemeProvider>
   );

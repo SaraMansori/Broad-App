@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {Container, Button} from '@mui/material';
-//import UsersService from '../../services/users.service';
+import UsersService from '../../services/users.service';
 import genres from '../../utils/bookGenres';
 
-//const usersService = new UsersService();
+const usersService = new UsersService();
 
 const SignupGenres = () => {
 	const [favoriteGenres, setSignupGenresData] = useState([]);
 
-	/* 	const clearState = () => {
+	const clearState = () => {
 		setSignupGenresData({favoriteGenres: []});
 	};
- */
+
 	const handleClick = e => {
 		const currentGenre = e.target.innerText;
 
@@ -29,12 +29,12 @@ const SignupGenres = () => {
 
 		console.log(favoriteGenres);
 
-		/* 		usersService
+		usersService
 			.updateFavoriteGenres(favoriteGenres)
 			.then(user => {
 				clearState();
 			})
-			.catch(err => console.error(err)); */
+			.catch(err => console.error(err));
 	};
 
 	return (

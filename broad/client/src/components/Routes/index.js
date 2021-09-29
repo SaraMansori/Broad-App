@@ -4,7 +4,7 @@ import HomePage from '../../pages/HomePage'
 import Login from '../../pages/auth/Login'
 import Signup from '../../pages/auth/Signup'
 import SignupInfo from '../../pages/users/SignupInfo'
-import SignupGenres from '../../pages/auth/SignupGenres'
+import SignupGenres from '../../pages/users/SignupGenres'
 
 import * as PATHS from '../../utils/paths';
 
@@ -15,7 +15,7 @@ const Routes = (props) => {
       <Route exact path={PATHS.LOGIN} render={() => <Login loggedUser={props.loggedUser} />} />
       <Route exact path={PATHS.SIGNUP} render={() => <Signup loggedUser={props.loggedUser} />} />
       <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfo loggedUser={props.loggedUser} />} />
-      <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres />} />
+      <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres loggedUser={props.loggedUser} />} />
     </Switch>
   );
 };
