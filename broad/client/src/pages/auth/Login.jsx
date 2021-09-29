@@ -1,28 +1,42 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import {Container, FormControlLabel} from '@mui/material';
-import {Checkbox, Button, Grid} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import { Container, FormControlLabel } from '@mui/material';
+import { Checkbox, Button, Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import AuthService from '../../services/auth.service';
+import { SIGNUP } from '../../utils/paths';
 
 const authService = new AuthService();
 
 const LoginForm = props => {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+
+	const [formData, setFormData] = useState({ username: '', pwd: '' })
 
 	const clearState = () => {
-		setUsername('');
-		setPassword('');
+		setFormData({ username: '', pwd: '' })
 	};
-};
 
-function Login() {
+	const handleInput = e => {
+		const { name, value } = e.target
+		setFormData({ ...formData, [name]: value })
+	}
+
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		const { username, pwd } = formData
+
+		authService
+			.login(username, pwd)
+			.then(() => clearState()) // añadir redirect to /home
+			.catch(err => console.error(err))
+	}
+
 	return (
 		<Container>
 			<h3>Log In</h3>
-			<form>
-				<TextField
+			<form onSubmit={handleSubmit}>
+				{/* <TextField
 					variant="outlined"
 					margin="normal"
 					required
@@ -32,7 +46,7 @@ function Login() {
 					name="email"
 					autoComplete="email"
 					autoFocus
-				/>
+				/> */}
 				<TextField
 					variant="outlined"
 					margin="normal"
@@ -44,6 +58,8 @@ function Login() {
 					autoComplete="username"
 					type="text"
 					autoFocus
+					value={formData.username}
+					onChange={handleInput}
 				/>
 				<TextField
 					variant="outlined"
@@ -56,6 +72,8 @@ function Login() {
 					autoComplete="password"
 					type="password"
 					autoFocus
+					value={formData.pwd}
+					onChange={handleInput}
 				/>
 				<FormControlLabel
 					control={<Checkbox value="remember" color="primary" />}
@@ -73,8 +91,8 @@ function Login() {
 					</Link>
 				</Grid>
 				<Grid item>
-					<Link href="/signup" variant="body2">
-						{"Don't have an account? Sign Up"}
+					<Link to={SIGNUP} variant="body2">
+						Don't have an account? Sign Up
 					</Link>
 				</Grid>
 			</Grid>
@@ -82,4 +100,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default LoginForm;
