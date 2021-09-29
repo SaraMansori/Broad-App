@@ -5,8 +5,9 @@ import genres from '../../utils/bookGenres';
 
 const usersService = new UsersService();
 
-const SignupGenres = () => {
+const SignupGenres = props => {
 	const [favoriteGenres, setSignupGenresData] = useState([]);
+	const id = props.loggedUser?._id;
 
 	const clearState = () => {
 		setSignupGenresData({favoriteGenres: []});
@@ -27,11 +28,10 @@ const SignupGenres = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		console.log(favoriteGenres);
-
 		usersService
-			.updateFavoriteGenres(favoriteGenres)
-			.then(user => {
+			.updateFavoriteGenres(id, favoriteGenres)
+			.then(res => {
+				console.log(res);
 				clearState();
 			})
 			.catch(err => console.error(err));
