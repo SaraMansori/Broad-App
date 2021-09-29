@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const Request = require('../models/Request.model')
+const Request = require('../models/Request.model');
+const User = require("../models/User.model");
 
 
 router.get('/', (req, res) => {
@@ -15,12 +16,13 @@ router.get('/', (req, res) => {
 })
 
 
-router.post('/create', (req, res) => {
+router.post('/create/:type/:receiver', (req, res) => {
 
-  const { owner, receiver, status, type } = req.body
+  const { type, receiver } = req.params
+  const owner = req.session.currentUser._id // sustituir por un id para probar en postman
 
   Request
-    .create({ owner, receiver, status, type })
+    .create({ owner, receiver, type })
     .then(() => res.status(200).json({ message: 'Request succesfully created' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating request", err }))
 })
@@ -29,27 +31,33 @@ router.post('/create', (req, res) => {
 router.put('/:id/edit', (req, res) => {
 
   const { id } = req.params
-  const { status } = req.body
+  const { status } = 'ACCEPTED' //req.body
 
   Request
-    .findByIdAndUpdate(id, { status }, { new: true })
+    .findByIdAndUpdate(id, { status: "ACCEPTED" }, { new: true })
     .then(updatedRequest => {
 
       if (updatedRequest.status === 'REJECTED') {
         // Si eliminamos, luego pueden volver a solicitarlo si no lo gestionamos
         // En amistad tiene sentido, en las otras? (chat, exchange)
+        // gestionar por tipos?
       }
       else if (updatedRequest.status === 'ACCEPTED') {
 
         if (updatedRequest.type === 'FRIENDSHIP') {
-          // llamar a modelo de user, encontrar owner y receiver y añadir a cada uno el otro en friends array
-          updatedRequest.owner
-          updatedRequest.receiver
+
+          const newFriendInOwner = User.findByIdAndUpdate(updatedRequest.owner, { $push: { friends: updatedRequest.receiver } }, { new: true })
+          const newFriendInReceiver = User.findByIdAndUpdate(updatedRequest.receiver, { $push: { friends: updatedRequest.owner } }, { new: true })
+
+          Promise.all([newFriendInOwner, newFriendInReceiver]).then(() => {
+            res.status(200).json({ message: 'Users became friends successfully' })
+          }) // then borrar request?
+            .catch(err => res.status(500).json({ code: 500, message: "Error adding friends to users", err }))
         }
 
       }
 
-      res.status(200).json({ message: 'Request succesfully updated' })
+      //res.status(200).json({ message: 'Request succesfully updated' })
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating request", err }))
 
