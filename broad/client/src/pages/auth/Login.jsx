@@ -27,7 +27,10 @@ const LoginForm = props => {
 
 		authService
 			.login(username, pwd)
-			.then(() => clearState()) // añadir redirect to /home
+			.then(res => {
+				props.storeUser(res.data);
+				clearState();
+			}) // añadir redirect to /home
 			.catch(err => console.error(err));
 	};
 

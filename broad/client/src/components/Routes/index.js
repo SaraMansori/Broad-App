@@ -12,7 +12,7 @@ const Routes = (props) => {
   return (
     <Switch>
       <Route exact path={PATHS.HOMEPAGE} render={() => <HomePage />} />
-      <Route exact path={PATHS.LOGIN} render={() => <Login loggedUser={props.loggedUser} />} />
+      <Route exact path={PATHS.LOGIN} render={() => <Login loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
       <Route exact path={PATHS.SIGNUP} render={() => <Signup loggedUser={props.loggedUser} />} />
       <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfo loggedUser={props.loggedUser} />} />
       <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres loggedUser={props.loggedUser} />} />

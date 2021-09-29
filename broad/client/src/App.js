@@ -25,16 +25,13 @@ const App = () => {
     fetchUser()
   }, [])
 
-  // Cuando haga falta modificar el user en front
-  // <Routes loggedUser={loggedUser} storeUser={storeUser} />
-
   return (
     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
       <Router>
         <Navbar />
         <Container>
-          <Routes loggedUser={loggedUser} />
+          <Routes loggedUser={loggedUser} storeUser={storeUser} />
         </Container>
         {/* <Footer /> */}
       </Router>
