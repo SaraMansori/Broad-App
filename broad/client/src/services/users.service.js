@@ -8,11 +8,11 @@ class UsersService {
     })
   }
 
-  signupInfo = (id, name, description, profileImage, location) => {
-    this.instance.post(`/${id}/edit/signup-info`, { name, description, profileImage, location })
+  getSignupInfo = (id, name, description, profileImage, location) => {
+    return this.instance.put(`/${id}/edit/signup-info`, { name, description, profileImage, location })
   }
   updateFavoriteGenres = (id, favoriteGenres) => {
-    this.instance.put(`/${id}/edit/genres`, { favoriteGenres })
+    return this.instance.put(`/${id}/edit/genres`, { favoriteGenres })
   }
 
 }
