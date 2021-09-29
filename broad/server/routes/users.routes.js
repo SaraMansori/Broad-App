@@ -88,7 +88,7 @@ router.put('/:id/edit/:infoToUpdate', (req, res) => {
 
   if (infoToUpdate === 'signup-info') {
     // Location se modifica en front
-    newUserInfo = { name, description, profileImage, location } = req.body
+    newUserInfo = { name, description, location, profileImage } = req.body
   }
   else if (infoToUpdate === 'profile') {
     // Location se modifica en front
