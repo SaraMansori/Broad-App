@@ -7,7 +7,7 @@ const User = require("../models/User.model");
 
 router.get('/', (req, res) => {
 
-  const { id } = req.session.currentUser._id
+  const id = req.session.currentUser._id
 
   Request
     .find({ receiver: id })
@@ -56,8 +56,6 @@ router.put('/:id/edit', (req, res) => {
         }
 
       }
-
-      //res.status(200).json({ message: 'Request succesfully updated' })
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating request", err }))
 
