@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {Container, Button} from '@mui/material';
-import UsersService from '../../services/users.service';
+//import UsersService from '../../services/users.service';
 import genres from '../../utils/bookGenres';
 
-const usersService = new UsersService();
+//const usersService = new UsersService();
 
 const SignupGenres = () => {
 	const [favoriteGenres, setSignupGenresData] = useState([]);
 
-	const clearState = () => {
+	/* 	const clearState = () => {
 		setSignupGenresData({favoriteGenres: []});
 	};
-
+ */
 	const handleClick = e => {
 		const currentGenre = e.target.innerText;
 
