@@ -10,7 +10,9 @@ router.get('/', (req, res) => {
   const id = req.session.currentUser._id
 
   Request
-    .find({ receiver: id })
+    .find({ receiver: id, status: 'PENDING' })
+    .populate('owner')
+    .select('owner type') // filtrar los datos de owner. lean?
     .then(requests => res.status(200).json({ requests }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving requests", err }))
 })
