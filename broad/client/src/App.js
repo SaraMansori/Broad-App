@@ -9,7 +9,7 @@ import AuthService from './services/auth.service';
 
 const authService = new AuthService();
 
-const App = () => {
+const App = (props) => {
 
   const [loggedUser, setLoggedUser] = useState(undefined)
 
@@ -29,7 +29,7 @@ const App = () => {
     <ThemeProvider theme={LightTheme}>
       <CssBaseline />
       <Router>
-        <Navbar />
+        <Navbar {...props} />
         <Container>
           <Routes loggedUser={loggedUser} storeUser={storeUser} />
         </Container>
