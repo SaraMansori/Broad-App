@@ -83,7 +83,7 @@ router.delete('/:id/delete', (req, res) => {
 router.put('/:id/edit/:infoToUpdate', (req, res) => {
 
   const { id, infoToUpdate } = req.params
-  const newUserInfo = {}
+  let newUserInfo = {}
 
 
   if (infoToUpdate === 'signup-info') {

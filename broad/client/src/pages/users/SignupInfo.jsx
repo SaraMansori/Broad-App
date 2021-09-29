@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Container, FormControlLabel } from '@mui/material';
-import { Checkbox, Button, Grid } from '@material-ui/core';
+import { FormControlLabel } from '@mui/material';
+import { Button, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/users.service';
 import UploadsService from '../../services/uploads.service';
@@ -20,23 +20,21 @@ const SignupInfo = props => {
   const clearState = () => {
     setFormData({ name: '', description: '', profileImage: '', location: '', profileImage: '' })
   }
-
   const handleInput = e => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = e => {
-
     e.preventDefault();
 
-    const { name, description, profileImage, location } = formData
+    const { name, description, profileImage, location } = formData;
 
     usersService
       .login(name, description, profileImage, location)
       .then(() => clearState())
-      .catch(err => console.error(err))
-  }
+      .catch(err => console.error(err));
+  };
 
   const handleFile = e => {
 
@@ -105,7 +103,7 @@ const SignupInfo = props => {
           label="Profile image"
           name="profileImage"
           accept="image/png, image/jpeg, image/jpg"
-          onChange={(e) => this.handleFile(e)}
+          onChange={(e) => handleFile(e)}
         />
 
         <Button type="submit" fullWidth variant="contained" color="primary">
