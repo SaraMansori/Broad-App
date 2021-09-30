@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PATHS from '../../utils/paths';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../../pages/HomePage'
 import Login from '../../pages/auth/Login'
@@ -7,10 +8,9 @@ import SignupInfo from '../../pages/users/SignupInfo'
 import SignupGenres from '../../pages/users/SignupGenres'
 import BookResults from '../../pages/BookResults';
 import Profile from '../../pages/Profile2';
-
 import '../../App.scss';
+import Requests from '../../pages/users/Requests';
 
-import * as PATHS from '../../utils/paths';
 
 const Routes = props => {
   return (
@@ -26,7 +26,7 @@ const Routes = props => {
         <Route exact path={PATHS.BOOK_RESULTS_AUTHOR} render={() => <BookResults searchType='author' {...props} />} />
         <Route exact path={PATHS.BOOK_RESULTS_ISBN} render={() => <BookResults searchType='isbn' {...props} />} />
         <Route exact path={PATHS.BOOK_RESULTS_CATEGORY} render={() => <BookResults searchType='category' {...props} />} />
-
+        <Route exact path={PATHS.REQUESTS} render={() => <Requests loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
         <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
       </Switch>
     </React.StrictMode>

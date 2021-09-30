@@ -9,4 +9,5 @@ export const BOOK_RESULTS_TITLE = "/book-results/title/:text";
 export const BOOK_RESULTS_AUTHOR = "/book-results/author/:text";
 export const BOOK_RESULTS_ISBN = "/book-results/isbn/:text";
 export const BOOK_RESULTS_CATEGORY = "/book-results/category/:text";
+export const REQUESTS = "/requests";
 
