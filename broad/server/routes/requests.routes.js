@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   Request
     .find({ receiver: id, status: 'PENDING' })
     .populate('owner')
-    .select('owner type') // filtrar los datos de owner. lean?
+    .select('owner type') // filtrar los datos de owner. lean? depende de lo que queramos mostrar en la página de requests
     .then(requests => res.status(200).json({ requests }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving requests", err }))
 })
@@ -33,16 +33,17 @@ router.post('/create/:type/:receiver', (req, res) => {
 router.put('/:id/edit', (req, res) => {
 
   const { id } = req.params
-  const { status } = 'ACCEPTED' //req.body
+  const { status } = req.body
 
   Request
-    .findByIdAndUpdate(id, { status: "ACCEPTED" }, { new: true })
+    .findByIdAndUpdate(id, { status }, { new: true })
     .then(updatedRequest => {
 
       if (updatedRequest.status === 'REJECTED') {
         // Si eliminamos, luego pueden volver a solicitarlo si no lo gestionamos
         // En amistad tiene sentido, en las otras? (chat, exchange)
         // gestionar por tipos?
+        res.status(200).json({ message: 'Not managed yet' }) // falta gestionar para chat y exchange
       }
       else if (updatedRequest.status === 'ACCEPTED') {
 
@@ -55,6 +56,8 @@ router.put('/:id/edit', (req, res) => {
             res.status(200).json({ message: 'Users became friends successfully' })
           }) // then borrar request?
             .catch(err => res.status(500).json({ code: 500, message: "Error adding friends to users", err }))
+        } else {
+          res.status(200).json({ message: 'Not managed yet' }) // falta gestionar para chat y exchange
         }
 
       }

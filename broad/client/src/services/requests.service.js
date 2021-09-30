@@ -8,7 +8,9 @@ class RequestsService {
     })
   }
 
-  getUserRequests = () => this.instance.get('/')
+  getRequests = () => this.instance.get('/')
+
+  manageRequest = (id, status) => this.instance.put(`${id}/edit`, { status })
 
 }
 
