@@ -86,21 +86,21 @@ router.delete('/:id/delete', (req, res) => {
 
 })
 
-router.put('/:id/edit/:infoToUpdate', (req, res) => {
+router.put('/:id/edit', (req, res) => {
 
-  const { id, infoToUpdate } = req.params
-  let newUserInfo = {}
+  const { id } = req.params
+  let newUserInfo = req.body
 
-  if (infoToUpdate === 'signup-info') {
-    // Location se modifica en front
-    newUserInfo = { name, description, location, profileImage } = req.body
-  } else if (infoToUpdate === 'profile') {
-    // Location se modifica en front
-    // meter cambio de contraseña?
-    newUserInfo = { name, email, username, description, profileImage, location } = req.body
-  } else if (infoToUpdate === 'genres') {
-    newUserInfo = { favoriteGenres } = req.body
-  }
+  // if (infoToUpdate === 'signup-info') {
+  //   // Location se modifica en front
+  //   newUserInfo = { name, description, location, profileImage } = req.body
+  // } else if (infoToUpdate === 'profile') {
+  //   // Location se modifica en front
+  //   // meter cambio de contraseña?
+  //   newUserInfo = { name, email, username, description, profileImage, location } = req.body
+  // } else if (infoToUpdate === 'genres') {
+  //   newUserInfo = { favoriteGenres } = req.body
+  // }
 
   User
     .findByIdAndUpdate(id, newUserInfo, { new: true })

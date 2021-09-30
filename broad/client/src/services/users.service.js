@@ -8,16 +8,16 @@ class UsersService {
     });
   }
 
-  signupInfo = (id, name, description, profileImage, location) => {
-    this.instance.post(`/${id}/edit/signup-info`, { name, description, profileImage, location });
+  getSignupInfo = (id, name, description, profileImage, location) => {
+    return this.instance.post(`/${id}/edit`, { name, description, profileImage, location });
   };
 
   updateFavoriteGenres = (id, favoriteGenres) => {
-    this.instance.put(`/${id}/edit/genres`, { favoriteGenres });
+    return this.instance.put(`/${id}/edit`, { favoriteGenres });
   };
 
-  updateUserBooks = (userId, bookId, status) => {
-    this.instance.put()
+  updateUserBooks = (userId, book) => {
+    return this.instance.put(`/${userId}/edit,`, { book })
   }
 
   getUserInfo = id => this.instance.get(`/${id}`);

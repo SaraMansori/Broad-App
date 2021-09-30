@@ -72,13 +72,14 @@ const SignupInfo = props => {
           fullWidth
           id="description"
           // label="Email Address"
-          // name="email"
+          name="description"
           // autoComplete="email"
           //autoFocus
           id="outlined-multiline-static"
           label="Description"
           multiline
           rows={4}
+          value={formData.description}
           onChange={handleInput}
         />
         <TextField
@@ -88,11 +89,11 @@ const SignupInfo = props => {
           fullWidth
           id="location"
           label="Location"
-          name="pwd"
+          name="location"
           autoComplete="location"
           type="location"
           //autoFocus
-          value={formData.pwd}
+          value={formData.location}
           onChange={handleInput}
         />
         <p>Profile image</p>

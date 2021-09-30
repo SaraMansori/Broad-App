@@ -68,10 +68,8 @@ const SearchBar = (props) => {
 		setText('')
 
 		if (!searchType) {
-			console.log('no search type')
 			text ? history.push(`/book-results/title/${text}`) : history.push(`/book-results/+`)
 		} else {
-			console.log('searchtype found')
 			text ? history.push(`/book-results/${searchType}/${text}`) : history.push(`/book-results/${searchType}/+`)
 		}
 

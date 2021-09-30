@@ -81,22 +81,25 @@ const BookSearch = props => {
       {books &&
         books.map(book => {
 
+          const { id } = book
+          const { imageLinks, title, authors } = book.volumeInfo
+
           return (
 
-            <Card key={`resultcard-${book.id}`} style={{ width: '80vw' }}>
+            <Card key={`resultcard-${id}`} style={{ width: '80vw' }}>
               <Card.Img
                 style={{ width: '20%' }}
                 variant="top"
-                src={book.volumeInfo.imageLinks?.thumbnail ? book.volumeInfo.imageLinks.thumbnail : defaultImages.bookCover} />
+                src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
               <Card.Body>
-                <Card.Title>{book.volumeInfo.title}</Card.Title>
+                <Card.Title>{title}</Card.Title>
 
                 <Card.Text>
-                  Author: {book.volumeInfo.authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)}
+                  Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)}
                 </Card.Text>
 
                 <Card.Text>
-                  Published Year: {book.volumeInfo.author}
+                  Published Year: 1999
                 </Card.Text>
 
                 <div className="book-buttons d-flex">
@@ -107,9 +110,9 @@ const BookSearch = props => {
                     id="dropdown-basic-button"
                     title="Add to my library">
 
-                    <Dropdown.Item href="/">Want to Read</Dropdown.Item>
-                    <Dropdown.Item href="/">Reading</Dropdown.Item>
-                    <Dropdown.Item href="/">Read</Dropdown.Item>
+                    <Dropdown.Item onClick={() => console.log('clicked')}>Want to Read</Dropdown.Item>
+                    <Dropdown.Item onClick={console.log('clicked')}>Reading</Dropdown.Item>
+                    <Dropdown.Item onClick={console.log('clicked')}>Read</Dropdown.Item>
 
                   </DropdownButton>
 
