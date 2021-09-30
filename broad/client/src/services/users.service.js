@@ -4,8 +4,8 @@ class UsersService {
   constructor() {
     this.instance = axios.create({
       baseURL: `${process.env.REACT_APP_API_URL}/users`,
-      withCredentials: true
-    })
+      withCredentials: true,
+    });
   }
 
   getSignupInfo = (name, description, profileImage, location) => {
@@ -19,6 +19,12 @@ class UsersService {
   getUsers = () => this.instance.get('/')
 
   deleteFriend = friendId => this.instance.put('/delete-friend', { friendId })
+
+  updateUserBooks = (userId, book) => {
+    return this.instance.put(`/${userId}/edit,`, { book })
+  }
+
+  getUserInfo = id => this.instance.get(`/${id}`);
 
 }
 

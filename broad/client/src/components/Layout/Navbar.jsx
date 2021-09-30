@@ -12,22 +12,16 @@ import {
 	MenuItem,
 	Menu,
 } from '@material-ui/core';
-//
-/* import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu' */ ///
+
+import SearchBar from '../../components/SearchBar';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+
 import ImgLogo from '../ImgLogo';
 import {HOMEPAGE} from '../../utils/paths';
 import {NavLink} from 'react-router-dom';
@@ -58,21 +52,10 @@ const SearchIconWrapper = styled('div')(({theme}) => ({
 	justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({theme}) => ({
-	color: 'inherit',
-	'& .MuiInputBase-input': {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
-	},
-}));
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -97,9 +80,9 @@ const Navbar = () => {
 	};
 
 	const menuId = 'primary-search-account-menu';
+	
 	const renderMenu = (
 		<>
-			<TextField id="outlined-basic" variant="outlined" />
 			<Menu
 				anchorEl={anchorEl}
 				anchorOrigin={{
@@ -140,7 +123,7 @@ const Navbar = () => {
 		>
 			<MenuItem>
 				<IconButton size="large" aria-label="show 4 new mails" color="inherit">
-					<Badge badgeContent={4} color="error">
+					<Badge badgeContent={12} color="error">
 						<MailIcon />
 					</Badge>
 				</IconButton>
@@ -152,7 +135,7 @@ const Navbar = () => {
 					aria-label="show 17 new notifications"
 					color="inherit"
 				>
-					<Badge badgeContent={17} color="error">
+					<Badge badgeContent={5} color="error">
 						<NotificationsIcon />
 					</Badge>
 				</IconButton>
@@ -177,15 +160,7 @@ const Navbar = () => {
 		<Box sx={{flexGrow: 1}}>
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton
-						size="large"
-						edge="start"
-						color="inherit"
-						aria-label="open drawer"
-						sx={{mr: 2}}
-					>
-						<MenuIcon />
-					</IconButton>
+					
 					<Typography
 						variant="h6"
 						noWrap
@@ -195,15 +170,9 @@ const Navbar = () => {
 					<NavLink to={HOMEPAGE}>
 						<ImgLogo />
 					</NavLink>
-					{/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
+
+					<SearchBar {...props}/>
+
 					<Box sx={{flexGrow: 1}} />
 					<Box sx={{display: {xs: 'none', md: 'flex'}}}>
 						<IconButton

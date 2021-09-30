@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './components/Routes';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, Container } from '@material-ui/core'
-import LightTheme from './components/Layout/Theme'
-import Navbar from './components/Layout/Navbar'
+
+//BOOTSTRAP
+import './App.scss';
+
+//MATERIALUI
+import { Container } from '@material-ui/core'
+import Navbar from './components/Layout/Navtop'
 import AuthService from './services/auth.service';
 
 const authService = new AuthService();
 
-const App = () => {
+const App = (props) => {
 
   const [loggedUser, setLoggedUser] = useState(undefined)
 
@@ -26,16 +29,15 @@ const App = () => {
   }, [])
 
   return (
-    <ThemeProvider theme={LightTheme}>
-      <CssBaseline />
+    <>
       <Router>
-        <Navbar />
+        <Navbar loggedUser={loggedUser} {...props} />
         <Container>
           <Routes loggedUser={loggedUser} storeUser={storeUser} />
         </Container>
         {/* <Footer /> */}
       </Router>
-    </ThemeProvider>
+    </>
   );
 }
 

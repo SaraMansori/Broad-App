@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Container, Button} from '@mui/material';
+import React, { useState } from 'react';
+import { Container, Button } from '@mui/material';
 import UsersService from '../../services/users.service';
 import genres from '../../utils/bookGenres';
 
@@ -10,7 +10,7 @@ const SignupGenres = props => {
 	const [favoriteGenres, setSignupGenresData] = useState([]);
 
 	const clearState = () => {
-		setSignupGenresData({favoriteGenres: []});
+		setSignupGenresData([]);
 	};
 
 	const handleClick = e => {
@@ -30,10 +30,7 @@ const SignupGenres = props => {
 
 		usersService
 			.updateFavoriteGenres(favoriteGenres)
-			.then(res => {
-				console.log(res);
-				clearState();
-			})
+			.then(() => clearState())
 			.catch(err => console.error(err));
 	};
 
@@ -47,7 +44,7 @@ const SignupGenres = props => {
 							onClick={e => handleClick(e)}
 							key={`genre${i}`}
 							variant={
-								favoriteGenres.includes(genre) ? 'contained' : 'outlined'
+								favoriteGenres?.includes(genre) ? 'contained' : 'outlined'
 							}
 						>
 							{genre}

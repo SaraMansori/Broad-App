@@ -14,7 +14,7 @@ module.exports = app => {
         httpOnly: true,
         maxAge: 1000 * 60 * 60
       },
-      store: MongoStore.create({ mongoUrl: process.env.DB_REMOTE })
+      store: MongoStore.create({ mongoUrl: process.env.DB_REMOTE }),
     })
   );
 };
