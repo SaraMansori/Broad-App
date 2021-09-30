@@ -21,7 +21,12 @@ const Routes = props => {
         <Route exact path={PATHS.SIGNUP} render={() => <Signup loggedUser={props.loggedUser} />} />
         <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfo loggedUser={props.loggedUser} />} />
         <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres loggedUser={props.loggedUser} />} />
-        <Route exact path={PATHS.BOOK_RESULTS} render={() => <BookResults {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_TEXT} render={() => <BookResults searchType='text' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_TITLE} render={() => <BookResults searchType='title' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_AUTHOR} render={() => <BookResults searchType='author' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_ISBN} render={() => <BookResults searchType='isbn' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_CATEGORY} render={() => <BookResults searchType='category' {...props} />} />
+
         <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
       </Switch>
     </React.StrictMode>
