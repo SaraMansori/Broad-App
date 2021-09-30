@@ -10,13 +10,16 @@
 		"@material-ui/styled-engine-sc": "^5.0.0-beta.5",
 		"@mui/material": "^5.0.1",
 		"axios": "^0.21.4",
+		"bootstrap": "^5.1.1",
 		"i": "^0.3.7",
 		"npm": "^7.24.1",
 		"react": "^17.0.2",
+		"react-bootstrap": "^2.0.0-rc.0",
 		"react-dom": "^17.0.2",
 		"react-material-ui-theme": "^1.0.9",
 		"react-router-dom": "^5.3.0",
 		"react-scripts": "^4.0.3",
+		"sass": "^1.42.1",
 		"styled-components": "^5.3.1"
 	},
 	"devDependencies": {
