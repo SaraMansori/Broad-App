@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { Button } from '@mui/material';
 import { ColorLensTwoTone, Search as SearchIcon } from '@material-ui/icons';
 import { InputBase } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
+
+import { InputGroup, Button, FormControl } from 'react-bootstrap/'
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -79,17 +80,18 @@ const SearchBar = (props) => {
 	return (
 		<form onSubmit={handleSubmit}>
 
-			<Search>
-				<SearchIconWrapper>
-					<SearchIcon />
-				</SearchIconWrapper>
-				<StyledInputBase
-					placeholder="Search Book…"
-					inputProps={{ 'aria-label': 'search' }}
+			<InputGroup>
+				<FormControl
+					placeholder="Find your favorite books..."
+					aria-label="search"
+					aria-describedby="search"
+					style={{ width: '42vw' }}
 					name="text" value={text} onChange={e => handleInput(e)}
 				/>
-				<Button type="submit" variant="contained" style={{ height: "100%" }} >Search Book</Button>
-			</Search>
+				<Button type='submit' variant="secondary" style={{ color: 'white' }} id="button-addon2">
+					Search
+				</Button>
+			</InputGroup>
 
 		</form>
 	);

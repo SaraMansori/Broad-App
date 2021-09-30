@@ -4,36 +4,37 @@ import { useHistory } from "react-router-dom";
 import ImgLogo from '../ImgLogo';
 import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, BOOK_RESULTS } from '../../utils/paths';
 import { Container, Navbar, Nav, NavDropdown, InputGroup, Button, FormControl } from 'react-bootstrap/'
+import SearchBar from '../SearchBar.jsx';
 
 
 const Navtop = (props) => {
 
-  const bookService = new BookService()
-  const [text, setText] = useState('')
-  let history = useHistory();
-
-  const clearState = () => {
-    setText("");
-  };
-
-  const handleInput = e => {
-    setText(e.target.value);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    setText('')
-    history.push(`/book-results/${text}`)
-
-    bookService
-      .getBooksByType('title', text.replaceAll(" ", "+"))
-      .then((res) => {
-        console.log(res.data)
-      })
-      .catch(err => console.error(err))
-
-    clearState()
-  }
+  /*   const bookService = new BookService()
+    const [text, setText] = useState('')
+    let history = useHistory();
+  
+    const clearState = () => {
+      setText("");
+    };
+  
+    const handleInput = e => {
+      setText(e.target.value);
+    };
+  
+    const handleSubmit = e => {
+      e.preventDefault();
+      setText('')
+      history.push(`/book-results/${text}`)
+  
+      bookService
+        .getBooksByType('title', text.replaceAll(" ", "+"))
+        .then((res) => {
+          console.log(res.data)
+        })
+        .catch(err => console.error(err))
+  
+      clearState()
+    } */
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
@@ -47,20 +48,8 @@ const Navtop = (props) => {
             <Nav.Link href="#">Quotes</Nav.Link>
           </Nav>
           <Nav className="me-auto">
-            <form onSubmit={handleSubmit}>
-              <InputGroup>
-                <FormControl
-                  placeholder="Find your favorite books..."
-                  aria-label="search"
-                  aria-describedby="search"
-                  style={{ width: '42vw' }}
-                  name="text" value={text} onChange={e => handleInput(e)}
-                />
-                <Button type='submit' variant="secondary" style={{ color: 'white' }} id="button-addon2">
-                  Search
-                </Button>
-              </InputGroup>
-            </form>
+
+            <SearchBar />
           </Nav>
           {props.loggedUser ?
             (<Nav>
