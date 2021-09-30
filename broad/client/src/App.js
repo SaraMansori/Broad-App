@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './components/Routes';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, Container } from '@material-ui/core'
-import LightTheme from './components/Layout/Theme'
+
+//BOOTSTRAP
+import './App.scss';
+
+//MATERIALUI
+import { Container } from '@material-ui/core'
 import Navbar from './components/Layout/Navbar'
 import AuthService from './services/auth.service';
 
@@ -26,8 +29,7 @@ const App = (props) => {
   }, [])
 
   return (
-    <ThemeProvider theme={LightTheme}>
-      <CssBaseline />
+    <>
       <Router>
         <Navbar {...props} />
         <Container>
@@ -35,7 +37,7 @@ const App = (props) => {
         </Container>
         {/* <Footer /> */}
       </Router>
-    </ThemeProvider>
+    </>
   );
 }
 
