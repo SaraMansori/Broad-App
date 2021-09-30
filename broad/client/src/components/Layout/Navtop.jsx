@@ -46,14 +46,14 @@ const Navtop = (props) => {
             <Nav.Link href="#">Discover Books</Nav.Link>
             <Nav.Link href="#">Quotes</Nav.Link>
           </Nav>
-          <Nav className="me-auto" style={{ alignSelf: 'stretch' }}>
+          <Nav className="me-auto">
             <form onSubmit={handleSubmit}>
               <InputGroup>
                 <FormControl
                   placeholder="Find your favorite books..."
                   aria-label="search"
                   aria-describedby="search"
-                  style={{ width: '50vw' }}
+                  style={{ width: '42vw' }}
                   name="text" value={text} onChange={e => handleInput(e)}
                 />
                 <Button type='submit' variant="secondary" style={{ color: 'white' }} id="button-addon2">
@@ -75,7 +75,8 @@ const Navtop = (props) => {
             (<Nav>
               <Nav.Link href={LOGIN}>Log In</Nav.Link>
               <Nav.Link href={SIGNUP}>Sign Up</Nav.Link>
-            </Nav>)}
+            </Nav>
+            )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
