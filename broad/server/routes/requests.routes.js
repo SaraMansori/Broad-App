@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
     .find({ receiver: id, status: 'PENDING' })
     .populate('owner')
     .select('owner type') // filtrar los datos de owner. lean? depende de lo que queramos mostrar en la página de requests
-    .then(requests => res.status(200).json({ requests }))
+    .then(requests => res.status(200).json(requests))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving requests", err }))
 })
 
 
-router.post('/create/:type/:receiver', (req, res) => {
+router.post('/', (req, res) => {
 
-  const { type, receiver } = req.params
+  const { receiver, type } = req.body
   const owner = req.session.currentUser._id // sustituir por un id para probar en postman
 
   Request
@@ -30,10 +30,9 @@ router.post('/create/:type/:receiver', (req, res) => {
 })
 
 
-router.put('/:id/edit', (req, res) => {
+router.put('/', (req, res) => {
 
-  const { id } = req.params
-  const { status } = req.body
+  const { id, status } = req.body
 
   Request
     .findByIdAndUpdate(id, { status }, { new: true })
@@ -64,6 +63,18 @@ router.put('/:id/edit', (req, res) => {
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating request", err }))
 
+})
+
+
+router.delete('/', (req, res) => {
+
+  const id = req.session.currentUser._id
+  const { otherUserId, type } = req.body
+
+  Request
+    .findOneAndDelete({ receiver: otherUserId, owner: id, type })
+    .then(() => res.status(200).json({ message: 'Request succesfully deleted' }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error deleting request", err }))
 })
 
 

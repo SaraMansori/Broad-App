@@ -7,10 +7,12 @@ const ExchangedBooks = require('../models/ExchangedBook.model')
 
 router.get('/', (req, res) => {
 
+  const id = req.session.currentUser._id
+
   // lean??? (select método de mongoose)
   const usersRating = Rating.find({ type: 'USER' }).lean().select('score receiver')
   const exchangedBooks = ExchangedBooks.find().lean().select('owner receiver')
-  const users = User.find().select('username locationInfo books favoriteGenres')
+  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres')
   //username, city, read books, books exchanged
 
   Promise.all([usersRating, exchangedBooks, users]).then(data => {
@@ -38,6 +40,7 @@ router.get('/', (req, res) => {
       const readBooks = user.books.filter(book => book.status === 'READ')
 
       return user = {
+        _id: user._id,
         username: user.username,
         readBooks: readBooks,
         city: user.locationInfo.city,
@@ -52,7 +55,7 @@ router.get('/', (req, res) => {
     // filter locationinfo y books
     // util de rating, number of exchanged books?
 
-    res.status(200).json({ usersWithFilteredData })
+    res.status(200).json(usersWithFilteredData)
   })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving users", err }))
 
@@ -75,7 +78,7 @@ router.get('/:id', (req, res) => {
 
 })
 
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
 
   const { id } = req.params
 
@@ -86,7 +89,7 @@ router.delete('/:id/delete', (req, res) => {
 
 })
 
-router.put('/:id/edit/:infoToUpdate', (req, res) => {
+router.put('/:id/:infoToUpdate', (req, res) => {
 
   const { id, infoToUpdate } = req.params
   let newUserInfo = {}
@@ -113,13 +116,10 @@ router.put('/:id/edit/:infoToUpdate', (req, res) => {
 })
 
 
-router.put('/delete-friend/:friendId', (req, res) => {
+router.put('/delete-friend', (req, res) => {
 
   const id = req.session.currentUser._id
-  const { friendId } = req.params
-
-  console.log(id)
-  console.log(friendId)
+  const { friendId } = req.body
 
   const deleteFriendInUser = User.findByIdAndUpdate(id, { $pull: { friends: friendId } }, { new: true })
   const deleteUserInFriend = User.findByIdAndUpdate(friendId, { $pull: { friends: id } }, { new: true })
