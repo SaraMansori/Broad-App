@@ -103,13 +103,13 @@ const BookSearch = props => {
 
                   <DropdownButton
                     variant="primary"
-                    menuVariant="dark"
+                    menuVariant="primary"
                     id="dropdown-basic-button"
                     title="Add to my library">
 
-                    <Dropdown.Item href="#/action-1">Want to Read</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Reading</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Read</Dropdown.Item>
+                    <Dropdown.Item href="/">Want to Read</Dropdown.Item>
+                    <Dropdown.Item href="/">Reading</Dropdown.Item>
+                    <Dropdown.Item href="/">Read</Dropdown.Item>
 
                   </DropdownButton>
 

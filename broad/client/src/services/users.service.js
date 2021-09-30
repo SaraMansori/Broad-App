@@ -15,6 +15,10 @@ class UsersService {
     this.instance.put(`/${id}/edit/genres`, { favoriteGenres });
   };
 
+  updateUserBooks = (userId, bookId, status) => {
+    this.instance.put()
+  }
+
   getUserInfo = id => this.instance.get(`/${id}`);
 }
 
