@@ -7,7 +7,7 @@ import './App.scss';
 
 //MATERIALUI
 import { Container } from '@material-ui/core'
-import Navbar from './components/Layout/Navbar'
+import Navbar from './components/Layout/Navtop'
 import AuthService from './services/auth.service';
 
 const authService = new AuthService();
@@ -31,7 +31,7 @@ const App = (props) => {
   return (
     <>
       <Router>
-        <Navbar {...props} />
+        <Navbar loggedUser={loggedUser} {...props} />
         <Container>
           <Routes loggedUser={loggedUser} storeUser={storeUser} />
         </Container>

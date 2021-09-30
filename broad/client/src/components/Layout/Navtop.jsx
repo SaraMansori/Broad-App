@@ -37,7 +37,7 @@ const Navtop = (props) => {
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-      <Container fluid style={{ paddingRight: '15px', paddingLeft: '15px', paddingBottom: '5px' }}>
+      <Container fluid style={{ paddingRight: '15px', paddingLeft: '15px', paddingBottom: '7px', paddingTop: '7px' }}>
         <Navbar.Brand href={HOMEPAGE}><ImgLogo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
