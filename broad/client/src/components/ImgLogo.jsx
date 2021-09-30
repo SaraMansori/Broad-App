@@ -10,9 +10,7 @@ const Img = styled.img`
 
 const ImgLogo = () => {
   return (
-    <>
-      <Img src={logo} alt="Broad logo" />
-    </>
+    <Img src={logo} alt="Broad logo" />
   );
 };
 

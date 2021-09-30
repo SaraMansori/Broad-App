@@ -10,5 +10,6 @@ router.use("/chat", require('./chat.routes'))
 router.use("/challenges", require('./challenges.routes'))
 router.use("/requests", require('./requests.routes'))
 router.use("/books", require('./books.routes'))
+router.use("/uploads", require('./uploads.routes'))
 
 module.exports = router
