@@ -7,6 +7,8 @@ import SignupInfo from '../../pages/users/SignupInfo'
 import SignupGenres from '../../pages/users/SignupGenres'
 import BookResults from '../../pages/BookResults';
 
+import '../../App.scss';
+
 import * as PATHS from '../../utils/paths';
 
 const Routes = (props) => {

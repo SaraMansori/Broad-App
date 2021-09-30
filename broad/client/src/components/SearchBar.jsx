@@ -4,7 +4,7 @@ import {styled, alpha} from '@mui/material/styles';
 import {Button} from '@mui/material';
 import {Search as SearchIcon} from '@material-ui/icons';
 import {InputBase} from '@material-ui/core';
-import { Redirect } from 'react-router';
+import { useHistory } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -47,38 +47,34 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 
 const SearchBar = (props) => {
 
-	//const bookService = new BookService()
-	const [searchedData, setSearchedData] = useState({text: "", redirect: false});
+	const bookService = new BookService()
+	const [text, setText] = useState('')
+	let history = useHistory();
 
 	const clearState = () => {
-		setSearchedData({text: "", redirect: false});
+		setText("");
 	};
 
-	const renderRedirect = () => {
-    if (searchedData.redirect) <Redirect to={`/book-results/${searchedData.text}`}/>
-  }
-
 	const handleInput = e => {
-		setSearchedData({...searchedData, text: e.target.value});
+		setText(e.target.value);
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		setSearchedData({...searchedData, redirect: true})
+		setText('')
+		history.push(`/book-results/${text}`)
 		
-/* 		bookService
+		bookService
 			.getBooksByType('title', text.replaceAll(" ", "+"))
 			.then((res) => {
 				console.log(res.data)
 			})
-			.catch(err => console.error(err)) */
+			.catch(err => console.error(err))
 
 		clearState()
 	}
 
 	return (
-		<>
-		
 			<form onSubmit={handleSubmit}>
 
 				<Search>
@@ -88,13 +84,12 @@ const SearchBar = (props) => {
 						<StyledInputBase
 							placeholder="Search Book…"
 							inputProps={{ 'aria-label': 'search' }}
-							name="text" value={searchData.text} onChange={e => handleInput(e)}
+							name="text" value={text} onChange={e => handleInput(e)}
 						/>
 						<Button type="submit" variant="contained" style={{height: "100%"}} >Search Book</Button>
 				</Search>
 				
 			</form>
-		</>
 	);
 };
 
