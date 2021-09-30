@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   // lean??? (select método de mongoose)
   const usersRating = Rating.find({ type: 'USER' }).lean().select('score receiver')
   const exchangedBooks = ExchangedBooks.find().lean().select('owner receiver')
-  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres')
+  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres friends')
   //username, city, read books, books exchanged
 
   Promise.all([usersRating, exchangedBooks, users]).then(data => {
@@ -47,7 +47,8 @@ router.get('/', (req, res) => {
         rating: average, // sobre 10 (tenerlo en cuenta en front)
         timesRated: sum,
         exchangedBooksByUser: exchangedBooksByUser.length,
-        favoriteGenres: user.favoriteGenres
+        favoriteGenres: user.favoriteGenres,
+        friends: user.friends
       }
 
     })
@@ -89,9 +90,10 @@ router.delete('/:id', (req, res) => {
 
 })
 
-router.put('/:id/:infoToUpdate', (req, res) => {
+router.put('/:infoToUpdate', (req, res) => {
 
-  const { id, infoToUpdate } = req.params
+  const id = req.session.currentUser._id
+  const { infoToUpdate } = req.params
   let newUserInfo = {}
 
   if (infoToUpdate === 'signup-info') {
@@ -123,6 +125,7 @@ router.put('/delete-friend', (req, res) => {
 
   const deleteFriendInUser = User.findByIdAndUpdate(id, { $pull: { friends: friendId } }, { new: true })
   const deleteUserInFriend = User.findByIdAndUpdate(friendId, { $pull: { friends: id } }, { new: true })
+  // eliminar accepted request de amistad entre ambos
 
   Promise.all([deleteFriendInUser, deleteUserInFriend]).then(() => {
     res.status(200).json({ message: 'Friends successfully eliminated' })

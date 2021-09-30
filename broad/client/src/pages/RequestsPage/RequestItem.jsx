@@ -11,16 +11,11 @@ const RequestsItem = ({ _id, owner, getRequests }) => {
   const changeRequestStatus = e => {
 
     e.preventDefault();
-    const btnText = e.target.innerText // se puede mejorar?
 
-    const status = {
-      //si quitamos material UI posiblemente no funcione por las mayúsculas
-      "ACCEPT": 'ACCEPTED',
-      "REJECT": 'REJECTED'
-    }
+    const status = e.target.dataset.status
 
     requestsService
-      .manageRequest(_id, status[btnText])
+      .manageRequest(_id, status)
       .then(() => getRequests())
       .catch(err => console.error(err));
   };
@@ -28,8 +23,8 @@ const RequestsItem = ({ _id, owner, getRequests }) => {
   return (
     <>
       <Link to={`/users/${_id}`}>{owner.username}</Link>
-      <Button onClick={changeRequestStatus} type="submit" variant="contained" color="primary">Accept</Button>
-      <Button onClick={changeRequestStatus} type="submit" variant="contained" color="primary">Reject</Button>
+      <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="contained" color="primary">Accept</Button>
+      <Button onClick={changeRequestStatus} data-status="REJECTED" variant="contained" color="primary">Reject</Button>
       <br />
       <br />
     </>

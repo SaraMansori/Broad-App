@@ -8,12 +8,17 @@ class UsersService {
     })
   }
 
-  getSignupInfo = (id, name, description, profileImage, location) => {
-    return this.instance.put(`/${id}/edit/signup-info`, { name, description, profileImage, location })
+  getSignupInfo = (name, description, profileImage, location) => {
+    return this.instance.put(`/signup-info`, { name, description, profileImage, location })
   }
-  updateFavoriteGenres = (id, favoriteGenres) => {
-    return this.instance.put(`/${id}/edit/genres`, { favoriteGenres })
+
+  updateFavoriteGenres = (favoriteGenres) => {
+    return this.instance.put(`/genres`, { favoriteGenres })
   }
+
+  getUsers = () => this.instance.get('/')
+
+  deleteFriend = friendId => this.instance.put('/delete-friend', { friendId })
 
 }
 

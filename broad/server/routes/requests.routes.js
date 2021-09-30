@@ -20,6 +20,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
+  // comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra
+  // esto está gestionado desde el front con el cambio de botones, pero hay que hacerlo en back
   const { receiver, type } = req.body
   const owner = req.session.currentUser._id // sustituir por un id para probar en postman
 
@@ -33,7 +35,7 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
 
   const { id, status } = req.body
-
+  
   Request
     .findByIdAndUpdate(id, { status }, { new: true })
     .then(updatedRequest => {

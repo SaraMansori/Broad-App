@@ -13,7 +13,7 @@ const RequestsPage = props => {
 
     requestsService
       .getRequests()
-      .then(res => setRequests(res.data.requests))
+      .then(res => setRequests(res.data))
       .catch(err => console.error(err))
   }
 

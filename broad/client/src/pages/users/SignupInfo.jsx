@@ -11,8 +11,6 @@ const uploadsService = new UploadsService();
 
 const SignupInfo = props => {
 
-  const id = props.loggedUser?._id
-
   const [formData, setFormData] = useState({ name: '', description: '', profileImage: '', location: '' })
 
   const clearState = () => {
@@ -30,7 +28,7 @@ const SignupInfo = props => {
     const { name, description, profileImage, location } = formData;
 
     usersService
-      .getSignupInfo(id, name, description, profileImage, location)
+      .getSignupInfo(name, description, profileImage, location)
       .then(() => clearState())
       .catch(err => console.error(err));
   };

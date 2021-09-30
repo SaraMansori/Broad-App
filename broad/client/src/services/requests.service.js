@@ -10,7 +10,11 @@ class RequestsService {
 
   getRequests = () => this.instance.get('/')
 
-  manageRequest = (id, status) => this.instance.put(`${id}/edit`, { status })
+  manageRequest = (id, status) => this.instance.put('/', { id, status })
+
+  createRequest = (receiver, type) => this.instance.post('/', { receiver, type })
+
+  deleteRequest = (otherUserId, type) => this.instance.delete('/', { data: { otherUserId, type } })
 
 }
 

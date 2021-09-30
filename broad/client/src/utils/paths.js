@@ -4,4 +4,5 @@ export const SIGNUP_GENRES = "/signup/genres";
 export const SIGNUP_INFO = "/signup/info";
 export const LOGIN = "/login";
 export const REQUESTS = "/requests";
+export const USERS = "/users";
 

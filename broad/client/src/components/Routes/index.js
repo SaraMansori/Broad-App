@@ -6,7 +6,8 @@ import Login from '../../pages/auth/Login'
 import Signup from '../../pages/auth/Signup'
 import SignupInfo from '../../pages/users/SignupInfo'
 import SignupGenres from '../../pages/users/SignupGenres'
-import RequestsPage from '../../pages/requests/RequestsPage';
+import RequestsPage from '../../pages/RequestsPage/RequestsPage';
+import UsersPage from '../../pages/UsersPage/UsersPage';
 
 
 const Routes = (props) => {
@@ -15,9 +16,10 @@ const Routes = (props) => {
       <Route exact path={PATHS.HOMEPAGE} render={() => <HomePage />} />
       <Route exact path={PATHS.LOGIN} render={() => <Login loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
       <Route exact path={PATHS.SIGNUP} render={() => <Signup loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
-      <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfo loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
-      <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
+      <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfo />} />
+      <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres />} />
       <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
+      <Route exact path={PATHS.USERS} render={() => <UsersPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
     </Switch>
   );
 };
