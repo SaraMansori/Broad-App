@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import UsersService from '../../services/users.service';
-import UploadsService from '../../services/uploads.service';
+import RequestsService from '../../services/users.service';
 
-const usersService = new UsersService();
-const uploadsService = new UploadsService();
+const requestsService = new RequestsService();
 
 
-const SignupInfo = props => {
+const Requests = props => {
 
   const id = props.loggedUser?._id
 
-  const [formData, setFormData] = useState({ name: '', description: '', profileImage: '', location: '' })
+  const [requests, setRequests] = useState('')
 
   const clearState = () => {
-    setFormData({ name: '', description: '', profileImage: '', location: '' })
+    setRequests('')
   }
 
+  /*
   const handleInput = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -35,17 +33,6 @@ const SignupInfo = props => {
       .catch(err => console.error(err));
   };
 
-  const handleFile = e => {
-
-    setFormData({ ...formData, isLoading: true })
-
-    const uploadedData = new FormData()
-    uploadedData.append('imageData', e.target.files[0])
-
-    uploadsService.uploadImg(uploadedData)
-      .then(res => setFormData({ ...formData, isLoading: false, profileImage: res.data.cloudinary_url }))
-      .catch(err => console.error(err)) // Gestionar error de cara al usuario
-  }
 
   return (
     <>
@@ -72,14 +59,13 @@ const SignupInfo = props => {
           fullWidth
           id="description"
           // label="Email Address"
-          name="description"
+          // name="email"
           // autoComplete="email"
           //autoFocus
           id="outlined-multiline-static"
           label="Description"
           multiline
           rows={4}
-          value={formData.description}
           onChange={handleInput}
         />
         <TextField
@@ -89,11 +75,11 @@ const SignupInfo = props => {
           fullWidth
           id="location"
           label="Location"
-          name="location"
+          name="pwd"
           autoComplete="location"
           type="location"
           //autoFocus
-          value={formData.location}
+          value={formData.pwd}
           onChange={handleInput}
         />
         <p>Profile image</p>
@@ -116,6 +102,7 @@ const SignupInfo = props => {
       </Link>
     </>
   );
+  */
 }
 
-export default SignupInfo;
+export default Requests;

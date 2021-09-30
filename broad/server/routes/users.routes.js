@@ -62,8 +62,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
   const { id } = req.params
+
+  // añadir también requests? otro modelo
+  // Filtrar por lo que queramos mostrar (vista de usuario logged in y vista de los demás)
+  // de friends queremos solo la length, filtrar todo
+  // si tal cambiar en el estado de la página de front (que hemos puesto array)
   User
     .findById(id)
+    .select('email username profileImage name description locationInfo favoriteGenres books friends')
     .then(user => res.status(200).json({ user }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
 
@@ -80,24 +86,21 @@ router.delete('/:id/delete', (req, res) => {
 
 })
 
-router.put('/:id/edit/:infoToUpdate', (req, res) => {
+router.put('/:id/edit', (req, res) => {
 
-  const { id, infoToUpdate } = req.params
-  let newUserInfo = {}
+  const { id } = req.params
+  let newUserInfo = req.body
 
-
-  if (infoToUpdate === 'signup-info') {
-    // Location se modifica en front
-    newUserInfo = { name, description, profileImage, location } = req.body
-  }
-  else if (infoToUpdate === 'profile') {
-    // Location se modifica en front
-    // meter cambio de contraseña?
-    newUserInfo = { name, email, username, description, profileImage, location } = req.body
-  }
-  else if (infoToUpdate === 'genres') {
-    newUserInfo = { favoriteGenres } = req.body
-  }
+  // if (infoToUpdate === 'signup-info') {
+  //   // Location se modifica en front
+  //   newUserInfo = { name, description, location, profileImage } = req.body
+  // } else if (infoToUpdate === 'profile') {
+  //   // Location se modifica en front
+  //   // meter cambio de contraseña?
+  //   newUserInfo = { name, email, username, description, profileImage, location } = req.body
+  // } else if (infoToUpdate === 'genres') {
+  //   newUserInfo = { favoriteGenres } = req.body
+  // }
 
   User
     .findByIdAndUpdate(id, newUserInfo, { new: true })
@@ -107,6 +110,24 @@ router.put('/:id/edit/:infoToUpdate', (req, res) => {
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating user", err }))
 
+})
+
+
+router.put('/delete-friend/:friendId', (req, res) => {
+
+  const id = req.session.currentUser._id
+  const { friendId } = req.params
+
+  console.log(id)
+  console.log(friendId)
+
+  const deleteFriendInUser = User.findByIdAndUpdate(id, { $pull: { friends: friendId } }, { new: true })
+  const deleteUserInFriend = User.findByIdAndUpdate(friendId, { $pull: { friends: id } }, { new: true })
+
+  Promise.all([deleteFriendInUser, deleteUserInFriend]).then(() => {
+    res.status(200).json({ message: 'Friends successfully eliminated' })
+  })
+    .catch(err => res.status(500).json({ code: 500, message: "Error eliminating friends", err }))
 })
 
 
