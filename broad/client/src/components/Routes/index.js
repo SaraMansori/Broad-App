@@ -6,7 +6,7 @@ import Login from '../../pages/auth/Login'
 import Signup from '../../pages/auth/Signup'
 import SignupInfo from '../../pages/users/SignupInfo'
 import SignupGenres from '../../pages/users/SignupGenres'
-import BookResults from '../../pages/BookResults';
+import BookResults from '../../pages/BookResults/BookResults';
 import Profile from '../../pages/Profile2';
 import '../../App.scss';
 import Requests from '../../pages/users/Requests';
@@ -21,11 +21,11 @@ const Routes = props => {
         <Route exact path={PATHS.SIGNUP} render={() => <Signup loggedUser={props.loggedUser} />} />
         <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfo loggedUser={props.loggedUser} />} />
         <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenres loggedUser={props.loggedUser} />} />
-        <Route exact path={PATHS.BOOK_RESULTS_TEXT} render={() => <BookResults searchType='text' {...props} />} />
-        <Route exact path={PATHS.BOOK_RESULTS_TITLE} render={() => <BookResults searchType='title' {...props} />} />
-        <Route exact path={PATHS.BOOK_RESULTS_AUTHOR} render={() => <BookResults searchType='author' {...props} />} />
-        <Route exact path={PATHS.BOOK_RESULTS_ISBN} render={() => <BookResults searchType='isbn' {...props} />} />
-        <Route exact path={PATHS.BOOK_RESULTS_CATEGORY} render={() => <BookResults searchType='category' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_TEXT} render={() => <BookResults loggedUser={props.loggedUser} searchType='text' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_TITLE} render={() => <BookResults loggedUser={props.loggedUser} searchType='title' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_AUTHOR} render={() => <BookResults loggedUser={props.loggedUser} searchType='author' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_ISBN} render={() => <BookResults loggedUser={props.loggedUser} searchType='isbn' {...props} />} />
+        <Route exact path={PATHS.BOOK_RESULTS_CATEGORY} render={() => <BookResults loggedUser={props.loggedUser} searchType='category' {...props} />} />
         <Route exact path={PATHS.REQUESTS} render={() => <Requests loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
         <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
       </Switch>

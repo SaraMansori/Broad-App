@@ -58,6 +58,16 @@ router.get('/', (req, res) => {
 
 })
 
+router.get('/update-books', (req, res) => {
+  const userId = req.session.currentUser._id
+  const book = req.body
+
+  User
+    .findByIdAndUpdate(userId, { $push: { book: book } })
+    .then(res.status(200).json({ message: 'User books succesfully updated' }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error updating books in user", err }))
+
+})
 
 router.get('/:id', (req, res) => {
 
@@ -86,21 +96,24 @@ router.delete('/:id/delete', (req, res) => {
 
 })
 
-router.put('/:id/edit', (req, res) => {
+//let newUserInfo = req.body --> TEO 
 
-  const { id } = req.params
-  let newUserInfo = req.body
+router.put('/:infoToUpdate', (req, res) => {
 
-  // if (infoToUpdate === 'signup-info') {
-  //   // Location se modifica en front
-  //   newUserInfo = { name, description, location, profileImage } = req.body
-  // } else if (infoToUpdate === 'profile') {
-  //   // Location se modifica en front
-  //   // meter cambio de contraseña?
-  //   newUserInfo = { name, email, username, description, profileImage, location } = req.body
-  // } else if (infoToUpdate === 'genres') {
-  //   newUserInfo = { favoriteGenres } = req.body
-  // }
+  const id = req.session.currentUser._id
+  const { infoToUpdate } = req.params
+  let newUserInfo = {}
+
+  if (infoToUpdate === 'signup-info') {
+    // Location se modifica en front
+    newUserInfo = { name, description, location, profileImage } = req.body
+  } else if (infoToUpdate === 'profile') {
+    // Location se modifica en front
+    // meter cambio de contraseña?
+    newUserInfo = { name, email, username, description, profileImage, location } = req.body
+  } else if (infoToUpdate === 'genres') {
+    newUserInfo = { favoriteGenres } = req.body
+  }
 
   User
     .findByIdAndUpdate(id, newUserInfo, { new: true })
@@ -109,7 +122,6 @@ router.put('/:id/edit', (req, res) => {
       res.status(200).json({ message: 'User succesfully updated' })
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating user", err }))
-
 })
 
 
@@ -129,6 +141,7 @@ router.put('/delete-friend/:friendId', (req, res) => {
   })
     .catch(err => res.status(500).json({ code: 500, message: "Error eliminating friends", err }))
 })
+
 
 
 router.post('/:id/vote', (req, res) => { })

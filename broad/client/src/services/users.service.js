@@ -8,16 +8,15 @@ class UsersService {
     });
   }
 
-  getSignupInfo = (id, name, description, profileImage, location) => {
-    return this.instance.post(`/${id}/edit`, { name, description, profileImage, location });
-  };
+  getSignupInfo = (name, description, profileImage, location) => {
+    return this.instance.put(`/signup-info`, { name, description, profileImage, location })
+  }
+  updateFavoriteGenres = (favoriteGenres) => {
+    return this.instance.put(`/genres`, { favoriteGenres })
+  }
 
-  updateFavoriteGenres = (id, favoriteGenres) => {
-    return this.instance.put(`/${id}/edit`, { favoriteGenres });
-  };
-
-  updateUserBooks = (userId, book) => {
-    return this.instance.put(`/${userId}/edit,`, { book })
+  updateUserBooks = (book) => {
+    return this.instance.put(`/update-books,`, { book })
   }
 
   getUserInfo = id => this.instance.get(`/${id}`);

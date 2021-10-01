@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Card, DropdownButton, Dropdown, Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
-import BookService from '../services/books.service'
-import defaultImages from '../utils/defaultImages.js'
-import SearchBar from '../components/SearchBar';
+import BookService from '../../services/books.service'
+import SearchBar from '../../components/SearchBar';
+import BookItem from '../BookResults/BookItem'
 
 const BookSearch = props => {
 
@@ -13,13 +13,14 @@ const BookSearch = props => {
   const [books, setBooks] = useState([])
 
   let bookService = new BookService()
+
   const { text } = useParams();
 
   const getBooksByType = () => {
 
     bookService
       .getBooksByType(searchType, text.replaceAll(" ", "+"))
-      .then((res) => {
+      .then(res => {
         setBooks(res.data)
       })
       .catch(err => console.error(err))
@@ -81,49 +82,10 @@ const BookSearch = props => {
       {books &&
         books.map(book => {
 
-          const { id } = book
-          const { imageLinks, title, authors } = book.volumeInfo
-
           return (
 
-            <Card key={`resultcard-${id}`} style={{ width: '80vw' }}>
-              <Card.Img
-                style={{ width: '20%' }}
-                variant="top"
-                src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
+            <BookItem book={book} loggedUser={props.loggedUser} />
 
-                <Card.Text>
-                  Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)}
-                </Card.Text>
-
-                <Card.Text>
-                  Published Year: 1999
-                </Card.Text>
-
-                <div className="book-buttons d-flex">
-
-                  <DropdownButton
-                    variant="primary"
-                    menuVariant="primary"
-                    id="dropdown-basic-button"
-                    title="Add to my library">
-
-                    <Dropdown.Item onClick={() => console.log('clicked')}>Want to Read</Dropdown.Item>
-                    <Dropdown.Item onClick={console.log('clicked')}>Reading</Dropdown.Item>
-                    <Dropdown.Item onClick={console.log('clicked')}>Read</Dropdown.Item>
-
-                  </DropdownButton>
-
-                  <Button variant="secondary">
-                    Want to Exchange
-                  </Button>
-
-                </div>
-
-              </Card.Body>
-            </Card>
           )
         })
       }

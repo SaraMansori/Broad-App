@@ -8,7 +8,7 @@ class BookService {
     })
   }
 
-  getBooks = (text) => this.instance.get(`/searchBook/${text}`)
+  getBooks = (text) => this.instance.get(`/search-book/${text}`)
   getBooksByType = (type, text) => this.instance.get(`/search-book-by/${type}/${text}`)
 
 }
