@@ -11,6 +11,7 @@ import UsersPage from '../../pages/UsersPage/UsersPage';
 import BookResults from '../../pages/BookResults/BookResults';
 import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage';
 import Profile from '../../pages/Profile2';
+import ChatPage from '../../pages/ChatPage/ChatPage'
 import '../../App.scss';
 
 
@@ -32,6 +33,7 @@ const Routes = props => {
         <Route exact path={PATHS.USERS} render={() => <UsersPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
         <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
         <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage loggedUser={props.loggedUser} />} />
+        <Route path={PATHS.CHATS} render={() => <ChatPage />} />
       </Switch>
     </React.StrictMode>
   );

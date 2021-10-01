@@ -21,7 +21,7 @@ class UsersService {
   deleteFriend = friendId => this.instance.put('/delete-friend', { friendId })
 
   updateUserBooks = (book) => {
-    return this.instance.put(`/update-books,`, { book })
+    return this.instance.put(`/update/books`, { book })
   }
 
   getUserInfo = id => this.instance.get(`/${id}`);
