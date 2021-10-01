@@ -31,7 +31,7 @@ const Routes = props => {
         <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
         <Route exact path={PATHS.USERS} render={() => <UsersPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
         <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
-        <Route path={PATHS.CHATS} render={() => <ChatPage />} />
+        <Route path={PATHS.CHATS} render={() => <ChatPage loggedUser={props.loggedUser} />} />
       </Switch>
     </React.StrictMode>
   );

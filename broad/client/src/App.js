@@ -31,10 +31,8 @@ const App = (props) => {
   return (
     <>
       <Router>
-        <Navbar loggedUser={loggedUser} {...props} />
-
+        <Navbar loggedUser={loggedUser} />
         <Routes loggedUser={loggedUser} storeUser={storeUser} />
-
         {/* <Footer /> */}
       </Router>
     </>

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import BookService from '../../services/books.service.js'
 import { useHistory } from "react-router-dom";
 import ImgLogo from '../ImgLogo';
-import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, BOOK_RESULTS } from '../../utils/paths';
-import { Container, Navbar, Nav, NavDropdown, InputGroup, Button, FormControl } from 'react-bootstrap/'
+import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS } from '../../utils/paths';
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap/'
 import SearchBar from '../SearchBar.jsx';
-
+import AuthService from '../../services/auth.service.js';
 
 const Navtop = (props) => {
+
+  const authService = new AuthService()
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
@@ -29,8 +31,9 @@ const Navtop = (props) => {
                 <NavDropdown.Item href={PROFILE}>My Profile</NavDropdown.Item>
                 <NavDropdown.Item href="#">Messages</NavDropdown.Item>
                 <NavDropdown.Item href="#">Settings</NavDropdown.Item>
+                <NavDropdown.Item href={CHATS}>My Chats</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#">Log Out</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => { authService.logout() }}>Log Out</NavDropdown.Item>
               </NavDropdown>
             </Nav>) :
             (<Nav>
