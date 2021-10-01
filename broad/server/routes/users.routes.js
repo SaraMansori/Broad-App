@@ -62,14 +62,17 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/update-books', (req, res) => {
+router.post('/update-books', (req, res) => {
+  //meter middleware que si no peta si el user no está logged
   const userId = req.session.currentUser._id
   const book = req.body
 
-  User
-    .findByIdAndUpdate(userId, { $push: { book: book } })
-    .then(res.status(200).json({ message: 'User books succesfully updated' }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error updating books in user", err }))
+  console.log(book)
+
+  //User
+  //.findByIdAndUpdate(userId, { $push: { book: book } })
+  //.then(res.status(200).json({ message: 'User books succesfully updated' }))
+  //.catch(err => res.status(500).json({ code: 500, message: "Error updating books in user", err }))
 
 })
 

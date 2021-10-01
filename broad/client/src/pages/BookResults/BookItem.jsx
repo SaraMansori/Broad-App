@@ -1,6 +1,7 @@
 import { Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
+import LongButton from '../../components/atomicComponents/LongButton.jsx';
 
 
 const BookItem = ({ book, loggedUser }) => {
@@ -62,9 +63,9 @@ const BookItem = ({ book, loggedUser }) => {
 
           </DropdownButton>
 
-          <Button variant="secondary">
+          <LongButton variant="secondary">
             Want to Exchange
-          </Button>
+          </LongButton>
 
         </div>
 
