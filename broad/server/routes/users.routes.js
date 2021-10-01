@@ -5,6 +5,7 @@ const User = require('../models/User.model')
 const Rating = require('../models/Rating.model')
 const ExchangedBooks = require('../models/ExchangedBook.model')
 
+
 router.get('/', (req, res) => {
 
   const id = req.session.currentUser._id
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
   // lean??? (select método de mongoose)
   const usersRating = Rating.find({ type: 'USER' }).lean().select('score receiver')
   const exchangedBooks = ExchangedBooks.find().lean().select('owner receiver')
-  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres friends')
+  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres friends profileImage')
   //username, city, read books, books exchanged
 
   Promise.all([usersRating, exchangedBooks, users])
@@ -49,7 +50,8 @@ router.get('/', (req, res) => {
           timesRated: sum,
           exchangedBooksByUser: exchangedBooksByUser.length,
           favoriteGenres: user.favoriteGenres,
-          friends: user.friends
+          friends: user.friends.length, // número de amigos
+          profileImage: user.profileImage
         }
 
       })
@@ -62,6 +64,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving users", err }))
 
 })
+
 
 router.get('/update-books', (req, res) => {
   const userId = req.session.currentUser._id
@@ -89,6 +92,7 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
 
 })
+
 
 router.delete('/:id', (req, res) => {
 
