@@ -18,6 +18,21 @@ router.get('/', (req, res) => {
 })
 
 
+router.get('/friendship', (req, res) => {
+
+  const id = req.session.currentUser._id
+  const { otherUserId } = req.query
+
+  Request
+    .findOne({
+      $or: [{ receiver: id, owner: otherUserId, type: 'FRIENDSHIP' },
+      { receiver: otherUserId, owner: id, type: 'FRIENDSHIP' }]
+    })
+    .select('status receiver owner')
+    .then(request => res.status(200).json(request))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving request", err }))
+})
+
 router.post('/', (req, res) => {
 
   // comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra
@@ -35,7 +50,7 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
 
   const { id, status } = req.body
-  
+
   Request
     .findByIdAndUpdate(id, { status }, { new: true })
     .then(updatedRequest => {
@@ -53,9 +68,9 @@ router.put('/', (req, res) => {
           const newFriendInOwner = User.findByIdAndUpdate(updatedRequest.owner, { $push: { friends: updatedRequest.receiver } }, { new: true })
           const newFriendInReceiver = User.findByIdAndUpdate(updatedRequest.receiver, { $push: { friends: updatedRequest.owner } }, { new: true })
 
-          Promise.all([newFriendInOwner, newFriendInReceiver]).then(() => {
-            res.status(200).json({ message: 'Users became friends successfully' })
-          }) // then borrar request?
+          Promise.all([newFriendInOwner, newFriendInReceiver])
+            .then(() => Request.findByIdAndDelete(id))
+            .then(() => res.status(200).json({ message: 'Users became friends successfully' }))
             .catch(err => res.status(500).json({ code: 500, message: "Error adding friends to users", err }))
         } else {
           res.status(200).json({ message: 'Not managed yet' }) // falta gestionar para chat y exchange
