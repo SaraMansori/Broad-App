@@ -1,10 +1,12 @@
+import { useState } from 'react'
 import { Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
-import LongButton from '../../components/atomicComponents/LongButton.jsx';
-
 
 const BookItem = ({ book, loggedUser }) => {
+
+  const [wantToExchange, setWantToExchange] = useState(false)
+  const [user, setUser] = useState(loggedUser)
 
   const bookId = book.id
   const { imageLinks, title, authors } = book.volumeInfo
@@ -12,6 +14,25 @@ const BookItem = ({ book, loggedUser }) => {
   let publishedDate = book.volumeInfo.publishedDate?.length !== 0 ? book.volumeInfo.publishedDate : 'Unknown'
 
   let usersService = new UsersService()
+
+  /*   const clearState = () => {
+      setWantToExchange(false)
+    } */
+
+  const handleExchangeClick = (e) => {
+    const book = {
+      id: bookId,
+      wantsToExchange: wantToExchange
+    }
+
+    usersService
+      .updateUserBooks(book)
+      .then(res => {
+        setUser(res.data)
+        setWantToExchange(!wantToExchange)
+      })
+      .catch(err => console.error(err))
+  }
 
   const handleBookChangeClick = (e) => {
 
@@ -26,7 +47,9 @@ const BookItem = ({ book, loggedUser }) => {
     usersService
       .updateUserBooks(book)
       .then(res => {
-        console.log(res)
+        setUser(res.data)
+        console.log(res.data)
+        //en un futuro actualizar estado para que el boton cambie dependiendo de lo que haya en la bbdd
       })
       .catch(err => console.error(err))
   }
@@ -55,17 +78,23 @@ const BookItem = ({ book, loggedUser }) => {
             id="dropdown-basic-button"
             title="Add to my library">
 
-
-
             <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
             <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
             <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
 
           </DropdownButton>
 
-          <LongButton variant="secondary">
-            Want to Exchange
-          </LongButton>
+          {!wantToExchange ?
+            <Button onClick={(e) => handleExchangeClick(e)} variant="secondary">
+              I have this book and want to exchange it
+            </Button>
+            :
+            <Button onClick={(e) => handleExchangeClick(e)} variant="secondary">
+              I don't want to exchange this book anymore
+            </Button>
+          }
+
+
 
         </div>
 

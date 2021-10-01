@@ -62,17 +62,53 @@ router.get('/', (req, res) => {
 
 })
 
-router.post('/update-books', (req, res) => {
+router.put('/update/books', (req, res) => {
   //meter middleware que si no peta si el user no está logged
   const userId = req.session.currentUser._id
-  const book = req.body
+  const { book } = req.body
+  let hasBook = false
 
-  console.log(book)
+  User
+    .findById(userId)
+    .select('books')
+    .then(user => {
 
-  //User
-  //.findByIdAndUpdate(userId, { $push: { book: book } })
-  //.then(res.status(200).json({ message: 'User books succesfully updated' }))
-  //.catch(err => res.status(500).json({ code: 500, message: "Error updating books in user", err }))
+      hasBook = user.books.some(userBook => userBook.id === book.id)
+
+      if (book.status) {
+
+        if (hasBook) {
+          const newBookStatus = book.status
+
+          return User.findOneAndUpdate({ _id: userId, books: { $elemMatch: { id: book.id } } },
+            { $set: { 'books.$.status': newBookStatus } },
+            { new: true, 'upsert': true, 'safe': true }
+          )
+
+        } else {
+          return User.findByIdAndUpdate(userId, { $push: { books: book } })
+        }
+      } else if (book.wantsToExchange) {
+        if (hasBook) {
+
+
+          return User.findOneAndUpdate({ _id: userId, books: { $elemMatch: { id: book.id } } },
+            { $set: { 'books.$.wantsToExchange': book.wantsToExchange } },
+            { new: true, 'upsert': true, 'safe': true }
+          )
+
+        } else {
+
+          console.log('the user doesnt have the book')
+
+          return User.findByIdAndUpdate(userId, { $push: { books: book } })
+        }
+      }
+
+
+    })
+    .then((user) => res.status(200).json(user))
+    .catch(err => res.status(500).json({ code: 500, message: "Error updating the user's books", err }))
 
 })
 
@@ -105,7 +141,7 @@ router.delete('/:id', (req, res) => {
 
 //let newUserInfo = req.body --> TEO 
 
-router.put('/:infoToUpdate', (req, res) => {
+router.put('/edit/:infoToUpdate', (req, res) => {
 
   const id = req.session.currentUser._id
   const { infoToUpdate } = req.params
@@ -133,6 +169,8 @@ router.put('/:infoToUpdate', (req, res) => {
 
 
 router.put('/delete-friend', (req, res) => {
+
+  //revisar si funciona al cambiar las rutas
 
   const id = req.session.currentUser._id
   const { friendId } = req.body
