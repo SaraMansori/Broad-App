@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import BookService from '../../services/books.service'
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar';
 import BookItem from '../BookResults/BookItem'
 
 const BookSearch = props => {

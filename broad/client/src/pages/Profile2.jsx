@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UsersService from '../services/users.service';
 import { Grid, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
-import ImgAvatar from '../components/ImgAvatar';
+import ImgAvatar from '../components/styledComponents/atomicComponents/ImgAvatar';
 
 const usersService = new UsersService();
 

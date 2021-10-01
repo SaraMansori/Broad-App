@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap'
 import RequestsService from '../../services/requests.service';
 import RequestsList from './RequestsList'
 
@@ -22,14 +23,14 @@ const RequestsPage = props => {
   }, [])
 
   return (
-    <>
+    <Container>
       <h1>My Requests</h1>
       {requests?.length ?
         <RequestsList getRequests={getRequests} requests={requests} />
         :
         <p>No pending requests.</p>
       }
-    </>
+    </Container>
   );
 
 }

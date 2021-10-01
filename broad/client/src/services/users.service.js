@@ -8,7 +8,7 @@ class UsersService {
     });
   }
 
-  getSignupInfo = (name, description, profileImage, location) => {
+  updateSignupInfo = (name, description, profileImage, location) => {
     return this.instance.put(`/edit/signup-info`, { name, description, profileImage, location })
   }
 

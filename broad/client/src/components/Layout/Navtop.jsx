@@ -1,19 +1,18 @@
-import React, { useContext, useState } from 'react';
-import BookService from '../../services/books.service.js'
-import { useHistory } from "react-router-dom";
-import ImgLogo from '../ImgLogo';
+import ImgLogo from '../styledComponents/atomicComponents/ImgLogo';
 import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS } from '../../utils/paths';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap/'
-import SearchBar from '../SearchBar.jsx';
-import AuthService from '../../services/auth.service.js';
+import SearchBar from '../styledComponents/atomicComponents/SearchBar';
+import AuthServices from '../../services/auth.service'
+
 
 const Navtop = (props) => {
+  console.log("el user de la navbar", props.loggedUser)
 
-  const authService = new AuthService()
+  const authServices = new AuthServices()
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-      <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px', paddingBottom: '7px', paddingTop: '7px' }}>
+      <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px' }}>
         <Navbar.Brand href={HOMEPAGE}><ImgLogo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -33,7 +32,7 @@ const Navtop = (props) => {
                 <NavDropdown.Item href="#">Settings</NavDropdown.Item>
                 <NavDropdown.Item href={CHATS}>My Chats</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => { authService.logout() }}>Log Out</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => { authServices.logout() }}>Log Out</NavDropdown.Item>
               </NavDropdown>
             </Nav>) :
             (<Nav>

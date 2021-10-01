@@ -9,7 +9,7 @@ const usersService = new UsersService();
 const uploadsService = new UploadsService();
 
 
-const SignupInfo = props => {
+const SignupInfoPage = props => {
 
   const [formData, setFormData] = useState({ name: '', description: '', profileImage: '', location: '' })
 
@@ -28,7 +28,7 @@ const SignupInfo = props => {
     const { name, description, profileImage, location } = formData;
 
     usersService
-      .getSignupInfo(name, description, profileImage, location)
+      .updateSignupInfo(name, description, profileImage, location)
       .then(() => clearState())
       .catch(err => console.error(err));
   };
@@ -117,4 +117,4 @@ const SignupInfo = props => {
   );
 }
 
-export default SignupInfo;
+export default SignupInfoPage;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Button, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/users.service';
 import RequestsService from '../../services/requests.service';
@@ -11,47 +11,130 @@ const requestsService = new RequestsService();
 const UsersItem = ({ getUsers, user, loggedUser, storeUser }) => {
 
   // props user: _id, username, readBooks, city, rating, timesRated,
-  // exchangedBooksByUser, favoriteGenres, friends
+  // exchangedBooksByUser, favoriteGenres, number of friends, profileImage
+
+  const [friendshipRequest, setFriendshipRequest] = useState(undefined)
+  const [buttonToShow, setButtonToShow] = useState('')
+  const [areFriends, setAreFriends] = useState(false)
 
   const currentUserId = loggedUser?._id
   const type = 'FRIENDSHIP'
+
+  useEffect(() => {
+    existFriendshipRequest()
+  }, [])
+
+  useEffect(() => {
+    selectButtonToShow()
+  }, [friendshipRequest])
+
+  useEffect(() => {
+    checkFriendship()
+  }, [user])
+
 
   const handleFriendship = (e, promise) => {
 
     e.preventDefault();
 
     promise
-      .then(() => getUsers()) // ????? sería algo de requests, para ver si existe?
+      .then(() => {
+        existFriendshipRequest()
+        getUsers()
+      })
       .catch(err => console.error(err));
   }
 
+
+  const checkFriendship = () => setAreFriends(user.friends.includes(currentUserId))
+
+
+  const existFriendshipRequest = () => {
+
+    requestsService
+      .getFriendshipRequest(user._id)
+      .then(res => {
+        if (res.data) {
+          setFriendshipRequest(res.data)
+        } else {
+          setFriendshipRequest(null)
+          setButtonToShow("")
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
+  const userIsOwner = () => friendshipRequest.owner === currentUserId
+  const userIsReceiver = () => friendshipRequest.owner === user._id
+
+  const selectButtonToShow = () => {
+    if (friendshipRequest?.status === 'PENDING' && userIsOwner()) {
+      setButtonToShow('PENDING OWNER')
+    } else if (friendshipRequest?.status === 'PENDING' && userIsReceiver()) {
+      setButtonToShow('PENDING RECEIVER')
+    } else if (friendshipRequest?.status === 'REJECTED' && userIsOwner()) {
+      setButtonToShow('REJECTED OWNER')
+    } else if (friendshipRequest?.status === 'REJECTED' && userIsReceiver()) {
+      setButtonToShow('REJECTED RECEIVER')
+    }
+  }
+
+
   return (
     <>
-      <Link to={`/users/${user._id}`}>{user.username}</Link>
-      {/* {if (user.friends.includes(currentUserId) && )} */}
-      <Button
-        onClick={(e) => handleFriendship(e, requestsService.createRequest(user._id, type))}
-        variant="contained" color="primary">
-        Add Friend
-      </Button>
+      <Card>
+        <Row>
 
-      <Button onClick={(e) => handleFriendship(e, requestsService.deleteRequest(user._id, type))}
-        variant="contained" color="primary">
-        Cancel Request
-      </Button>
+          <Col md={2}>
+            <Card.Img variant="top" src={user.profileImage} />
+          </Col>
 
-      {/* hay que crear nueva ruta de back para encontrar request con ids de users y tipo friendship*/}
-      <Button onClick={(e) => handleFriendship(e, requestsService.manageRequest(user._id, 'ACCEPTED'))}
-        variant="contained" color="primary">
-        Accept
-      </Button>
+          <Col md={10}>
+            <Card.Body>
+              <Card.Title>{user.username}</Card.Title>
+              <Link to={`/users/${user._id}`}>Visit Profile</Link>
+              <br />
 
-      <Button onClick={(e) => handleFriendship(e, usersService.deleteFriend(user._id))}
-        variant="contained" color="primary">
-        Delete Friend
-      </Button>
+              {!areFriends && !friendshipRequest &&
+                <Button
+                  onClick={e => handleFriendship(e, requestsService.createRequest(user._id, type))}
+                  variant="primary">
+                  Add Friend
+                </Button>
+              }
 
-      <br />
+              {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
+                <Button onClick={e => handleFriendship(e, requestsService.deleteRequest(user._id, type))}
+                  variant="primary">
+                  Cancel Request
+                </Button>
+              }
+
+              {(buttonToShow === 'PENDING RECEIVER' || buttonToShow === 'REJECTED RECEIVER') &&
+                <Button onClick={e => handleFriendship(e, requestsService.manageRequest(friendshipRequest._id, 'ACCEPTED'))}
+                  variant="primary">
+                  Accept
+                </Button>
+              }
+
+              {buttonToShow === 'PENDING RECEIVER' &&
+                <Button onClick={e => handleFriendship(e, requestsService.manageRequest(friendshipRequest._id, 'REJECTED'))}
+                  variant="primary">
+                  Reject
+                </Button>
+              }
+
+              {areFriends &&
+                <Button onClick={e => handleFriendship(e, usersService.deleteFriend(user._id))}
+                  variant="primary">
+                  Delete Friend
+                </Button>
+              }
+            </Card.Body>
+          </Col>
+
+        </Row>
+      </Card>
       <br />
     </>
   );

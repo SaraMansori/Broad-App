@@ -3,7 +3,8 @@ const router = express.Router();
 
 const User = require('../models/User.model')
 const Rating = require('../models/Rating.model')
-const ExchangedBooks = require('../models/ExchangedBook.model')
+const ExchangedBooks = require('../models/ExchangedBook.model');
+
 
 router.get('/', (req, res) => {
 
@@ -12,52 +13,54 @@ router.get('/', (req, res) => {
   // lean??? (select método de mongoose)
   const usersRating = Rating.find({ type: 'USER' }).lean().select('score receiver')
   const exchangedBooks = ExchangedBooks.find().lean().select('owner receiver')
-  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres friends')
+  const users = User.find({ _id: { $ne: id } }).select('username locationInfo books favoriteGenres friends profileImage')
   //username, city, read books, books exchanged
 
-  Promise.all([usersRating, exchangedBooks, users]).then(data => {
+  Promise.all([usersRating, exchangedBooks, users])
+    .then(data => {
 
-    const [usersRating, exchangedBooks, users] = data
+      const [usersRating, exchangedBooks, users] = data
 
-    const usersWithFilteredData = users.map(user => {
+      const usersWithFilteredData = users.map(user => {
 
-      const userScoreArr = usersRating.filter(rating => rating.receiver === user._id)
+        const userScoreArr = usersRating.filter(rating => rating.receiver === user._id)
 
-      const reducer = (previousValue, currentValue) => previousValue + currentValue;
+        const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
-      let sum = 0
-      let average = 0
+        let sum = 0
+        let average = 0
 
-      if (userScoreArr.length !== 0) {
-        sum = userScoreArr.reduce(reducer)
-        average = (sum / userScoreArr.length).toFixed(1)
-      }
+        if (userScoreArr.length !== 0) {
+          sum = userScoreArr.reduce(reducer)
+          average = (sum / userScoreArr.length).toFixed(1)
+        }
 
-      const exchangedBooksByUser = exchangedBooks.filter(book => {
-        return book.owner === user._id || book.receiver === user._id
+        const exchangedBooksByUser = exchangedBooks.filter(book => {
+          return book.owner === user._id || book.receiver === user._id
+        })
+
+        const readBooks = user.books.filter(book => book.status === 'READ')
+
+        return user = {
+          _id: user._id,
+          username: user.username,
+          readBooks: readBooks,
+          city: user.locationInfo.city,
+          rating: average, // sobre 10 (tenerlo en cuenta en front)
+          timesRated: sum,
+          exchangedBooksByUser: exchangedBooksByUser.length,
+          favoriteGenres: user.favoriteGenres,
+          friends: user.friends.length, // número de amigos
+          profileImage: user.profileImage
+        }
+
       })
 
-      const readBooks = user.books.filter(book => book.status === 'READ')
+      // filter locationinfo y books
+      // util de rating, number of exchanged books?
 
-      return user = {
-        _id: user._id,
-        username: user.username,
-        readBooks: readBooks,
-        city: user.locationInfo.city,
-        rating: average, // sobre 10 (tenerlo en cuenta en front)
-        timesRated: sum,
-        exchangedBooksByUser: exchangedBooksByUser.length,
-        favoriteGenres: user.favoriteGenres,
-        friends: user.friends
-      }
-
+      res.status(200).json(usersWithFilteredData)
     })
-
-    // filter locationinfo y books
-    // util de rating, number of exchanged books?
-
-    res.status(200).json(usersWithFilteredData)
-  })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving users", err }))
 
 })
@@ -128,6 +131,7 @@ router.get('/:id', (req, res) => {
 
 })
 
+
 router.delete('/:id', (req, res) => {
 
   const { id } = req.params
@@ -177,14 +181,21 @@ router.put('/delete-friend', (req, res) => {
 
   const deleteFriendInUser = User.findByIdAndUpdate(id, { $pull: { friends: friendId } }, { new: true })
   const deleteUserInFriend = User.findByIdAndUpdate(friendId, { $pull: { friends: id } }, { new: true })
-  // eliminar accepted request de amistad entre ambos
 
-  Promise.all([deleteFriendInUser, deleteUserInFriend]).then(() => {
-    res.status(200).json({ message: 'Friends successfully eliminated' })
-  })
+  Promise.all([deleteFriendInUser, deleteUserInFriend])
+    .then(() => res.status(200).json({ message: 'Friends successfully eliminated' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error eliminating friends", err }))
 })
 
+
+router.get('/books-to-exchange', (req, res) => {
+
+  Users
+    .find({ books: { $elemMatch: { wantsToExchange: true } } })
+    .select('books')
+    .then(users => console.log(users))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving books to exchange", err }))
+})
 
 
 router.post('/:id/vote', (req, res) => { })

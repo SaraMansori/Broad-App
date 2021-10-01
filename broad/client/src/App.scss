@@ -1,7 +1,7 @@
 //overwrite
 $theme-colors: (
   'primary': #805d93,
-  'secondary': #169873,
+  'secondary': #159772,
 );
 
 $font-family-base: 'QuickSand';
@@ -16,6 +16,17 @@ $colDefault: #eaeaea;
 $colHighlight: #eaeaea;
 $dropDown: true;
 
+//secondary button
+.btn-secondary {
+  color: #ffffff !important;
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: #ffffff !important;
+  }
+}
+
 //generic dropdown
 .dropdown-menu {
   background-color: $bgDefault !important;
@@ -25,7 +36,7 @@ $dropDown: true;
     color: $colDefault;
     &:hover,
     &:focus,
-    &.active {
+    &:active {
       color: $colHighlight;
       background-color: $bgHighlight;
     }
@@ -118,9 +129,11 @@ $dropDown: true;
   }
 
   .form-control {
-    border-color: #169873 !important;
-    &:focus {
-      border-color: #169873;
+    border-color: #159772 !important;
+    &:focus,
+    &:active,
+    &:visited {
+      border-color: #159772 !important;
     }
   }
 }
