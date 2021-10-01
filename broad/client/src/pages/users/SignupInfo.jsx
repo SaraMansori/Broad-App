@@ -40,7 +40,8 @@ const SignupInfo = props => {
     const uploadedData = new FormData()
     uploadedData.append('imageData', e.target.files[0])
 
-    uploadsService.uploadImg(uploadedData)
+    uploadsService
+      .uploadImg(uploadedData)
       .then(res => setFormData({ ...formData, isLoading: false, profileImage: res.data.cloudinary_url }))
       .catch(err => console.error(err)) // Gestionar error de cara al usuario
   }

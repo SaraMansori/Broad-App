@@ -13,6 +13,7 @@ module.exports = {
     roles.includes(req.session.currentUser.role) ? next() : res.redirect('/login')
   },
 
+  // Esto desde front (utils en back)
   checkId: (req, res, next) => {
     mongoose.Types.ObjectId.isValid(req.params.id) ? next() : res.redirect('/')
   },

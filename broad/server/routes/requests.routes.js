@@ -12,15 +12,17 @@ router.get('/', (req, res) => {
   Request
     .find({ receiver: id, status: 'PENDING' })
     .populate('owner')
-    .select('owner type') // filtrar los datos de owner. lean?
-    .then(requests => res.status(200).json({ requests }))
+    .select('owner type') // filtrar los datos de owner. lean? depende de lo que queramos mostrar en la página de requests
+    .then(requests => res.status(200).json(requests))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving requests", err }))
 })
 
 
-router.post('/create/:type/:receiver', (req, res) => {
+router.post('/', (req, res) => {
 
-  const { type, receiver } = req.params
+  // comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra
+  // esto está gestionado desde el front con el cambio de botones, pero hay que hacerlo en back
+  const { receiver, type } = req.body
   const owner = req.session.currentUser._id // sustituir por un id para probar en postman
 
   Request
@@ -30,19 +32,19 @@ router.post('/create/:type/:receiver', (req, res) => {
 })
 
 
-router.put('/:id/edit', (req, res) => {
+router.put('/', (req, res) => {
 
-  const { id } = req.params
-  const { status } = 'ACCEPTED' //req.body
-
+  const { id, status } = req.body
+  
   Request
-    .findByIdAndUpdate(id, { status: "ACCEPTED" }, { new: true })
+    .findByIdAndUpdate(id, { status }, { new: true })
     .then(updatedRequest => {
 
       if (updatedRequest.status === 'REJECTED') {
         // Si eliminamos, luego pueden volver a solicitarlo si no lo gestionamos
         // En amistad tiene sentido, en las otras? (chat, exchange)
         // gestionar por tipos?
+        res.status(200).json({ message: 'Not managed yet' }) // falta gestionar para chat y exchange
       }
       else if (updatedRequest.status === 'ACCEPTED') {
 
@@ -55,12 +57,26 @@ router.put('/:id/edit', (req, res) => {
             res.status(200).json({ message: 'Users became friends successfully' })
           }) // then borrar request?
             .catch(err => res.status(500).json({ code: 500, message: "Error adding friends to users", err }))
+        } else {
+          res.status(200).json({ message: 'Not managed yet' }) // falta gestionar para chat y exchange
         }
 
       }
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating request", err }))
 
+})
+
+
+router.delete('/', (req, res) => {
+
+  const id = req.session.currentUser._id
+  const { otherUserId, type } = req.body
+
+  Request
+    .findOneAndDelete({ receiver: otherUserId, owner: id, type })
+    .then(() => res.status(200).json({ message: 'Request succesfully deleted' }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error deleting request", err }))
 })
 
 
