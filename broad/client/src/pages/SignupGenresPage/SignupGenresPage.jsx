@@ -5,7 +5,7 @@ import genres from '../../utils/bookGenres';
 
 const usersService = new UsersService();
 
-const SignupGenres = props => {
+const SignupGenresPage = props => {
 
 	const [favoriteGenres, setSignupGenresData] = useState([]);
 
@@ -60,4 +60,4 @@ const SignupGenres = props => {
 	);
 };
 
-export default SignupGenres;
+export default SignupGenresPage;
