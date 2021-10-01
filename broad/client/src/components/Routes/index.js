@@ -4,8 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from '../../pages/HomePage'
 import Login from '../../pages/auth/Login'
 import Signup from '../../pages/auth/Signup'
-import SignupInfoPage from '../../pages/users/SignupInfo'
-import SignupGenresPage from '../../pages/users/SignupGenres'
+import SignupInfoPage from '../../pages/SignupInfoPage/SignupInfoPage'
+import SignupGenresPage from '../../pages/SignupGenresPage/SignupGenresPage'
 import RequestsPage from '../../pages/RequestsPage/RequestsPage';
 import UsersPage from '../../pages/UsersPage/UsersPage';
 import BookResults from '../../pages/BookResults/BookResults';

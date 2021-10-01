@@ -3,7 +3,7 @@ const router = express.Router();
 
 const User = require('../models/User.model')
 const Rating = require('../models/Rating.model')
-const ExchangedBooks = require('../models/ExchangedBook.model')
+const ExchangedBooks = require('../models/ExchangedBook.model');
 
 
 router.get('/', (req, res) => {
@@ -187,6 +187,15 @@ router.put('/delete-friend', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error eliminating friends", err }))
 })
 
+
+router.get('/books-to-exchange', (req, res) => {
+
+  Users
+    .find({ books: { $elemMatch: { wantsToExchange: true } } })
+    .select('books')
+    .then(users => console.log(users))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving books to exchange", err }))
+})
 
 
 router.post('/:id/vote', (req, res) => { })

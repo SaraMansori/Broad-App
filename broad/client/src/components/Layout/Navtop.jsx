@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import BookService from '../../services/books.service.js'
 import { useHistory } from "react-router-dom";
 import ImgLogo from '../ImgLogo';
 import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, BOOK_RESULTS } from '../../utils/paths';
 import { Container, Navbar, Nav, NavDropdown, InputGroup, Button, FormControl } from 'react-bootstrap/'
 import SearchBar from '../SearchBar.jsx';
-
+import UserContext from '../../UserContext'
 
 const Navtop = (props) => {
-
+  const loggedUser = useContext(UserContext);
+  console.log("el user de la navbar", loggedUser)
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px', paddingBottom: '7px', paddingTop: '7px' }}>
