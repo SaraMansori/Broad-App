@@ -73,10 +73,7 @@ const BookItem = ({ book, loggedUser }) => {
 
         <div id="bookId" className="book-buttons d-flex">
 
-          <DropdownButton
-            variant="primary"
-            id="dropdown-basic-button"
-            title="Add to my library">
+          <DropdownButton variant="primary" title="Add to my library">
 
             <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
             <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
