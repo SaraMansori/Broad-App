@@ -1,7 +1,7 @@
 import { Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
-import LongButton from '../../components/atomicComponents/LongButton.jsx';
+import LongButton from '../../components/styledComponents/atomicComponents/LongButton.jsx';
 
 
 const BookItem = ({ book, loggedUser }) => {
@@ -50,12 +50,7 @@ const BookItem = ({ book, loggedUser }) => {
 
         <div id="bookId" className="book-buttons d-flex">
 
-          <DropdownButton
-            variant="primary"
-            id="dropdown-basic-button"
-            title="Add to my library">
-
-
+          <DropdownButton variant="primary" title="Add to my library">
 
             <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
             <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
@@ -63,9 +58,9 @@ const BookItem = ({ book, loggedUser }) => {
 
           </DropdownButton>
 
-          <LongButton variant="secondary">
+          <Button variant="secondary">
             Want to Exchange
-          </LongButton>
+          </Button>
 
         </div>
 

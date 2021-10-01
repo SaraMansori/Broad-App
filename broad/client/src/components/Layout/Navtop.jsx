@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import BookService from '../../services/books.service.js'
-import { useHistory } from "react-router-dom";
-import ImgLogo from '../ImgLogo';
+import ImgLogo from '../styledComponents/atomicComponents/ImgLogo';
 import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, BOOK_RESULTS } from '../../utils/paths';
-import { Container, Navbar, Nav, NavDropdown, InputGroup, Button, FormControl } from 'react-bootstrap/'
-import SearchBar from '../SearchBar.jsx';
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap/'
+import SearchBar from '../styledComponents/atomicComponents/SearchBar';
 
 
 const Navtop = (props) => {
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-      <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px', paddingBottom: '7px', paddingTop: '7px' }}>
+      <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px' }}>
         <Navbar.Brand href={HOMEPAGE}><ImgLogo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

@@ -1,16 +1,16 @@
-import logo from '../B.svg';
-import React from 'react';
+import logo from '../../../B.svg';
 import styled from 'styled-components';
 
 const Img = styled.img`
   height: 30px;
   width: 30px;
+  margin-top:6%;
   filter: invert(100%);
 `;
 
 const ImgLogo = () => {
   return (
-    <Img src={logo} alt="Broad logo" />
+    <Img src={logo} alt='Broad Logo' />
   );
 };
 
