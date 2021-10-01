@@ -6,7 +6,7 @@ import Routes from './components/Routes';
 import './App.scss';
 
 //MATERIALUI
-import { Container } from '@material-ui/core'
+//import { Container } from '@material-ui/core'
 import Navbar from './components/Layout/Navtop'
 import AuthService from './services/auth.service';
 
@@ -32,9 +32,9 @@ const App = (props) => {
     <>
       <Router>
         <Navbar loggedUser={loggedUser} {...props} />
-        <Container>
-          <Routes loggedUser={loggedUser} storeUser={storeUser} />
-        </Container>
+
+        <Routes loggedUser={loggedUser} storeUser={storeUser} />
+
         {/* <Footer /> */}
       </Router>
     </>
