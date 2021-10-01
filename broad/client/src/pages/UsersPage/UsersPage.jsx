@@ -10,7 +10,6 @@ const UsersPage = ({ loggedUser, storeUser }) => {
   const [users, setUsers] = useState(null)
 
   const getUsers = () => {
-
     usersService
       .getUsers()
       .then(res => setUsers(res.data))

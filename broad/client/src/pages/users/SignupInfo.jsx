@@ -28,7 +28,7 @@ const SignupInfo = props => {
     const { name, description, profileImage, location } = formData;
 
     usersService
-      .getSignupInfo(name, description, profileImage, location)
+      .updateSignupInfo(name, description, profileImage, location)
       .then(() => clearState())
       .catch(err => console.error(err));
   };
