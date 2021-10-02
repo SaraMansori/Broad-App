@@ -4,7 +4,10 @@ import BookToExchangeItem from './BookToExchangeItem'
 const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
 
   const displayBooksToExchange = () => booksToExchange.map(bookToExchange => {
-    return <BookToExchangeItem key={bookToExchange._id} {...bookToExchange} getBooksToExchange={getBooksToExchange} />
+    return <BookToExchangeItem
+      key={`${bookToExchange.id} - ${bookToExchange.owner}`}
+      {...bookToExchange}
+      getBooksToExchange={getBooksToExchange} />
   })
 
   return (
