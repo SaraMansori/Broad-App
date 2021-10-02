@@ -1,14 +1,18 @@
+import React, { useContext } from 'react';
+import UserContext from '../../UserContext'
 import ImgLogo from '../styledComponents/atomicComponents/ImgLogo';
 import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS } from '../../utils/paths';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap/'
 import SearchBar from '../styledComponents/atomicComponents/SearchBar';
 import AuthServices from '../../services/auth.service'
 
+const authServices = new AuthServices()
 
-const Navtop = (props) => {
-  console.log("el user de la navbar", props.loggedUser)
+const Navtop = props => {
 
-  const authServices = new AuthServices()
+  const loggedUser = useContext(UserContext);
+  //console.log("el user de la navbar", loggedUser)
+
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
