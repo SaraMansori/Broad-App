@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+import UserContext from '../../UserContext'
 import ImgLogo from '../styledComponents/atomicComponents/ImgLogo';
 import { Link } from 'react-router-dom'
 import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, BOOK_RESULTS } from '../../utils/paths';
@@ -19,11 +21,13 @@ const logout = (e) => {
 }
 
 
+const authServices = new AuthServices()
 
-const Navtop = (props) => {
-  console.log("el user de la navbar", props.loggedUser)
+const Navtop = props => {
 
-  const authServices = new AuthServices()
+  const loggedUser = useContext(UserContext);
+  //console.log("el user de la navbar", loggedUser)
+
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" style={{ marginBottom: '50px' }}>

@@ -13,11 +13,12 @@ import AuthService from './services/auth.service';
 
 const authService = new AuthService();
 
-const App = (props) => {
+const App = props => {
 
+  console.log(props)
   const [loggedUser, setLoggedUser] = useState(undefined)
 
-  const storeUser = (user) => setLoggedUser(user)
+  const storeUser = user => setLoggedUser(user)
 
   const fetchUser = () => {
     authService.isLoggedIn()
@@ -35,7 +36,7 @@ const App = (props) => {
         <UserProvider value={loggedUser}>
           <Navbar {...props} />
 
-          <Routes loggedUser={loggedUser} storeUser={storeUser} />
+          <Routes loggedUser={loggedUser} storeUser={storeUser} {...props} />
 
           {/* <Footer /> */}
         </UserProvider>
