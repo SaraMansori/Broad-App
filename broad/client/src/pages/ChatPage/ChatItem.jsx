@@ -1,4 +1,4 @@
-/*
+
 import React, { useState, useEffect } from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
@@ -71,19 +71,18 @@ const ChatPage = (props) => {
       </Row>
 
 
-      {/* <Row>
-          <Col md={size}>
-            <Card body>
-              <p>Your Name: {props.loggedUser?.username}</p>
-              <p>This is some text within a card body.</p>
-              <Button onClick={() => handleClick()}>Open Chat</Button>
-            </Card>
-          </Col>
-        </Row> */}
+      <Row>
+        <Col md={size}>
+          <Card body>
+            <p>Your Name: {props.loggedUser?.username}</p>
+            <p>This is some text within a card body.</p>
+            <Button onClick={() => handleClick()}>Open Chat</Button>
+          </Card>
+        </Col>
+      </Row>
 
     </>
   );
 }
 
 export default ChatPage;
-*/

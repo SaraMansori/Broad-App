@@ -21,7 +21,7 @@ const logout = (e) => {
 }
 
 
-const authServices = new AuthServices()
+const authServices = new AuthService()
 
 const Navtop = props => {
 

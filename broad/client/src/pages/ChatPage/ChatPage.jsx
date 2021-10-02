@@ -1,4 +1,4 @@
-/*
+
 import ChatItem from './ChatItem'
 import { Container } from 'react-bootstrap'
 import { OuterContainer, ChatContainer } from '../../components/styledComponents/ChatStyle'
@@ -22,4 +22,3 @@ const ChatPage = (props) => {
 }
 
 export default ChatPage;
-*/
