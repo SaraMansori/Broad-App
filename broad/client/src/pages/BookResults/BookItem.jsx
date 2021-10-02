@@ -58,7 +58,7 @@ const BookItem = ({ book }) => {
   }
 
   return (
-    <Card key={`resultcard-${bookId}`} style={{ width: '80vw' }}>
+    <Card style={{ width: '80vw' }}>
       <Card.Img
         style={{ width: '20%' }}
         variant="top"
@@ -93,8 +93,6 @@ const BookItem = ({ book }) => {
               I don't want to exchange this book anymore
             </Button>
           }
-
-
 
         </div>
 

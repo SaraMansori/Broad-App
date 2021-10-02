@@ -18,11 +18,9 @@ const BookExchangePage = props => {
       .catch(err => console.error(err))
   }
 
-  /*
   useEffect(() => {
-    getRequests()
+    getBooksToExchange()
   }, [])
-  */
 
   return (
     <Container>

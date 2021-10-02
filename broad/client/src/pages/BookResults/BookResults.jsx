@@ -84,7 +84,7 @@ const BookSearch = props => {
 
           return (
 
-            <BookItem book={book} />
+            <BookItem key={`resultcard-${book.bookId}`} book={book} />
 
           )
         })
