@@ -48,25 +48,41 @@ line-height: 25px;
 text-align:center;
 box-shadow: 1px 1px 1px 1px #169873;
 padding:44px; 
+
+@media (max-width: 1250px) {
+  right: 80px;
+    top: 273px;
+  }
+
 `
 
 const Ready = styled.div`
 position: absolute;
-width: 400px;
-height: 30px;
-right: -12px;
-top: 456px;
+right: 137px;
+top: 449px;
 text-align:center;
 font-weight: 600;
 font-size: 24px;
-line-height: 30px;`
+line-height: 30px;
+
+@media (max-width: 1296px) {
+  font-size: 20px;
+      }
+@media (max-width: 1188px) {
+  right: 85px;
+    }
 
 
+`
 const Hit = styled(LongButton)`
 position: absolute;
-right: 122px;
+right: 77px;
 top: 500px;
-border-radius:15px;`
+border-radius:15px;
+
+@media (max-width: 1188px) {
+  right: 30px;
+    }`
 
 const Quote = styled.div`
 position: absolute;
@@ -88,6 +104,10 @@ padding:20px;
 display: flex;
 align-items: center;
 z-index: 1;
+
+@media (max-width: 1250px) {
+    display: none;
+  }
 `
 const Quote1 = styled(Quote)`
 left: 40px;
@@ -102,76 +122,71 @@ left: 435px;
 top: 443px;
 `
 const GreenRectangle = styled.div` 
+box-sizing: border-box;
 position: absolute;
 width: 600px;
-height: 540px;
+min-height: 400px;
+padding: 50px 40px 50px 40px;
 left: 0px;
 top: 625px;
 background: #159772;
 border-top-right-radius: 50px;
 border-bottom-right-radius: 50px;
+display:flex; 
+justify-content: space-between;
+align-items: center; 
+
 `
 const BookCover = styled.div`
-position:absolute;
-height: 402px;
-width: 252px;
-left: 30px;
-top: 70px;
-background-color: red;
+height: 375px;
+width: 45%;
+border-style: solid;
+border-width: 6px;
+border-color: #FFFFFF;
 background-image: url(${bookcover});
 background-size: cover;
 background-position: center;
 `
 const BookDesc = styled.div`
-  position: absolute;
-  width: 270px;
-  left: 306px;
-  top: 54px;
-  color: #FFFFFF;
-  font-size: 1.3rem;
+color: #FFFFFF;
+font-size: 1.3rem;
+width: 45%;
 `
-
 const PurpleRectangle = styled.div` 
 position: absolute;
+padding: 50px 40px 50px 40px;
 width: 558px;
-height: 540px;
+min-height: 540px;
 right: 0px;
 top: 586px;
 background: #805d93;
 border-top-left-radius: 50px;
 border-bottom-left-radius: 50px;
+color: #FFFFFF;
+
+
+@media (max-width: 991px) {
+    width: 400px;
+    }
 `
 
-const BroadDesc = styled.div`
-position: absolute;
-width: 430px;
-left: 76px;
-top: 40px;
+const BroadFeatures = styled.div`
+display: flex;
+justify-content: space-between;
 color: #FFFFFF;
-font-size: 1.3rem;
+font-size: 1.4rem;
+box-sizing: border-box;
 `
 const Icon = styled.div`
-position: absolute;
-width: 30px;
-left: -45px;
 color: #FFFFFF;
-font-size: 1.3rem;
+font-size: 1.4rem;
 `
-const Icon1 = styled(Icon)`
-top: 1px;
-left: -51px;
-`
-const Icon2 = styled(Icon)`
-top: 126px;
-`
-const Icon3 = styled(Icon)`
-top: 230px;
-`
-const Icon4 = styled(Icon)`
-top: 338px;
+const BroadDesc = styled(Icon)`
+color: #FFFFFF;
+font-size: 1.4rem;
+padding-left:8px;
 `
 
 
 
-
-export { ImageReading, Welcome, NewLife, Ready, Hit, Quote1, Quote2, Quote3, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadDesc, Icon1, Icon2, Icon3, Icon4 }
+export { ImageReading, Welcome, NewLife, Ready, Hit, Quote1, Quote2, Quote3, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadFeatures, Icon, BroadDesc }
