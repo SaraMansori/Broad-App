@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap'
 import UsersService from '../../services/users.service';
 import UsersList from './UsersList'

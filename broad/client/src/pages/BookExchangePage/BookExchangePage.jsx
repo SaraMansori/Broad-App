@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap'
 import BooksToExchangeList from './BooksToExchangeList'
-// import RequestsService from '../../services/requests.service';
+import UsersService from '../../services/users.service';
 
-// const requestsService = new RequestsService();
+const usersService = new UsersService();
 
 
 const BookExchangePage = props => {
 
   const [booksToExchange, setBooksToExchange] = useState(null)
 
-  /*
   const getBooksToExchange = () => {
 
-    requestsService
-      .getRequests()
-      .then(res => setRequests(res.data))
+    usersService
+      .getBooksToExchange()
+      .then(res => setBooksToExchange(res.data))
       .catch(err => console.error(err))
   }
 
+  /*
   useEffect(() => {
     getRequests()
   }, [])
@@ -28,7 +28,7 @@ const BookExchangePage = props => {
     <Container>
       <h1>Available Books To Exchange</h1>
       {booksToExchange?.length ?
-        {/* <BooksToExchangeList getBooksToExchange={getBooksToExchange} booksToExchange={booksToExchange} /> */ }
+        <BooksToExchangeList getBooksToExchange={getBooksToExchange} booksToExchange={booksToExchange} />
         :
         <p>No books available.</p>
       }

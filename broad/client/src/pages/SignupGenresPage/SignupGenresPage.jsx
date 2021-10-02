@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Container, Button } from '@mui/material';
+import { useState } from 'react';
+import { Container, Button } from 'react-bootstrap'
 import UsersService from '../../services/users.service';
 import genres from '../../utils/bookGenres';
 
@@ -52,7 +52,7 @@ const SignupGenresPage = props => {
 					);
 				})}
 
-				<Button type="submit" fullWidth variant="contained" color="primary">
+				<Button type="submit" fullWidth variant="primary">
 					SUBMIT
 				</Button>
 			</form>
