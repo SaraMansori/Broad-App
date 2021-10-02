@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './components/Routes';
+import { UserProvider } from './UserContext'
 
 //BOOTSTRAP
 import './App.scss';
@@ -31,11 +32,13 @@ const App = (props) => {
   return (
     <>
       <Router>
-        <Navbar loggedUser={loggedUser} {...props} />
+        <UserProvider value={loggedUser}>
+          <Navbar {...props} />
 
-        <Routes loggedUser={loggedUser} storeUser={storeUser} />
+          <Routes loggedUser={loggedUser} storeUser={storeUser} />
 
-        {/* <Footer /> */}
+          {/* <Footer /> */}
+        </UserProvider>
       </Router>
     </>
   );

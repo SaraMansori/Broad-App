@@ -21,6 +21,9 @@ const logout = (e) => {
 
 
 const Navtop = (props) => {
+  console.log("el user de la navbar", props.loggedUser)
+
+  const authServices = new AuthServices()
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" style={{ marginBottom: '50px' }}>
@@ -50,10 +53,11 @@ const Navtop = (props) => {
               <Nav.Link as={Link} to={LOGIN}>Log In</Nav.Link>
               <Nav.Link as={Link} to={SIGNUP}>Sign Up</Nav.Link>
             </Nav>
-            )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            )
+          }
+        </Navbar.Collapse >
+      </Container >
+    </Navbar >
   )
 }
 

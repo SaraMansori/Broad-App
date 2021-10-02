@@ -11,4 +11,7 @@ export const BOOK_RESULTS_ISBN = "/book-results/isbn/:text";
 export const BOOK_RESULTS_CATEGORY = "/book-results/category/:text";
 export const REQUESTS = "/requests";
 export const USERS = "/users";
+export const BOOK_EXCHANGE = "/book-exchange";
+export const CHATS = "/chats";
+
 

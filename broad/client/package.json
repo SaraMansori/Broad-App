@@ -13,13 +13,17 @@
 		"bootstrap": "^5.1.1",
 		"i": "^0.3.7",
 		"npm": "^7.24.1",
+		"query-string": "^7.0.1",
 		"react": "^17.0.2",
 		"react-bootstrap": "^2.0.0-rc.0",
 		"react-dom": "^17.0.2",
+		"react-emoji": "^0.5.0",
 		"react-material-ui-theme": "^1.0.9",
 		"react-router-dom": "^5.3.0",
 		"react-scripts": "^4.0.3",
+		"react-scroll-to-bottom": "^4.1.2",
 		"sass": "^1.42.1",
+		"socket.io-client": "^4.2.0",
 		"styled-components": "^5.3.1"
 	},
 	"devDependencies": {
