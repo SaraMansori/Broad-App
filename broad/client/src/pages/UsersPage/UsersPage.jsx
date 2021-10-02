@@ -6,7 +6,7 @@ import UsersList from './UsersList'
 const usersService = new UsersService();
 
 
-const UsersPage = ({ loggedUser, storeUser }) => {
+const UsersPage = () => {
 
   const [users, setUsers] = useState(null)
 
@@ -25,7 +25,7 @@ const UsersPage = ({ loggedUser, storeUser }) => {
     <Container>
       <h1>Broad Users</h1>
       {users?.length ?
-        <UsersList getUsers={getUsers} users={users} loggedUser={loggedUser} storeUser={storeUser} />
+        <UsersList getUsers={getUsers} users={users} />
         :
         <p>No users to show.</p>
       }

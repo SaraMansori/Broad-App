@@ -1,12 +1,15 @@
 /*
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import UserContext from '../../UserContext'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import Link from 'react-router-dom'
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
 
-const ChatPage = (props) => {
+const ChatPage = () => {
+
+  const loggedUser = useContext(UserContext)
 
   useEffect(() => {
     const ENDPOINT = 'process.env.REACT_APP_API_URL'
@@ -21,7 +24,7 @@ const ChatPage = (props) => {
 
   let socket;
 
-  const [loggedUserName, setName] = useState(props.loggedUser?.username)
+  const [loggedUserName, setName] = useState(loggedUser?.username)
   const [room, setRoom] = useState('')
   const [isChatOpen, setIsChatOpen] = useState(false)
 
@@ -36,7 +39,7 @@ const ChatPage = (props) => {
         <Row>
           <Col md={6}>
             <Card body>
-              <p>Your Name: {props.loggedUser?.username}</p>
+              <p>Your Name: {loggedUser?.username}</p>
               <p>This is some text within a card body.</p>
               <Button onClick={() => handleClick()}>Close Chat</Button>
             </Card>
@@ -50,7 +53,7 @@ const ChatPage = (props) => {
         <Row>
           <Col md={12}>
             <Card body>
-              <p>Your Name: {props.loggedUser?.username}</p>
+              <p>Your Name: {loggedUser?.username}</p>
               <p>This is some text within a card body.</p>
               <Button onClick={() => handleClick()}>Open Chat</Button>
             </Card>

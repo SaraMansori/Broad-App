@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../../UserContext'
 import UsersService from '../services/users.service';
 import { Grid, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import ImgAvatar from '../components/styledComponents/atomicComponents/ImgAvatar';
 
 const usersService = new UsersService();
 
-const Profile = ({ loggedUser }) => {
+const Profile = () => {
+
+  const loggedUser = useContext(UserContext);
+
   const [userInfo, setUserInfo] = useState({
     email: '',
     username: '',
@@ -18,7 +22,7 @@ const Profile = ({ loggedUser }) => {
     friends: [],
   });
 
-  console.log(loggedUser);
+  //console.log(loggedUser);
 
   useEffect(() => {
     usersService.getUserInfo(loggedUser?._id).then(response => {

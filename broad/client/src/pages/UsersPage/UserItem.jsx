@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../../UserContext'
 import { Button, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/users.service';
@@ -8,7 +9,7 @@ const usersService = new UsersService();
 const requestsService = new RequestsService();
 
 
-const UsersItem = ({ getUsers, user, loggedUser, storeUser }) => {
+const UsersItem = ({ getUsers, user }) => {
 
   // props user: _id, username, readBooks, city, rating, timesRated,
   // exchangedBooksByUser, favoriteGenres, number of friends, profileImage
@@ -17,6 +18,7 @@ const UsersItem = ({ getUsers, user, loggedUser, storeUser }) => {
   const [buttonToShow, setButtonToShow] = useState('')
   const [areFriends, setAreFriends] = useState(false)
 
+  const loggedUser = useContext(UserContext)
   const currentUserId = loggedUser?._id
   const type = 'FRIENDSHIP'
 

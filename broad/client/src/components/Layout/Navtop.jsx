@@ -20,9 +20,6 @@ const logout = (e) => {
 
 }
 
-
-const authServices = new AuthServices()
-
 const Navtop = props => {
 
   const loggedUser = useContext(UserContext);
@@ -43,7 +40,7 @@ const Navtop = props => {
           <Nav className="me-auto">
             <SearchBar />
           </Nav>
-          {props.loggedUser ?
+          {loggedUser ?
             (<Nav>
               <NavDropdown title="Profile" align="end">
                 <NavDropdown.Item as={Link} to={PROFILE}>My Profile</NavDropdown.Item>
@@ -59,9 +56,9 @@ const Navtop = props => {
             </Nav>
             )
           }
-        </Navbar.Collapse >
-      </Container >
-    </Navbar >
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

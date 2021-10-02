@@ -7,14 +7,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 
 
-const ChatPage = (props) => {
+const ChatPage = () => {
 
   return (
     <>
       <Router>
         <Container>
           <h1>Tus chats disponibles</h1>
-          <ChatItem loggedUser={props.loggedUser} />
+          <ChatItem />
         </Container>
       </Router>
     </>
