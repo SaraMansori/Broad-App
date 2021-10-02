@@ -20,8 +20,8 @@ const Routes = props => {
     <React.StrictMode>
       <Switch>
         <Route exact path={PATHS.HOMEPAGE} render={() => <HomePage />} />
-        <Route exact path={PATHS.LOGIN} render={() => <Login loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
-        <Route exact path={PATHS.SIGNUP} render={() => <Signup loggedUser={props.loggedUser} />} />
+        <Route exact path={PATHS.LOGIN} render={() => <Login />} />
+        <Route exact path={PATHS.SIGNUP} render={() => <Signup />} />
         <Route exact path={PATHS.SIGNUP_INFO} render={() => <SignupInfoPage />} />
         <Route exact path={PATHS.SIGNUP_GENRES} render={() => <SignupGenresPage />} />
         <Route exact path={PATHS.BOOK_RESULTS_TEXT} render={() => <BookResults searchType='text' {...props} />} />
@@ -29,11 +29,12 @@ const Routes = props => {
         <Route exact path={PATHS.BOOK_RESULTS_AUTHOR} render={() => <BookResults searchType='author' {...props} />} />
         <Route exact path={PATHS.BOOK_RESULTS_ISBN} render={() => <BookResults searchType='isbn' {...props} />} />
         <Route exact path={PATHS.BOOK_RESULTS_CATEGORY} render={() => <BookResults searchType='category' {...props} />} />
-        <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
-        <Route exact path={PATHS.USERS} render={() => <UsersPage loggedUser={props.loggedUser} storeUser={props.storeUser} />} />
-        <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
-        <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage loggedUser={props.loggedUser} />} />
-        <Route path={PATHS.CHATS} render={() => <ChatPage loggedUser={props.loggedUser} />} />
+        <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage />} />
+        <Route exact path={PATHS.USERS} render={() => <UsersPage />} />
+        <Route exact path={PATHS.PROFILE} render={() => <Profile />} />
+        <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage />} />
+        <Route path={PATHS.CHATS} render={() => <ChatPage />} />
+
       </Switch>
     </React.StrictMode>
   );

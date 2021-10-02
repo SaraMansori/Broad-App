@@ -1,5 +1,6 @@
-
-import React, { useState, useEffect } from 'react'
+/*
+import React, { useState, useEffect, useContext } from 'react'
+import UserContext from '../../UserContext'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import { Link, useLocation } from 'react-router-dom'
@@ -7,6 +8,8 @@ import { Card, Button, Row, Col } from 'react-bootstrap';
 
 
 const ChatPage = (props) => {
+  const loggedUser = useContext(UserContext)
+
   let socket;
 
   const location = useLocation()
@@ -85,4 +88,4 @@ const ChatPage = (props) => {
   );
 }
 
-export default ChatPage;
+export default ChatPage; */

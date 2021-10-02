@@ -84,7 +84,7 @@ const BookSearch = props => {
 
           return (
 
-            <BookItem book={book} loggedUser={props.loggedUser} />
+            <BookItem book={book} />
 
           )
         })

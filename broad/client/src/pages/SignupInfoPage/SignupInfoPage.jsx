@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import { Button } from '@material-ui/core';
+import { useState } from 'react';
+import { Button } from 'react-bootstrap'
+import TextField from '@mui/material/TextField'; // cambiar por bootstrap
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/users.service';
 import UploadsService from '../../services/uploads.service';

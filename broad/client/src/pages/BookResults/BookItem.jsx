@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import UserContext from '../../UserContext'
 import { Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
 
-const BookItem = ({ book, loggedUser }) => {
+const BookItem = ({ book }) => {
+
+  const loggedUser = useContext(UserContext)
 
   const [wantToExchange, setWantToExchange] = useState(false)
   const [user, setUser] = useState(loggedUser)
