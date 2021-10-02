@@ -15,7 +15,7 @@ const authService = new AuthService();
 
 const App = props => {
 
-  console.log(props)
+  //console.log(props)
   const [loggedUser, setLoggedUser] = useState(undefined)
 
   const storeUser = user => setLoggedUser(user)
@@ -36,7 +36,7 @@ const App = props => {
         <UserProvider value={loggedUser}>
           <Navbar {...props} />
 
-          <Routes loggedUser={loggedUser} storeUser={storeUser} {...props} />
+          <Routes {...props} />
 
           {/* <Footer /> */}
         </UserProvider>
