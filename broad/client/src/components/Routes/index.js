@@ -34,7 +34,6 @@ const Routes = props => {
         <Route exact path={PATHS.PROFILE} render={() => <Profile loggedUser={props.loggedUser} />} />
         <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage loggedUser={props.loggedUser} />} />
         <Route path={PATHS.CHATS} render={() => <ChatPage loggedUser={props.loggedUser} />} />
-
       </Switch>
     </React.StrictMode>
   );
