@@ -1,6 +1,7 @@
 require("dotenv/config");
-
 require("./db");
+
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/chatUsers')
 
 const express = require("express");
 const socketio = require("socket.io")
@@ -10,8 +11,16 @@ const app = express();
 const server = http.createServer(app)
 const io = socketio(server)
 
-io.on('connection', (socket) => {
+io.on('connect', (socket) => {
+
   console.log('We have a new connection')
+
+  socket.on('join', ({ username }, callback) => {
+    console.log(username)
+
+
+  })
+
   socket.on('disconnect', () => {
     console.log('User has left')
   })

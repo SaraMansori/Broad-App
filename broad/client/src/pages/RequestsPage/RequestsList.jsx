@@ -1,4 +1,3 @@
-import React from 'react';
 import RequestItem from './RequestItem'
 
 
@@ -7,8 +6,8 @@ const RequestsList = ({ getRequests, requests }) => {
   const friendshipRequests = requests.filter(request => request.type === 'FRIENDSHIP')
   const chatRequests = requests.filter(request => request.type === 'CHAT')
   const exchangeRequests = requests.filter(request => request.type === 'EXCHANGE')
-  
-  const displayRequests = requests => requests.map(request => {
+
+  const displayRequests = () => requests.map(request => {
     return <RequestItem key={request._id} {...request} getRequests={getRequests} />
   })
 

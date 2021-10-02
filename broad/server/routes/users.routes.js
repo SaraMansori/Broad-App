@@ -115,22 +115,6 @@ router.put('/update/books', (req, res) => {
 
 })
 
-router.get('/:id', (req, res) => {
-
-  const { id } = req.params
-
-  // añadir también requests? otro modelo
-  // Filtrar por lo que queramos mostrar (vista de usuario logged in y vista de los demás)
-  // de friends queremos solo la length, filtrar todo
-  // si tal cambiar en el estado de la página de front (que hemos puesto array)
-  User
-    .findById(id)
-    .select('email username profileImage name description locationInfo favoriteGenres books friends')
-    .then(user => res.status(200).json({ user }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
-
-})
-
 
 router.delete('/:id', (req, res) => {
 
@@ -190,14 +174,38 @@ router.put('/delete-friend', (req, res) => {
 
 router.get('/books-to-exchange', (req, res) => {
 
-  Users
+  User
     .find({ books: { $elemMatch: { wantsToExchange: true } } })
     .select('books')
-    .then(users => console.log(users))
+    .then(usersWithBooksToExchange => {
+
+      const booksToExchange = [].concat(...usersWithBooksToExchange.map(user => {
+        return user.books.filter(book => book.wantsToExchange)
+      }))
+
+      res.status(200).json(booksToExchange)
+    })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving books to exchange", err }))
 })
 
 
-router.post('/:id/vote', (req, res) => { })
+//router.post('/:id/vote', (req, res) => { })
+
+
+router.get('/:id', (req, res) => {
+
+  const { id } = req.params
+
+  // añadir también requests? otro modelo
+  // Filtrar por lo que queramos mostrar (vista de usuario logged in y vista de los demás)
+  // de friends queremos solo la length, filtrar todo
+  // si tal cambiar en el estado de la página de front (que hemos puesto array)
+  User
+    .findById(id)
+    .select('email username profileImage name description locationInfo favoriteGenres books friends')
+    .then(user => res.status(200).json({ user }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
+
+})
 
 module.exports = router

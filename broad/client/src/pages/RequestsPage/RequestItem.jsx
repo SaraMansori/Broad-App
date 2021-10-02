@@ -1,6 +1,5 @@
-import React from 'react';
-import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap'
 import RequestsService from '../../services/requests.service';
 
 const requestsService = new RequestsService();
@@ -23,8 +22,8 @@ const RequestsItem = ({ _id, owner, getRequests }) => {
   return (
     <>
       <Link to={`/users/${_id}`}>{owner.username}</Link>
-      <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="contained" color="primary">Accept</Button>
-      <Button onClick={changeRequestStatus} data-status="REJECTED" variant="contained" color="primary">Reject</Button>
+      <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="primary">Accept</Button>
+      <Button onClick={changeRequestStatus} data-status="REJECTED" variant="primary">Reject</Button>
       <br />
       <br />
     </>
