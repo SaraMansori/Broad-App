@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
           timesRated: sum,
           exchangedBooksByUser: exchangedBooksByUser.length,
           favoriteGenres: user.favoriteGenres,
-          friends: user.friends.length, // número de amigos
+          friends: user.friends,
           profileImage: user.profileImage
         }
 

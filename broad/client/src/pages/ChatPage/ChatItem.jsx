@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
@@ -85,3 +86,4 @@ const ChatPage = (props) => {
 }
 
 export default ChatPage;
+*/
