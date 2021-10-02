@@ -21,21 +21,19 @@ const logout = (e) => {
 }
 
 
-const authServices = new AuthServices()
-
 const Navtop = props => {
 
   const loggedUser = useContext(UserContext);
-  //console.log("el user de la navbar", loggedUser)
+  console.log("el user de la navbar", loggedUser)
 
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" style={{ marginBottom: '50px' }}>
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" style={{ marginBottom: '50px', zIndex: '5' }}>
       <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px' }}>
         <Navbar.Brand as={Link} to={HOMEPAGE}><ImgLogo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse>
-          <Nav className="me-auto">
+        <Navbar.Collapse style={{ backgroundColor: '#805d93', padding: '5px', marginTop: '6px', borderRadius: '10px' }}>
+          <Nav id="responsive-navbar-nav" className="me-auto">
             <Nav.Link as={Link} to="#">Swap</Nav.Link>
             <Nav.Link as={Link} to="#">Discover Books</Nav.Link>
             <Nav.Link as={Link} to="#">Quotes</Nav.Link>
@@ -43,7 +41,7 @@ const Navtop = props => {
           <Nav className="me-auto">
             <SearchBar />
           </Nav>
-          {props.loggedUser ?
+          {loggedUser ?
             (<Nav>
               <NavDropdown title="Profile" align="end">
                 <NavDropdown.Item as={Link} to={PROFILE}>My Profile</NavDropdown.Item>
@@ -59,9 +57,9 @@ const Navtop = props => {
             </Nav>
             )
           }
-        </Navbar.Collapse >
-      </Container >
-    </Navbar >
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
