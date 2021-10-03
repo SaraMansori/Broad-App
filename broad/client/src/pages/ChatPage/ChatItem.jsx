@@ -7,11 +7,12 @@ import { OuterContainer, ChatContainer } from '../../components/styledComponents
 import { useLocation } from 'react-router-dom'
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
+let socket;
 
 const ChatPage = () => {
-  let socket;
-  const ENDPOINT = 'http://localhost:5005'
 
+
+  const ENDPOINT = 'http://localhost:5005'
 
   const location = useLocation()
   const loggedUser = useContext(UserContext)
@@ -22,7 +23,6 @@ const ChatPage = () => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
   const [isChatOpen, setIsChatOpen] = useState(false)
-
 
   useEffect(() => {
 
@@ -44,6 +44,7 @@ const ChatPage = () => {
       socket.emit('join', { username, room }, () => {
       })
 
+
       return () => {
         socket.disconnect();
         socket.off()
@@ -54,12 +55,23 @@ const ChatPage = () => {
   }, [ENDPOINT, location.search, loggedUser])
 
   useEffect(() => {
+    console.log(loggedUser.username)
     if (loggedUser?.username) {
-      socket.on('message', (message) => {
-        setMessages(...messages, message)
+      console.log("asdsadasd")
+      socket.on('sendMessage', (message) => {
+        setMessages([...messages, message])
       })
     }
   }, [messages])
+
+  // useEffect(() => {
+  // if (loggedUser?.username) {
+
+  //   socket.on('sendMessage', (message) => {
+  //     setMessages([...messages, message])
+  //   })
+  // }
+  // }, [messages])
 
 
 
@@ -69,8 +81,6 @@ const ChatPage = () => {
 
   const size = isChatOpen ? 6 : 12
 
-  //style={{ height: '80vh' }}
-
   const sendMessage = (e) => {
 
     e.preventDefault()
@@ -79,8 +89,6 @@ const ChatPage = () => {
       socket.emit('sendMessage', message, () => setMessage(''))
     }
   }
-
-  console.log(message, messages)
 
   return (
     <>
