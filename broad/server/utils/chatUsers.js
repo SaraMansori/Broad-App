@@ -1,9 +1,9 @@
 const users = []
 
-const addUser = ({ id, name, room }) => {
+const addUser = ({ id, username, room }) => {
 
-  name = name.trim.toLowerCase()
-  room = room.trime.toLowerCase()
+  username = username.trim().toLowerCase()
+  room = room.trim().toLowerCase()
 
   const existingUser = users.find(user => user.room && user.name)
 
@@ -11,8 +11,10 @@ const addUser = ({ id, name, room }) => {
     return { error: 'Username taken' }
   }
 
-  const user = { id, name, room }
+  const user = { id, username, room }
   users.push(user)
+
+  return { user }
 }
 
 const removeUser = (id) => {

@@ -15,10 +15,28 @@ io.on('connect', (socket) => {
 
   console.log('We have a new connection')
 
-  socket.on('join', ({ username }, callback) => {
-    console.log(username)
+  socket.on('join', ({ username, room }, callback) => {
 
+    console.log(socket.id, username, room)
 
+    const { error, user } = addUser({ id: socket.id, username, room })
+
+    if (error) return callback(error)
+
+    socket.emit('message', { user: 'admin', text: `${user.username}, welcome to the chat` })
+    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined the chat` })
+
+    socket.join(user.room)
+
+    callback()
+  })
+
+  socket.on('sendMessage', () => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('message', { user: user.username, text: message })
+
+    callback()
   })
 
   socket.on('disconnect', () => {

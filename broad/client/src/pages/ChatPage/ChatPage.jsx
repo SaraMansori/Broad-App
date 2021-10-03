@@ -1,9 +1,8 @@
 
 import ChatItem from './ChatItem'
 import { Container } from 'react-bootstrap'
-import { OuterContainer, ChatContainer } from '../../components/styledComponents/ChatStyle'
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 
