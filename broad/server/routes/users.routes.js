@@ -180,17 +180,16 @@ router.get('/books-to-exchange', (req, res) => {
     .select('books username')
     .then(users => {
 
-      // console.log('SIN MODIFICAR------',users[0])
+      // console.log(users[0])
+      const usersCopy = JSON.parse(JSON.stringify(users))
+      //const usersCopy = users.map(user => { return { ...user } })
 
-      // si lo guardamos en variable y pasamos esa a lo siguiente, deja de funcionar
-      // lo teníamos con: const usersModified = 
-      users.map(user => user.books.map(book => book = book.owner = user.username))
+      const usersModified = usersCopy.map(user => {
+        user.books.map(book => book = book.owner = user.username)
+        return user
+      })
 
-      // console.log('MODIFIED-----------------', users[0])
-      // console.log('usersModified VARIABLE--------', usersModified[0]) 
-      // object id de mongo, no lo coge si lo pasamos abajo
-
-      const booksToExchange = [].concat(...users.map(user => {
+      const booksToExchange = [].concat(...usersModified.map(user => {
         return user.books.filter(book => book.wantsToExchange)
       }))
 
@@ -201,6 +200,7 @@ router.get('/books-to-exchange', (req, res) => {
         }
       })
 
+      // console.log(users[0])
       res.status(200).json(booksWithFilteredData)
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving books to exchange", err }))
