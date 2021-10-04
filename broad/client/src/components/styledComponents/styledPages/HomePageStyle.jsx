@@ -97,7 +97,6 @@ text-align:center;
 font-weight: 600;
 font-size: 20px;
 line-height: 30px;
-background-color: #FFFFFF;
 padding: 5px;
 border-radius: 15px;
 display: none;
