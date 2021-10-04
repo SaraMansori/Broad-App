@@ -1,22 +1,23 @@
 import * as React from 'react';
-import { Row } from 'react-bootstrap';
 import { H2, H6, ImageReading, Welcome, Ready, NewLife, Hit, Hit2, Quote1, Quote2, Quote3, RectContainer, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadFeatures, BroadDesc, Icon } from '../components/styledComponents/styledPages/HomePageStyle';
+import { Link } from 'react-router-dom';
+import { SIGNUP } from '../utils/paths';
 
 const HomePage = () => {
   return (
-    <div style={{ marginTop: '-50px' }}>
+    <div style={{ marginTop: '-30px' }}>
       <ImageReading />
       <Welcome>welcome to <strong>Broad<br />the books' road</strong></Welcome>
       <NewLife>
         The only place where your <strong>books</strong> can find their way to a <strong>new life</strong> !
       </NewLife>
       <Ready>Ready to start your journey?</Ready>
-      <Hit variant="secondary" style={{ color: 'white' }}>
+      <Hit className='button-link' as={Link} to={SIGNUP} type="submit">
         Hit the Road
       </Hit>
       <Quote1>“Nothing of me is original. I am the combined effort of everyone I've ever known.” (Chuck Palahniuk)</Quote1>
-      <Quote2>No veo la hora de terminar el bootcamp para aprender React por mi cuenta.<br />(Jesús)</Quote2>
-      <Quote3>Oye, al menos he aprendido algo de CSS esta semana.<br />(Vanessa)</Quote3>
+      <Quote3>“Read, read, read. Read everything - trash, classics, good and bad, and see how they do it. Just like a carpenter who works as an apprentice and studies the master...”<br />(William Faulkner)</Quote3>
+      <Quote2>"Leap and the net will appear."<br />(John Burroughs)</Quote2>
       <RectContainer>
         <GreenRectangle>
 
@@ -70,7 +71,11 @@ const HomePage = () => {
 
           <H6 style={{ textAlign: 'center' }}>This and much more awaits for you on Broad!</H6>
           <br />
-          <p style={{ textAlign: 'center' }}><Hit2 variant='secondary'>Hit the Road!</Hit2></p>
+          <p style={{ textAlign: 'center' }}>
+            <Hit2 className='button-link' as={Link} to={SIGNUP} type="submit">
+              Hit the Road
+            </Hit2>
+          </p>
 
         </PurpleRectangle>
       </RectContainer>

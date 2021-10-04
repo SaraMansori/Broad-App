@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react'
 import UserContext from '../../UserContext'
-import { Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
+import { Col, Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
 
 const BookItem = ({ book }) => {
 
-  const loggedUser = useContext(UserContext)
+  const { loggedUser } = useContext(UserContext)
 
   const [wantToExchange, setWantToExchange] = useState(false)
   const [user, setUser] = useState(loggedUser)
@@ -58,46 +58,51 @@ const BookItem = ({ book }) => {
   }
 
   return (
-    <Card style={{ width: '80vw' }}>
-      <Card.Img
-        style={{ width: '20%' }}
-        variant="top"
-        src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
+    <Col md={4} className='flex-book'>
+      <Card className='d-flex' style={{ borderWidth: '0px', marginBottom: '5px', width: '100%' }} >
 
-        <Card.Text>
-          Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)}
-        </Card.Text>
+        <Card.Img
+          className='img-book-item'
+          style={{ width: '40%', alignSelf: 'center' }}
+          variant="top"
+          src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
 
-        <Card.Text>
-          Published Year: {publishedDate}
-        </Card.Text>
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
 
-        <div id="bookId" className="book-buttons d-flex">
+          <Card.Text>
+            Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)}
+          </Card.Text>
 
-          <DropdownButton variant="primary" title="Add to my library">
+          <Card.Text>
+            Published: {publishedDate}
+          </Card.Text>
 
-            <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
-            <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
-            <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
+          <div id="bookId" className="book-buttons" >
 
-          </DropdownButton>
+            {!wantToExchange ?
+              <Button onClick={(e) => handleExchangeClick(e)} style={{ width: '100%' }} variant="secondary">
+                I have this book and want to exchange it
+              </Button>
+              :
+              <Button onClick={(e) => handleExchangeClick(e)} style={{ width: '100%' }} variant="secondary">
+                I don't want to exchange this book anymore
+              </Button>
+            }
 
-          {!wantToExchange ?
-            <Button onClick={(e) => handleExchangeClick(e)} variant="secondary">
-              I have this book and want to exchange it
-            </Button>
-            :
-            <Button onClick={(e) => handleExchangeClick(e)} variant="secondary">
-              I don't want to exchange this book anymore
-            </Button>
-          }
+            <DropdownButton id='drop-full' variant="primary" title="Add to my library" style={{ display: 'grid' }}>
 
-        </div>
+              <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
+              <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
+              <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
 
-      </Card.Body>
-    </Card>
+            </DropdownButton>
+
+          </div>
+
+        </Card.Body>
+      </Card>
+    </Col>
   );
 }
 

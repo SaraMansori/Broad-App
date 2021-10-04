@@ -6,7 +6,7 @@ module.exports = {
 
   /*
   isLoggedIn: (req, res, next) => {
-    req.session.currentUser ? next() : res.render('pages/auth/login', { errorMsg: 'Login to continue' })
+    req.session.currentUser ? next() : res.render('pages/AuthPage/login', { errorMsg: 'Login to continue' })
   },
 
   checkRoles: (...roles) => (req, res, next) => {

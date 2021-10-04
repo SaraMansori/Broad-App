@@ -3,15 +3,14 @@ import { useHistory } from "react-router-dom";
 import { InputGroup, Button, FormControl } from 'react-bootstrap/'
 
 
-
 const SearchBar = (props) => {
-
 	const [text, setText] = useState('')
 	const [searchType, setSearchType] = useState(props.searchType)
 
 	useEffect(() => {
 		setSearchType(props.searchType)
 	}, [props.searchType])
+
 
 	let history = useHistory();
 
@@ -37,7 +36,7 @@ const SearchBar = (props) => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form id="toggle-search" onSubmit={handleSubmit}>
 
 			<InputGroup>
 				<FormControl
@@ -53,7 +52,7 @@ const SearchBar = (props) => {
 			</InputGroup>
 
 		</form>
-	);
+	)
 };
 
 export default SearchBar;

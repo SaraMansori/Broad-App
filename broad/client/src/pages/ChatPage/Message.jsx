@@ -1,4 +1,5 @@
 import { MessageContainerEnd, MessageContainerStart, PurpleMessage, LightMessage, AdminMessage } from "../../components/styledComponents/ChatStyle"
+import ReactEmoji from 'react-emoji'
 
 const Message = ({ message: { user, text }, username }) => {
 
@@ -20,7 +21,7 @@ const Message = ({ message: { user, text }, username }) => {
       (
         <MessageContainerEnd>
           <LightMessage text={text}>
-            <p className="messageText colorWhite">{text}</p>
+            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
           </LightMessage>
         </MessageContainerEnd>
       )
@@ -31,7 +32,7 @@ const Message = ({ message: { user, text }, username }) => {
 
         (
           <AdminMessage text={text}>
-            <p className="messageText colorWhite">{text}</p>
+            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
           </AdminMessage>
         )
 
@@ -40,7 +41,7 @@ const Message = ({ message: { user, text }, username }) => {
         (
           <MessageContainerStart>
             <PurpleMessage>
-              <p className="sentText colorDark pl-10">{text}</p>
+              <p className="sentText colorDark pl-10">{ReactEmoji.emojify(text)}</p>
             </PurpleMessage>
           </MessageContainerStart>
         )

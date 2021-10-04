@@ -138,7 +138,6 @@ border-radius:15px;
 const Quote = styled.div`
 position: absolute;
 width: 298px;
-height: 114px;
 background: #FFFFFF;
 border-style:solid;
 border-width: 1px;
@@ -161,17 +160,18 @@ display:none;
     display: initial;
   }
 `
-const Quote1 = styled(Quote)`
+const Quote3 = styled(Quote)`
 left: 20px;
-top: 455px;
+top: 445px;
 `
 const Quote2 = styled(Quote)`
-left: 206px;
-top: 540px;
+left: 280px;
+top: 570px;
 `
-const Quote3 = styled(Quote)`
+const Quote1 = styled(Quote)`
 left: 435px;
 top: 443px;
+min-height: 114px;
 `
 
 const RectContainer = styled.div`
@@ -204,7 +204,7 @@ justify-content: center;
 
 @media (min-width:1185px) {
 position: absolute;
-width: 630px;
+width: 590px;
 display: grid; 
 grid-template-columns: 0.7fr 1.3fr; 
 grid-template-rows: 1fr; 
@@ -220,8 +220,13 @@ border-top-right-radius: 50px;
 border-bottom-right-radius: 50px;
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1240px) {
   top: 625px;
+  width: 630px;
+  }
+
+@media (min-width: 1300px){
+  width: 650px;
   }
 
 `
@@ -257,7 +262,7 @@ margin-bottom: 10px;
 
 @media (min-width: 1185px) {
 position: absolute;
-width: 600px;
+width: 590px;
 min-height: 540px;
 right: 0px;
 top: 586px;
@@ -266,6 +271,10 @@ border-top-left-radius: 50px;
 border-bottom-left-radius: 50px;
 
 }
+
+@media (min-width: 1300px){
+  width: 650px;
+  }
 
 `
 
