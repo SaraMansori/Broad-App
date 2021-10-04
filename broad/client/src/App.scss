@@ -16,6 +16,17 @@ $colDefault: #eaeaea;
 $colHighlight: #eaeaea;
 $dropDown: true;
 
+//plain links
+.plain-link {
+  text-decoration: none;
+  color: $bgDefault !important;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $bgHighlight !important;
+  }
+}
+
 //secondary button
 .btn-secondary {
   color: #ffffff !important;
@@ -41,6 +52,7 @@ $dropDown: true;
       background-color: $bgHighlight;
     }
   }
+
   .dropdown-divider {
     background-color: $bgDefault;
     border-top-color: $bgHighlight;
@@ -210,6 +222,20 @@ $dropDown: true;
     color: $colHighlight;
     background-color: $bgHighlight;
   }
+}
+
+//Show/hide searchbar in the navbar
+#toggle-search {
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+// button login/sign-up
+.block-button {
+  display: block;
+  width: 300px;
+  margin: 0px 15px 15px 15px !important;
 }
 
 @import '~bootstrap/scss/bootstrap';

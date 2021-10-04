@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 
 const LongButton = styled(Button)`
-width: 300px;
+width: 250px;
 height: 40px;
 text-align:center;
 font-weight: 500;
