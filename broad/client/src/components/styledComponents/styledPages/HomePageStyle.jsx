@@ -138,7 +138,6 @@ border-radius:15px;
 const Quote = styled.div`
 position: absolute;
 width: 298px;
-height: 114px;
 background: #FFFFFF;
 border-style:solid;
 border-width: 1px;
@@ -161,17 +160,18 @@ display:none;
     display: initial;
   }
 `
-const Quote1 = styled(Quote)`
+const Quote3 = styled(Quote)`
 left: 20px;
-top: 455px;
+top: 445px;
 `
 const Quote2 = styled(Quote)`
-left: 206px;
-top: 540px;
+left: 280px;
+top: 570px;
 `
-const Quote3 = styled(Quote)`
+const Quote1 = styled(Quote)`
 left: 435px;
 top: 443px;
+min-height: 114px;
 `
 
 const RectContainer = styled.div`
