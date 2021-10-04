@@ -78,9 +78,9 @@ const SignupForm = () => {
 			</form>
 
 
-			<h5>
+			<h6>
 				Already have an account?
-			</h5>
+			</h6>
 
 
 			<Button className='block-button' as={Link} to={LOGIN} type="submit" variant="primary">

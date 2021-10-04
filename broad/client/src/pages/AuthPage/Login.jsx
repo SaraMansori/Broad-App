@@ -55,8 +55,8 @@ const LoginForm = props => {
 						placeholder="Password..."
 						aria-label="password"
 						aria-describedby="password"
-						name="password"
-						type="text"
+						name="pwd"
+						type="password"
 						value={formData.pwd}
 						onChange={e => handleInput(e)}
 					/>
@@ -71,12 +71,16 @@ const LoginForm = props => {
 			<Link className='plain-link' to={'#'}>
 				Forgot password?
 			</Link>
+			<br />
+
+			<h6>
+				Already have an account?
+			</h6>
 
 
-			<Link className='plain-link' to={SIGNUP}>
-				Don't have an account? Sign Up
-			</Link>
-
+			<Button className='block-button' as={Link} to={SIGNUP} type="submit" variant="primary">
+				Sign Up
+			</Button>
 
 		</Container>
 	);
