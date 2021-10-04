@@ -1,3 +1,7 @@
+body {
+  background-color: #F4E7DE !important;
+}
+
 //overwrite
 $theme-colors: (
   'primary': #805d93,
@@ -274,6 +278,9 @@ $dropDown: true;
   justify-content: center;
   align-items: end;
   flex-wrap: wrap;
+// removes space between the send and input button in the chat
+#chatRow {
+  --bs-gutter-x: 0
 }
 
 @import '~bootstrap/scss/bootstrap';

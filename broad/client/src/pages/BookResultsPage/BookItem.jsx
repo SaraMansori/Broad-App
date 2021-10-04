@@ -6,7 +6,7 @@ import UsersService from '../../services/users.service'
 
 const BookItem = ({ book }) => {
 
-  const loggedUser = useContext(UserContext)
+  const { loggedUser } = useContext(UserContext)
 
   const [wantToExchange, setWantToExchange] = useState(false)
   const [user, setUser] = useState(loggedUser)
