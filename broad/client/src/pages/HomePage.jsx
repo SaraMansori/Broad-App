@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { H2, H6, ImageReading, Welcome, Ready, NewLife, Hit, Hit2, Quote1, Quote2, Quote3, RectContainer, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadFeatures, BroadDesc, Icon } from '../components/styledComponents/styledPages/HomePageStyle';
+import { Link } from 'react-router-dom';
+import { SIGNUP } from '../utils/paths';
 
 const HomePage = () => {
   return (
@@ -10,7 +12,7 @@ const HomePage = () => {
         The only place where your <strong>books</strong> can find their way to a <strong>new life</strong> !
       </NewLife>
       <Ready>Ready to start your journey?</Ready>
-      <Hit variant="secondary" style={{ color: 'white' }}>
+      <Hit className='button-link' as={Link} to={SIGNUP} type="submit">
         Hit the Road
       </Hit>
       <Quote1>“Nothing of me is original. I am the combined effort of everyone I've ever known.” (Chuck Palahniuk)</Quote1>
@@ -69,7 +71,11 @@ const HomePage = () => {
 
           <H6 style={{ textAlign: 'center' }}>This and much more awaits for you on Broad!</H6>
           <br />
-          <p style={{ textAlign: 'center' }}><Hit2 variant='secondary'>Hit the Road</Hit2></p>
+          <p style={{ textAlign: 'center' }}>
+            <Hit2 className='button-link' as={Link} to={SIGNUP} type="submit">
+              Hit the Road
+            </Hit2>
+          </p>
 
         </PurpleRectangle>
       </RectContainer>

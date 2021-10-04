@@ -31,6 +31,19 @@ $dropDown: true;
   }
 }
 
+.button-link {
+  text-decoration: none;
+  background-color: #159772;
+  color: #eaeaea !important;
+  padding-top: 6px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ffffff !important;
+  }
+}
+
 //secondary button
 .btn-secondary {
   color: #ffffff !important;
@@ -42,10 +55,16 @@ $dropDown: true;
   }
 }
 
+// dropdown menu button
+.dropdown-menu.show {
+  min-width: 100% !important;
+}
+
 //generic dropdown
 .dropdown-menu {
   background-color: $bgDefault !important;
   border-color: $bgHighlight;
+
   .dropdown-item {
     background-color: $bgDefault;
     color: $colDefault;
@@ -242,6 +261,23 @@ $dropDown: true;
   margin: 0px 15px 15px 15px !important;
 }
 
+// img item book results
+.img-book-item {
+  border-radius: 10px !important;
+  box-shadow: 2px 2px 2px 2px #805d93;
+  // border-width: 1px;
+  // border-style: solid;
+  // border-color: #a979c3;
+  margin: 10px;
+}
+
+// flex card book
+.flex-book {
+  display: flex !important;
+  align-content: end;
+  justify-content: center;
+  align-items: end;
+  flex-wrap: wrap;
 // removes space between the send and input button in the chat
 #chatRow {
   --bs-gutter-x: 0
