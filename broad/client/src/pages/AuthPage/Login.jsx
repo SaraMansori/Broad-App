@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import UserContext from '../../UserContext';
 import { InputGroup, Button, FormControl, Container } from 'react-bootstrap/'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import AuthService from '../../services/auth.service';
 import { SIGNUP } from '../../utils/paths';
 
 const authService = new AuthService();
 
 const LoginForm = props => {
+
 	const [formData, setFormData] = useState({ username: '', pwd: '' });
+
+	let history = useHistory();
+	const { storeUser } = useContext(UserContext);
+
 
 	const clearState = () => {
 		setFormData({ username: '', pwd: '' });
@@ -26,9 +32,10 @@ const LoginForm = props => {
 		authService
 			.login(username, pwd)
 			.then(res => {
-				props.storeUser(res.data);
+				storeUser(res.data)
+				history.push('/')
 				clearState();
-			}) // añadir redirect to /home
+			})
 			.catch(err => console.error(err));
 	};
 

@@ -10,7 +10,7 @@ import RequestsPage from '../../pages/RequestsPage/RequestsPage';
 import UsersPage from '../../pages/UsersPage/UsersPage';
 import BookResultsPage from '../../pages/BookResultsPage/BookResultsPage';
 import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage';
-import Profile from '../../pages/Profile2';
+import Profile from '../../pages/Profile';
 import ChatPage from '../../pages/ChatPage/ChatPage'
 import '../../App.scss';
 

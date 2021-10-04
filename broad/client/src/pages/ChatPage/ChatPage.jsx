@@ -8,7 +8,7 @@ import RequestsService from '../../services/requests.service'
 
 const ChatPage = () => {
 
-  const loggedUser = useContext(UserContext)
+  const { loggedUser } = useContext(UserContext)
   const requestsService = new RequestsService()
   const [chats, setChats] = useState([])
 

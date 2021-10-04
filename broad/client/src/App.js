@@ -6,8 +6,7 @@ import { UserProvider } from './UserContext'
 //BOOTSTRAP
 import './App.scss';
 
-//MATERIALUI
-//import { Container } from '@material-ui/core'
+
 import Navbar from './components/Layout/Navtop'
 import AuthService from './services/auth.service';
 
@@ -33,7 +32,7 @@ const App = props => {
   return (
     <>
       <Router>
-        <UserProvider value={loggedUser}>
+        <UserProvider value={{ loggedUser, storeUser }}>
           <Navbar {...props} />
 
           <Routes {...props} />

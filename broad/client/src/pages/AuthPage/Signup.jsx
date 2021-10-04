@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react'
+import UserContext from '../../UserContext';
 import { InputGroup, Button, FormControl, Container } from 'react-bootstrap/'
-import { Link } from 'react-router-dom';
-import AuthService from '../../services/auth.service';
+import { Link, useHistory } from 'react-router-dom'
+import AuthService from '../../services/auth.service'
 import { LOGIN } from '../../utils/paths'
 
-const authService = new AuthService();
+const authService = new AuthService()
 
 const SignupForm = () => {
-	const [formData, setFormData] = useState({ email: '', username: '', pwd: '' });
+	const [formData, setFormData] = useState({ email: '', username: '', pwd: '' })
+
+	let history = useHistory();
+	const { storeUser } = useContext(UserContext)
 
 	const clearState = () => {
-		setFormData({ email: '', username: '', pwd: '' });
+		setFormData({ email: '', username: '', pwd: '' })
 	};
 
 	const handleChange = e => {
 		const { value, name } = e.target;
-		setFormData({ ...formData, [name]: value });
+		setFormData({ ...formData, [name]: value })
 	};
 
 	const handleSubmit = e => {
@@ -25,10 +29,12 @@ const SignupForm = () => {
 
 		authService
 			.signup(email, username, pwd)
-			.then(user => {
-				clearState();
+			.then(res => {
+				storeUser(res.data.user)
+				history.push('/')
+				clearState()
 			})
-			.catch(err => console.error(err));
+			.catch(err => console.error(err))
 	};
 
 	return (
@@ -88,7 +94,7 @@ const SignupForm = () => {
 			</Button>
 
 
-		</Container>);
-};
+		</Container>)
+}
 
 export default SignupForm;

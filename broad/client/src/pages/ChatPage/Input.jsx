@@ -1,11 +1,10 @@
 import { Form, Row, Button } from 'react-bootstrap';
 
-
 const Input = ({ message, sendMessage, setMessage }) => {
   return (
 
     <Form.Group>
-      <Row>
+      <Row id="chatRow">
         <div className="col-10">
           <Form.Control
             style={{ resize: "none", width: "100%" }} as="textarea" rows={3} placeHolder="Type a message..."

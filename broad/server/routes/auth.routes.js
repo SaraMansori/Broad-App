@@ -40,7 +40,7 @@ router.post('/signup', (req, res) => {
 
       User
         .create({ username, email, password: hashPass })
-        .then(() => res.json({ code: 200, message: 'User created' }))
+        .then((user) => res.json({ code: 200, message: 'User created', user }))
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
     })
     .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err: err.message }))

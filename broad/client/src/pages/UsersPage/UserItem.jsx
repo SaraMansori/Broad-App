@@ -18,7 +18,7 @@ const UsersItem = ({ getUsers, user }) => {
   const [buttonToShow, setButtonToShow] = useState('')
   const [areFriends, setAreFriends] = useState(false)
 
-  const loggedUser = useContext(UserContext)
+  const { loggedUser } = useContext(UserContext)
   const currentUserId = loggedUser?._id
   const type = 'FRIENDSHIP'
 

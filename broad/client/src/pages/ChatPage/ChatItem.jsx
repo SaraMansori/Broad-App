@@ -17,7 +17,8 @@ const ChatPage = () => {
   const ENDPOINT = 'http://localhost:5005'
 
   const location = useLocation()
-  const loggedUser = useContext(UserContext)
+
+  const { loggedUser } = useContext(UserContext)
 
   const [room, setRoom] = useState('')
   const [otherUser, setOtherUser] = useState(null)
