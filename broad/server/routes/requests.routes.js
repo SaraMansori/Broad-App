@@ -33,6 +33,18 @@ router.get('/friendship', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving request", err }))
 })
 
+/* router.get('/chat/accepted', (req, res) => {
+  const id = req.session.currentUser._id
+
+  Request
+    .find({
+      $or: [{ receiver: id, type: 'CHAT', status: 'ACCEPTED' },
+      { owner: id, type: 'CHAT', status: 'ACCEPTED' }]
+    })
+    .then(request => res.status(200).json(request))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chat requests", err }))
+}) */
+
 router.post('/', (req, res) => {
 
   // comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra

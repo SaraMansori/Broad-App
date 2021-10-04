@@ -37,11 +37,12 @@ router.get('/search-book-by/:type/:text', (req, res) => {
 router.get('/search-book-by-id/:id', (req, res) => {
 
   const { id } = req.params
+  console.log(id)
 
   API
     .getBookById(id)
     .then(book => res.status(200).json(book.data))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving book by id", err }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving book by id", err: err.message }))
 })
 
 

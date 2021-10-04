@@ -10,11 +10,10 @@ const booksService = new BooksService();
 const BookToExchangeItem = ({ getBooksToExchange, id, owner }) => {
 
   // A veces salen todos, a veces algunos, depende de la recarga... loading...
-
+  //invertir la responsabilidad de la petición al servidor :smily:
   const [book, setBook] = useState(null)
-  
-  const getBookById = () => {
 
+  const getBookById = () => {
     booksService
       .getBookById(id)
       .then(res => setBook(res.data.volumeInfo))
@@ -27,29 +26,29 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner }) => {
 
   return (
     book ?
-    <Card>
-      <Row>
+      <Card>
+        <Row>
 
-        <Col md={2}>
-          <Card.Img variant="top" src={book?.imageLinks?.thumbnail ? book.imageLinks.thumbnail : defaultImages.bookCover} />
-        </Col>
+          <Col md={2}>
+            <Card.Img variant="top" src={book?.imageLinks?.thumbnail ? book.imageLinks.thumbnail : defaultImages.bookCover} />
+          </Col>
 
-        <Col md={10}>
-          <Card.Body>
-            <Card.Title>{book?.title}</Card.Title>
-            <Card.Text>
-              {/* Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)} */}
-              Owner : {owner}
-            </Card.Text>
-            <Button variant="primary">Start Chat</Button>
-            <br />
-          </Card.Body>
-        </Col>
+          <Col md={10}>
+            <Card.Body>
+              <Card.Title>{book?.title}</Card.Title>
+              <Card.Text>
+                {/* Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)} */}
+                Owner : {owner}
+              </Card.Text>
+              <Button variant="primary">Start Chat</Button>
+              <br />
+            </Card.Body>
+          </Col>
 
-      </Row>
-    </Card>
-    :
-    <p>Loading...</p>
+        </Row>
+      </Card>
+      :
+      <p>Loading...</p>
   );
 
 }

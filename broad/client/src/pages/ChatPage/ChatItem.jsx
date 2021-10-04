@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import UserContext from '../../UserContext'
 import queryString from 'query-string'
 import io from 'socket.io-client'
-import { OuterContainer, ChatContainer } from '../../components/styledComponents/ChatStyle'
+import { OuterContainer, ChatContainer, MessageBox } from '../../components/styledComponents/ChatStyle'
 import InfoBar from './InfoBar/InfoBar'
+import Input from './Input'
+import Messages from './Messages'
 
 
 import { useLocation } from 'react-router-dom'
@@ -13,13 +15,13 @@ let socket;
 
 const ChatPage = () => {
 
-
   const ENDPOINT = 'http://localhost:5005'
 
   const location = useLocation()
   const loggedUser = useContext(UserContext)
 
   const [room, setRoom] = useState('')
+  const [otherUser, setOtherUser] = useState(null)
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
   const [isChatOpen, setIsChatOpen] = useState(false)
@@ -61,15 +63,6 @@ const ChatPage = () => {
     }
   }, [messages, loggedUser])
 
-  // useEffect(() => {
-  // if (loggedUser?.username) {
-
-  //   socket.on('sendMessage', (message) => {
-  //     setMessages([...messages, message])
-  //   })
-  // }
-  // }, [messages])
-
 
   const handleClick = () => {
     setIsChatOpen(!isChatOpen)
@@ -102,32 +95,20 @@ const ChatPage = () => {
           <Col md={size}>
             <OuterContainer>
               <ChatContainer>
-                <InfoBar room={room} handleClick={handleClick} />
 
-                <Form.Group>
-                  <Row>
-                    <div className="col-10">
-                      <Form.Control
-                        style={{ resize: "none", width: "100%" }} as="textarea" rows={3} placeHolder="Type a message..."
-                        value={message}
-                        onChange={(e) => { setMessage(e.target.value) }}
-                        onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null} />
-                    </div>
-                    <div className="col-2">
-                      <Button style={{ width: "100%", height: "100%", padding: "0" }}>Send</Button>
-                    </div>
-                  </Row>
-                </Form.Group>
+                <InfoBar room={room} otherUser={otherUser} handleClick={handleClick} />
+                <MessageBox>
+                  <Messages messages={messages} username={loggedUser.username} />
+                </MessageBox>
+                <Input message={message} sendMessage={sendMessage} setMessage={setMessage} />
 
-                {/* <input value={message} onChange={(e) => { setMessage(e.target.value) }}
-                  onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null} /> */}
               </ChatContainer>
             </OuterContainer>
           </Col>}
       </Row>
 
     </>
-  );
+  )
 }
 
 export default ChatPage;
