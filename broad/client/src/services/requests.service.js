@@ -18,6 +18,8 @@ class RequestsService {
 
   getFriendshipRequest = (otherUserId) => this.instance.get(`/friendship?otherUserId=${otherUserId}`)
 
+  getAcceptedChatRequests = () => this.instance.get(`/chat/accepted`)
+
 }
 
 export default RequestsService;
