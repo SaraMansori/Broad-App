@@ -22,7 +22,7 @@ io.on('connect', (socket) => {
     if (error) return callback(error)
 
     socket.emit('message', { user: 'admin', text: `${user.username}, welcome to the chat` })
-    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined the chat` })
+    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.username} has joined the chat` })
 
     socket.join(user.room)
 
@@ -38,7 +38,10 @@ io.on('connect', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    console.log('User has left')
+    const user = removeUser(socket.id)
+    if (user) {
+      io.to(user.room).emit('message', { user: 'admin', text: `${user.username} has left the chat` })
+    }
   })
 })
 

@@ -4,6 +4,8 @@ const router = express.Router();
 const User = require('../models/User.model')
 const Rating = require('../models/Rating.model')
 const ExchangedBooks = require('../models/ExchangedBook.model');
+const APIHandler = require('../services/APIHandler')
+const API = new APIHandler
 
 
 router.get('/', (req, res) => {
@@ -180,9 +182,8 @@ router.get('/books-to-exchange', (req, res) => {
     .select('books username')
     .then(users => {
 
-      // console.log(users[0])
       const usersCopy = JSON.parse(JSON.stringify(users))
-      //const usersCopy = users.map(user => { return { ...user } })
+      //const usersCopy = users.map(user => { return { ...user } }) No funciona porque dentro hay array de objetos
 
       const usersModified = usersCopy.map(user => {
         user.books.map(book => book = book.owner = user.username)
@@ -200,8 +201,29 @@ router.get('/books-to-exchange', (req, res) => {
         }
       })
 
-      // console.log(users[0])
-      res.status(200).json(booksWithFilteredData)
+      return booksWithFilteredData
+    })
+    .then(booksWithFilteredData => {
+      const promises = booksWithFilteredData.map(book => {
+        return API
+          .getBookById(book.id)
+          .then(APIbook => {
+            book = {
+              id: book.id,
+              owner: book.owner,
+              title: APIbook.data.volumeInfo.title,
+              authors: APIbook.data.volumeInfo.authors,
+            }
+
+            if (APIbook.data.volumeInfo.imageLinks?.thumbnail) {
+              book.image = APIbook.data.volumeInfo.imageLinks.thumbnail
+            }
+
+            return book
+          })
+          .catch(err => res.status(500).json({ code: 500, message: "Error retrieving book by id", err }))
+      })
+      Promise.all(promises).then(results => res.status(200).json(results))
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving books to exchange", err }))
 })
@@ -225,5 +247,6 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
 
 })
+
 
 module.exports = router
