@@ -176,8 +176,10 @@ router.put('/delete-friend', (req, res) => {
 
 router.get('/books-to-exchange', (req, res) => {
 
+  const id = req.session.currentUser._id
+
   User
-    .find({ books: { $elemMatch: { wantsToExchange: true } } })
+    .find({ 'books.wantsToExchange': true, _id: { $ne: id } })
     .lean()
     .select('books username')
     .then(users => {
@@ -186,7 +188,14 @@ router.get('/books-to-exchange', (req, res) => {
       //const usersCopy = users.map(user => { return { ...user } }) No funciona porque dentro hay array de objetos
 
       const usersModified = usersCopy.map(user => {
-        user.books.map(book => book = book.owner = user.username)
+        user.books = user.books.map(book => {
+          book = {
+            ...book,
+            owner: user.username,
+            ownerId: user._id,
+          }
+          return book
+        })
         return user
       })
 
@@ -197,26 +206,30 @@ router.get('/books-to-exchange', (req, res) => {
       const booksWithFilteredData = booksToExchange.map(book => {
         return book = {
           id: book.id,
-          owner: book.owner
+          owner: book.owner,
+          ownerId: book.ownerId
         }
       })
 
       return booksWithFilteredData
     })
     .then(booksWithFilteredData => {
+
       const promises = booksWithFilteredData.map(book => {
         return API
           .getBookById(book.id)
-          .then(APIbook => {
+          .then(APIBook => {
+
             book = {
               id: book.id,
               owner: book.owner,
-              title: APIbook.data.volumeInfo.title,
-              authors: APIbook.data.volumeInfo.authors,
+              ownerId: book.ownerId,
+              title: APIBook.data.volumeInfo.title,
+              authors: APIBook.data.volumeInfo.authors,
             }
 
-            if (APIbook.data.volumeInfo.imageLinks?.thumbnail) {
-              book.image = APIbook.data.volumeInfo.imageLinks.thumbnail
+            if (APIBook.data.volumeInfo.imageLinks?.thumbnail) {
+              book.image = APIBook.data.volumeInfo.imageLinks.thumbnail
             }
 
             return book
