@@ -32,7 +32,7 @@ const Navtop = props => {
       <Container fluid style={{ height: '45px', paddingRight: '15px', paddingLeft: '15px' }}>
         <Navbar.Brand as={Link} to={HOMEPAGE}><ImgLogo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse style={{ backgroundColor: '#805d93', padding: '5px', marginTop: '6px', borderRadius: '10px' }}>
+        <Navbar.Collapse style={{ backgroundColor: '#805d93', padding: '5px', borderRadius: '10px' }}>
           <Nav id="responsive-navbar-nav" className="me-auto">
             <Nav.Link as={Link} to="#">Swap</Nav.Link>
             <Nav.Link as={Link} to="#">Discover Books</Nav.Link>

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Img = styled.img`
   height: 30px;
   width: 30px;
-  margin-top:6%;
   filter: invert(100%);
 `;
 

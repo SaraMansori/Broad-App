@@ -7,9 +7,8 @@ import InfoBar from './InfoBar/InfoBar'
 import Input from './Input'
 import Messages from './Messages'
 
-
 import { useLocation } from 'react-router-dom'
-import { Card, Button, Row, Col, Form } from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 
 let socket;
 
@@ -24,6 +23,7 @@ const ChatPage = () => {
   const [otherUser, setOtherUser] = useState(null)
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
+  const [users, setUsers] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false)
 
   useEffect(() => {
@@ -59,6 +59,10 @@ const ChatPage = () => {
 
       socket.on('message', (message) => {
         setMessages([...messages, message])
+      })
+
+      socket.on("roomData", ({ users }) => {
+        setUsers(users)
       })
     }
   }, [messages, loggedUser])
