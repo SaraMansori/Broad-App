@@ -3,9 +3,11 @@ import UserContext from '../../UserContext'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import { OuterContainer, ChatContainer } from '../../components/styledComponents/ChatStyle'
+import InfoBar from './InfoBar/InfoBar'
+
 
 import { useLocation } from 'react-router-dom'
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button, Row, Col, Form } from 'react-bootstrap';
 
 let socket;
 
@@ -16,10 +18,8 @@ const ChatPage = () => {
 
   const location = useLocation()
   const loggedUser = useContext(UserContext)
-  //const loggedUsername = loggedUser?.username
 
-  //const [room, setRoom] = useState('')
-  //const [username, setUsername] = useState('')
+  const [room, setRoom] = useState('')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
   const [isChatOpen, setIsChatOpen] = useState(false)
@@ -29,10 +29,8 @@ const ChatPage = () => {
     if (loggedUser?.username) {
 
       const username = loggedUser.username
-      const room = 'room'
       const data = queryString.parse(location.search)
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       socket = io(ENDPOINT, {
         cors: {
           origin: "http://localhost:5005",
@@ -40,7 +38,7 @@ const ChatPage = () => {
         }, transports: ['websocket']
       })
 
-      //setRoom('room')
+      setRoom('room')
       socket.emit('join', { username, room }, () => {
       })
 
@@ -55,14 +53,13 @@ const ChatPage = () => {
   }, [ENDPOINT, location.search, loggedUser])
 
   useEffect(() => {
-    console.log(loggedUser.username)
     if (loggedUser?.username) {
-      console.log("asdsadasd")
-      socket.on('sendMessage', (message) => {
+
+      socket.on('message', (message) => {
         setMessages([...messages, message])
       })
     }
-  }, [messages])
+  }, [messages, loggedUser])
 
   // useEffect(() => {
   // if (loggedUser?.username) {
@@ -72,7 +69,6 @@ const ChatPage = () => {
   //   })
   // }
   // }, [messages])
-
 
 
   const handleClick = () => {
@@ -106,8 +102,25 @@ const ChatPage = () => {
           <Col md={size}>
             <OuterContainer>
               <ChatContainer>
-                <input value={message} onChange={(e) => { setMessage(e.target.value) }}
-                  onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null} />
+                <InfoBar room={room} handleClick={handleClick} />
+
+                <Form.Group>
+                  <Row>
+                    <div className="col-10">
+                      <Form.Control
+                        style={{ resize: "none", width: "100%" }} as="textarea" rows={3} placeHolder="Type a message..."
+                        value={message}
+                        onChange={(e) => { setMessage(e.target.value) }}
+                        onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null} />
+                    </div>
+                    <div className="col-2">
+                      <Button style={{ width: "100%", height: "100%", padding: "0" }}>Send</Button>
+                    </div>
+                  </Row>
+                </Form.Group>
+
+                {/* <input value={message} onChange={(e) => { setMessage(e.target.value) }}
+                  onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null} /> */}
               </ChatContainer>
             </OuterContainer>
           </Col>}
