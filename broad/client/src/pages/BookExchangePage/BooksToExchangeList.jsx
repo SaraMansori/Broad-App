@@ -1,13 +1,13 @@
 import BookToExchangeItem from './BookToExchangeItem'
 
 
-const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
+const BooksToExchangeList = ({ booksToExchange }) => {
 
   const displayBooksToExchange = () => booksToExchange.map(bookToExchange => {
     return <BookToExchangeItem
       key={`${bookToExchange.id} - ${bookToExchange.owner}`}
       {...bookToExchange}
-      getBooksToExchange={getBooksToExchange} />
+    />
   })
 
   return (

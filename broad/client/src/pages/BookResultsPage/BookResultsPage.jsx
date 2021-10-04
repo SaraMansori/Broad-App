@@ -3,9 +3,9 @@ import { Form } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import BookService from '../../services/books.service'
 import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar';
-import BookItem from '../BookResults/BookItem'
+import BookItem from '../BookResultsPage/BookItem'
 
-const BookSearch = props => {
+const BookResultsPage = props => {
 
   const type = 'radio'
 
@@ -94,4 +94,4 @@ const BookSearch = props => {
   );
 }
 
-export default BookSearch;
+export default BookResultsPage;
