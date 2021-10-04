@@ -74,7 +74,7 @@ const LoginForm = props => {
 			<br />
 
 			<h6>
-				Already have an account?
+				Don't have an account?
 			</h6>
 
 
