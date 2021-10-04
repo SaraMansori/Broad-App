@@ -3,14 +3,12 @@ import axios from 'axios';
 class ChatService {
   constructor() {
     this.instance = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/chat`,
+      baseURL: `${process.env.REACT_APP_API_URL}/chats`,
       withCredentials: true,
     });
   }
 
-  getChat = () => {
-    return this.instance.get(`/edit/signup-info`, {})
-  }
+  getUserChats = () => this.instance.get('/')
 
 }
 
