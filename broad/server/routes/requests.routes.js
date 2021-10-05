@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Request = require('../models/Request.model');
 const User = require("../models/User.model");
+const Chat = require("../models/Chat.model");
 
 
 router.get('/', (req, res) => {
@@ -18,17 +19,18 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/friendship', (req, res) => {
+router.get('/:type', (req, res) => {
 
   const id = req.session.currentUser._id
+  const { type } = req.params
   const { otherUserId } = req.query
 
   Request
     .findOne({
-      $or: [{ receiver: id, owner: otherUserId, type: 'FRIENDSHIP' },
-      { receiver: otherUserId, owner: id, type: 'FRIENDSHIP' }]
+      $or: [{ receiver: id, owner: otherUserId, type },
+      { receiver: otherUserId, owner: id, type }]
     })
-    .select('status receiver owner')
+    //.select('status receiver owner')
     .then(request => res.status(200).json(request))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving request", err }))
 })
@@ -68,6 +70,7 @@ router.put('/', (req, res) => {
     .then(updatedRequest => {
 
       if (updatedRequest.status === 'REJECTED') {
+
         // Si eliminamos, luego pueden volver a solicitarlo si no lo gestionamos
         // En amistad tiene sentido, en las otras? (chat, exchange)
         // gestionar por tipos?
@@ -84,6 +87,15 @@ router.put('/', (req, res) => {
             .then(() => Request.findByIdAndDelete(id))
             .then(() => res.status(200).json({ message: 'Users became friends successfully' }))
             .catch(err => res.status(500).json({ code: 500, message: "Error adding friends to users", err }))
+
+        } else if (updatedRequest.type === 'CHAT') {
+
+          Chat
+            .create({ participants: [updatedRequest.owner, updatedRequest.receiver] })
+            .then(() => Request.findByIdAndDelete(id))
+            .then(() => res.status(200).json({ message: 'Chat succesfully created' }))
+            .catch(err => res.status(500).json({ code: 500, message: "Error creating chat", err }))
+
         } else {
           res.status(200).json({ message: 'Not managed yet' }) // falta gestionar para chat y exchange
         }

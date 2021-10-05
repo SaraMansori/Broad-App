@@ -16,7 +16,7 @@ class RequestsService {
 
   deleteRequest = (otherUserId, type) => this.instance.delete('/', { data: { otherUserId, type } })
 
-  getFriendshipRequest = (otherUserId) => this.instance.get(`/friendship?otherUserId=${otherUserId}`)
+  getRequest = (otherUserId, type) => this.instance.get(`/${type}?otherUserId=${otherUserId}`)
 
   getAcceptedChatRequests = () => this.instance.get(`/chat/accepted`)
 

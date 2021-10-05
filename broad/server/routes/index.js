@@ -6,11 +6,10 @@ router.use("/exchanges", require('./exchanges.routes'))
 //router.use("/user-books", require('./userBooks.routes'))
 router.use("/quotes", require('./quotes.routes'))
 router.use("/friends", require('./friends.routes'))
-router.use("/chat", require('./chat.routes'))
+router.use("/chats", require('./chats.routes'))
 router.use("/challenges", require('./challenges.routes'))
 router.use("/requests", require('./requests.routes'))
 router.use("/books", require('./books.routes'))
 router.use("/uploads", require('./uploads.routes'))
-router.use("/chat", require('./chat.routes'))
 
 module.exports = router
