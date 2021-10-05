@@ -2,8 +2,8 @@ import React from 'react';
 import * as PATHS from '../../utils/paths';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../../pages/HomePage'
-import Login from '../../pages/AuthPage/Login'
-import Signup from '../../pages/AuthPage/Signup'
+import Login from '../../pages/auth/Login'
+import Signup from '../../pages/auth/Signup'
 import SignupInfoPage from '../../pages/SignupInfoPage/SignupInfoPage'
 import SignupGenresPage from '../../pages/SignupGenresPage/SignupGenresPage'
 import RequestsPage from '../../pages/RequestsPage/RequestsPage';
@@ -12,6 +12,7 @@ import BookResultsPage from '../../pages/BookResultsPage/BookResultsPage';
 import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage';
 import Profile from '../../pages/Profile';
 import ChatPage from '../../pages/ChatPage/ChatPage'
+import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
 import '../../App.scss';
 
 
@@ -34,6 +35,7 @@ const Routes = props => {
         <Route exact path={PATHS.PROFILE} render={() => <Profile />} />
         <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage />} />
         <Route path={PATHS.CHATS} render={() => <ChatPage />} />
+        <Route path={PATHS.BOOKS_EXCHANGED} render={() => <ExchangedBooksPage />} />
 
       </Switch>
     </React.StrictMode>

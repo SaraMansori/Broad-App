@@ -12,18 +12,18 @@ const SearchBar = (props) => {
 	}, [props.searchType])
 
 
-	let history = useHistory();
+	let history = useHistory()
 
 	const clearState = () => {
 		setText('');
 	};
 
 	const handleInput = e => {
-		setText(e.target.value);
+		setText(e.target.value)
 	};
 
 	const handleSubmit = e => {
-		e.preventDefault();
+		e.preventDefault()
 		setText('')
 
 		if (!searchType) {

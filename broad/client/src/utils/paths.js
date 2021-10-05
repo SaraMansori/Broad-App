@@ -13,5 +13,6 @@ export const REQUESTS = "/requests";
 export const USERS = "/users";
 export const BOOK_EXCHANGE = "/book-exchange";
 export const CHATS = "/chats";
+export const BOOKS_EXCHANGED = "/my-books/exchanged";
 
 

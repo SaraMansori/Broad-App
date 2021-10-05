@@ -68,7 +68,7 @@ const Navtop = props => {
           }
         </Navbar.Collapse>
       </Container>
-    </Navbar >
+    </Navbar>
   )
 }
 

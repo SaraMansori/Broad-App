@@ -1,7 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, } from 'react';
 import UserContext from '../../UserContext'
 import { Button, Card, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { CHATS } from '../../utils/paths';
 import defaultImages from '../../utils/defaultImages.js'
 import RequestsService from '../../services/requests.service';
 import ChatsService from '../../services/chats.service';
@@ -10,39 +11,36 @@ const requestsService = new RequestsService();
 const chatsService = new ChatsService();
 
 
-const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, authors, image }) => {
+const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
 
-  const [chatRequest, setChatRequest] = useState(null)
+  const [exchangeRequest, setExchangeRequest] = useState(null)
   const [buttonToShow, setButtonToShow] = useState('')
   const [chatExists, setChatExists] = useState(false)
 
   const { loggedUser } = useContext(UserContext)
   const currentUserId = loggedUser?._id
-  const type = 'CHAT'
+  let history = useHistory()
+  const type = 'EXCHANGE'
 
   useEffect(() => {
-    existChatRequest()
+    existExchangeRequest()
+    checkChat()
   }, [])
 
   useEffect(() => {
     selectButtonToShow()
-  }, [chatRequest])
+  }, [exchangeRequest])
+  
 
-  useEffect(() => {
-    checkChat()
-  }, [id, ownerId])
-
-
-  const handleChat = (e, promise) => {
+  const handleClick = (e, promise) => {
 
     e.preventDefault();
 
     promise
       .then(() => {
-        existChatRequest()
-        getBooksToExchange()
+        existExchangeRequest()
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
   }
 
 
@@ -55,16 +53,27 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
   }
 
 
-  const existChatRequest = () => {
+  const createChat = e => {
 
+    e.preventDefault();
+
+    chatsService
+      .createChat(ownerId)
+      .then(() => history.push(`${CHATS}`))
+      .catch(err => console.error(err))
+  }
+
+
+  const existExchangeRequest = () => {
+ 
     requestsService
-      .getRequest(ownerId, type)
+      .getExchangeRequest(ownerId, id)
       .then(res => {
+
         if (res.data) {
-          setChatRequest(res.data)
-          setButtonToShow()
+          setExchangeRequest(res.data)
         } else {
-          setChatRequest(null)
+          setExchangeRequest(null)
           setButtonToShow('')
         }
       })
@@ -72,18 +81,18 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
   }
 
 
-  const userIsOwner = () => chatRequest.owner === currentUserId
-  const userIsReceiver = () => chatRequest.owner === ownerId
+  const userIsOwner = () => exchangeRequest.owner === currentUserId
+  const userIsReceiver = () => exchangeRequest.owner === ownerId
 
 
   const selectButtonToShow = () => {
-    if (chatRequest?.status === 'PENDING' && userIsOwner()) {
+    if (exchangeRequest?.status === 'PENDING' && userIsOwner()) {
       setButtonToShow('PENDING OWNER')
-    } else if (chatRequest?.status === 'PENDING' && userIsReceiver()) {
+    } else if (exchangeRequest?.status === 'PENDING' && userIsReceiver()) {
       setButtonToShow('PENDING RECEIVER')
-    } else if (chatRequest?.status === 'REJECTED' && userIsOwner()) {
+    } else if (exchangeRequest?.status === 'REJECTED' && userIsOwner()) {
       setButtonToShow('REJECTED OWNER')
-    } else if (chatRequest?.status === 'REJECTED' && userIsReceiver()) {
+    } else if (exchangeRequest?.status === 'REJECTED' && userIsReceiver()) {
       setButtonToShow('REJECTED RECEIVER')
     }
   }
@@ -112,44 +121,35 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
               <p>Owner : {owner}</p>
             </Card.Text>
 
-            {!chatExists && !chatRequest &&
+            {!chatExists &&
               <Button
-                onClick={e => handleChat(e, requestsService.createRequest(ownerId, type))}
+                onClick={e => createChat(e)}
                 variant="primary">
-                Send Chat Request
-              </Button>
-            }
-
-            {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
-              <Button
-                onClick={e => handleChat(e, requestsService.deleteRequest(ownerId, type))}
-                variant="primary">
-                Cancel Request
-              </Button>
-            }
-
-            {(buttonToShow === 'PENDING RECEIVER' || buttonToShow === 'REJECTED RECEIVER') &&
-              <Button
-                onClick={e => handleChat(e, requestsService.manageRequest(chatRequest._id, 'ACCEPTED'))}
-                variant="primary">
-                Accept
-              </Button>
-            }
-
-            {buttonToShow === 'PENDING RECEIVER' &&
-              <Button
-                onClick={e => handleChat(e, requestsService.manageRequest(chatRequest._id, 'REJECTED'))}
-                variant="primary">
-                Reject
+                Start Chat
               </Button>
             }
 
             {chatExists &&
               <Button
-                // Cambiar por enlace al chat
-                //onClick={e => handleFriendship(e, usersService.deleteFriend(user._id))}
+                as={Link} to={CHATS}
                 variant="primary">
-                Go to chat
+                Open Chat
+              </Button>
+            }
+
+            {!exchangeRequest &&
+              <Button
+                onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
+                variant="primary">
+                Send Exchange Request
+              </Button>
+            }
+
+            {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
+              <Button
+                onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
+                variant="primary">
+                Cancel Request
               </Button>
             }
 
@@ -159,7 +159,7 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
 
       </Row>
     </Card>
-  );
+  )
 
 }
 

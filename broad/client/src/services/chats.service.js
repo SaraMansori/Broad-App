@@ -10,6 +10,8 @@ class ChatService {
 
   getUserChats = () => this.instance.get('/')
 
+  createChat = otherUserId => this.instance.post('/', { otherUserId })
+
 }
 
 export default ChatService;

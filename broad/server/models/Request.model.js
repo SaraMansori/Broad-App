@@ -23,8 +23,13 @@ const requestSchema = new Schema({
 
   type: {
     type: String,
-    enum: ['FRIENDSHIP', 'CHAT', 'EXCHANGE'],
+    enum: ['FRIENDSHIP', 'EXCHANGE'],
     required: true
+  },
+
+  book: {
+    id: String,
+    title: String
   }
 
 }, { timestamps: true })
