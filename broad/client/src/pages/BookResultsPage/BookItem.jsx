@@ -63,6 +63,7 @@ const BookItem = ({ book }) => {
 
   return (
     <Col className='d-flex' md={4} style={{ height: '40%' }}>
+
       <Card className='flex-book' >
 
         <Card.Img
@@ -94,7 +95,7 @@ const BookItem = ({ book }) => {
               </Button>
             }
 
-            <DropdownButton id='drop-full' variant="primary" title="Add to my library" style={{ display: 'grid' }}>
+            <DropdownButton id='drop-full' variant="primary" title="Add to my library" style={{ display: 'grid' }} >
 
               <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
               <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>

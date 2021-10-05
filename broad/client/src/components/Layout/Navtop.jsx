@@ -46,7 +46,7 @@ const Navtop = props => {
           </Nav>
           {loggedUser &&
             <Nav>
-              <Navbar.Text style={{ color: 'white', marginRight: '3rem' }}>Welcome {loggedUser.username} &#9825; </Navbar.Text>
+              <Nav.Link style={{ marginRight: '3rem' }} as={Link} to={PROFILE}>Welcome {loggedUser.username} &#9825; </Nav.Link>
             </Nav>
           }
 
