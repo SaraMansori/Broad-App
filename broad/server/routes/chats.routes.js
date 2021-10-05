@@ -24,20 +24,17 @@ router.post('/', (req, res) => {
     .create({ participants: [id, otherUserId] })
     .then(() => res.status(200).json({ message: 'Chat successfully created' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating chat", err }))
+
 })
 
-// router.get('/user-chats', (req, res) => {
 
-//   const id = req.session.currentUser._id
+router.put('/', (req, res) => {
 
-//   Chat
-//     .find({ participants: id })
-//     .then(chats => res.status(200).json(chats))
-//     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chat requests", err }))
+  // TODO
+})
 
-// })
 
-// router.post('/create/:userId', (req, res) => { })
-// router.post('/delete/:chatId', (req, res) => { })
+// router.delete('/', (req, res) => { })
+
 
 module.exports = router

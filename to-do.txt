@@ -1,0 +1,4 @@
+* Redireccionar a Home al hacer LogOut
+* Da error en authors.length si no hay books to exchange en el user
+* Petición want to exchange 
+* Revisar recarga de contexto al añadir libros a wantToExchange

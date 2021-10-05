@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import UserContext from '../../UserContext'
 import { Col, Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
@@ -6,10 +6,15 @@ import UsersService from '../../services/users.service'
 
 const BookItem = ({ book }) => {
 
-  const { loggedUser } = useContext(UserContext)
+  const { loggedUser, storeUser } = useContext(UserContext)
 
-  const [wantToExchange, setWantToExchange] = useState(false)
-  const [user, setUser] = useState(loggedUser)
+  const [wantToExchange, setWantToExchange] = useState(loggedUser?.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+
+  useEffect(() => {
+    if (loggedUser) {
+      setWantToExchange(loggedUser.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+    }
+  }, [loggedUser])
 
   const bookId = book.id
   const { imageLinks, title, authors } = book.volumeInfo
@@ -25,14 +30,14 @@ const BookItem = ({ book }) => {
   const handleExchangeClick = (e) => {
     const book = {
       id: bookId,
-      wantsToExchange: wantToExchange
+      wantsToExchange: !wantToExchange
     }
 
     usersService
       .updateUserBooks(book)
       .then(res => {
-        setUser(res.data)
-        setWantToExchange(!wantToExchange)
+        storeUser(res.data)
+        //setWantToExchange(!wantToExchange)
       })
       .catch(err => console.error(err))
   }
@@ -50,16 +55,15 @@ const BookItem = ({ book }) => {
     usersService
       .updateUserBooks(book)
       .then(res => {
-        setUser(res.data)
-        console.log(res.data)
+        storeUser(res.data)
         //en un futuro actualizar estado para que el boton cambie dependiendo de lo que haya en la bbdd
       })
       .catch(err => console.error(err))
   }
 
   return (
-    <Col md={4} className='flex-book'>
-      <Card className='d-flex' style={{ borderWidth: '0px', marginBottom: '5px', width: '100%' }} >
+    <Col className='d-flex' md={4} style={{ height: '40%' }}>
+      <Card className='flex-book' >
 
         <Card.Img
           className='img-book-item'

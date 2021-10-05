@@ -1,4 +1,5 @@
 import UserItem from './UserItem'
+import { Row } from 'react-bootstrap'
 
 
 const UsersList = ({ getUsers, users }) => {
@@ -9,9 +10,9 @@ const UsersList = ({ getUsers, users }) => {
 
   return (
     // users.length > 0 &&
-    <>
+    <Row>
       {displayUsers(users)}
-    </>
+    </Row>
   );
 
 }

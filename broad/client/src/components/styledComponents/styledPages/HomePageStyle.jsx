@@ -12,13 +12,13 @@ font-size: 1.8rem;
 `
 
 const ImageReading = styled.div`
-  height: 70vh;
-  width: 130vh;
+  height: 480px;
+  width: 850px;
   border-bottom-right-radius: 20px;
   box-shadow: 2px 2px 2px 2px #805d93;
   background-image: url(${reading});
   background-size: cover;
-  background-position: center;
+  background-position-y: 56%;
 
   @media (max-width: 1185px) {
   width: 100vw;
@@ -47,8 +47,8 @@ padding:40px;
 z-index: 1;
 
 @media (max-width: 1185px) {
-    right: 50px;
-    top: 80px;
+    right: 14px;
+    top: 69px;
     font-size: 18px;
     width: 198px;
     height: 80px;
@@ -91,14 +91,15 @@ top: 268px;
 
 const Ready = styled.div`
 position: absolute;
-right: 300px;
+right: 62px;
 top: 449px;
-text-align:center;
+text-align: center;
 font-weight: 600;
 font-size: 20px;
-line-height: 30px;
+line-height: 25px;
 padding: 5px;
-border-radius: 15px;
+background-color: #f4e7de;
+border-radius: 20px;
 display: none;
 
 @media (min-width: 1185px) {
@@ -109,7 +110,7 @@ display: none;
   font-size: 24px;
       }
 @media (min-width: 1250px) {
-  right: 137px;
+  right: 32px;
   }
 
 `

@@ -1,5 +1,5 @@
 body {
-  background-color: #F4E7DE !important;
+  background-color: #f4e7de !important;
 }
 
 //overwrite
@@ -19,6 +19,15 @@ $bgHighlight: #a979c3;
 $colDefault: #eaeaea;
 $colHighlight: #eaeaea;
 $dropDown: true;
+
+//scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+  border-left: 1px solid #f4e7de;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #159772;
+}
 
 //plain links
 .plain-link {
@@ -262,26 +271,48 @@ $dropDown: true;
 }
 
 // img item book results
+
+.flex-book-row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: normal;
+  justify-content: normal;
+  align-items: flex-end;
+}
+
 .img-book-item {
   border-radius: 10px !important;
   box-shadow: 2px 2px 2px 2px #805d93;
-  // border-width: 1px;
-  // border-style: solid;
-  // border-color: #a979c3;
   margin: 10px;
 }
 
-// flex card book
 .flex-book {
   display: flex !important;
-  align-content: end;
+  border-width: 0px !important;
+  margin-bottom: 5px;
+  background-color: #f4e7de !important;
+  align-content: stretch;
   justify-content: center;
   align-items: end;
   flex-wrap: wrap;
 }
+
+.user-card {
+  background-color: #f4e7de !important;
+  margin: 10px;
+  border-width: 0px !important;
+  align-items: center;
+  text-align: center;
+}
+
+.request-card {
+  display: flex;
+  align-items: center;
+}
+
 // removes space between the send and input button in the chat
 #chatRow {
-  --bs-gutter-x: 0
-  }
+  --bs-gutter-x: 0;
+}
 
 @import '~bootstrap/scss/bootstrap';
