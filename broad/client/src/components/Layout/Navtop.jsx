@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import UserContext from '../../UserContext'
 import ImgLogo from '../styledComponents/atomicComponents/ImgLogo';
 import { Link, useHistory } from 'react-router-dom'
-import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS, BOOK_RESULTS } from '../../utils/paths';
+import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS, REQUESTS, BOOK_RESULTS } from '../../utils/paths';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap/'
 import SearchBar from '../styledComponents/atomicComponents/SearchBar';
 import AuthService from '../../services/auth.service'
@@ -46,7 +46,7 @@ const Navtop = props => {
           </Nav>
           {loggedUser &&
             <Nav>
-              <Navbar.Text style={{ color: 'white', marginRight: '3rem' }}>Welcome {loggedUser.username} ! </Navbar.Text>
+              <Navbar.Text style={{ color: 'white', marginRight: '3rem' }}>Welcome {loggedUser.username} &#9825; </Navbar.Text>
             </Nav>
           }
 
@@ -54,6 +54,7 @@ const Navtop = props => {
             (<Nav>
               <NavDropdown title="Profile" align="end">
                 <NavDropdown.Item as={Link} to={PROFILE}>My Profile</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={REQUESTS}>My Requests</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to={CHATS}>My chats</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="#">Settings</NavDropdown.Item>
                 <NavDropdown.Divider />

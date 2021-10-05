@@ -1,3 +1,4 @@
+import { Container, Row } from 'react-bootstrap'
 import RequestItem from './RequestItem'
 
 
@@ -12,7 +13,7 @@ const RequestsList = ({ getRequests, requests }) => {
   })
 
   return (
-    <>
+    <Container>
       {
         friendshipRequests.length > 0 &&
         <>
@@ -36,7 +37,7 @@ const RequestsList = ({ getRequests, requests }) => {
           {displayRequests(exchangeRequests)}
         </>
       }
-    </>
+    </Container>
   )
 
 }
