@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
           .then(APIBook => {
 
             exchange = {
+              exchangeId: exchange._id,
               id: exchange.id,
               owner: exchange.owner,
               receiver: exchange.receiver,
