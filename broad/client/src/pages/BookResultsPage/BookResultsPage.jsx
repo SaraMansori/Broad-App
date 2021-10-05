@@ -85,7 +85,7 @@ const BookResultsPage = props => {
 
       {books &&
 
-        <Row>
+        <Row className='flex-book-row'>
           {books.map(book => {
             return (
               <BookItem key={`resultcard-${book.bookId}`} book={book} />

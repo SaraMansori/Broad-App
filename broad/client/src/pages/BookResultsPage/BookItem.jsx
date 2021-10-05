@@ -58,8 +58,8 @@ const BookItem = ({ book }) => {
   }
 
   return (
-    <Col md={4} className='flex-book'>
-      <Card className='d-flex' style={{ borderWidth: '0px', marginBottom: '5px', width: '100%' }} >
+    <Col className='d-flex' md={4} style={{ height: '40%' }}>
+      <Card className='flex-book' >
 
         <Card.Img
           className='img-book-item'
