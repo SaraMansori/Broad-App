@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
 import RequestsService from '../../services/requests.service';
 
 const requestsService = new RequestsService();
@@ -20,13 +20,21 @@ const RequestsItem = ({ _id, owner, getRequests }) => {
   };
 
   return (
-    <>
-      <Link to={`/users/${_id}`}>{owner.username}</Link>
-      <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="primary">Accept</Button>
-      <Button onClick={changeRequestStatus} data-status="REJECTED" variant="primary">Reject</Button>
-      <br />
-      <br />
-    </>
+    <Row>
+      <Col md={3} style={{ marginTop: '10px' }}>
+        <Row className='request-card'>
+          <Col className='col-3'>
+            <Link className='plain-link' to={`/users/${_id}`}>{owner.username}</Link>
+          </Col>
+          <Col className='col-8'>
+            <div>
+              <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="secondary">Accept</Button>
+              <Button onClick={changeRequestStatus} data-status="REJECTED" variant="primary">Reject</Button>
+            </div>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 
 }

@@ -1,4 +1,5 @@
 import BookToExchangeItem from './BookToExchangeItem'
+import { Row } from 'react-bootstrap'
 
 
 const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
@@ -13,9 +14,9 @@ const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
 
   return (
     booksToExchange.length > 0 &&
-    <>
+    <Row>
       {displayBooksToExchange(booksToExchange)}
-    </>
+    </Row>
   );
 
 }

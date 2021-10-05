@@ -36,7 +36,7 @@ const BookResultsPage = props => {
 
   return (
     <Container>
-      <Row >
+      <Row>
         <Col style={{ marginBottom: '10px' }}>
           <h1>These are your results</h1>
 

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-const Header = styled.div` 
+const Header = styled.div`
+  color: #FFFFFF;
+  text-align: center;
   background-repeat: no-repeat;
   border-radius: 15px;
   background-size: cover; 
@@ -14,6 +16,7 @@ const ProfilePicture = styled.div`
   border: 3px solid white;
   background-image: url(${props => props.image});
   background-size: cover;
+  background-position: center;
   z-index: 1;
   display: flex;
   justify-content: center;

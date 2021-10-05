@@ -39,14 +39,14 @@ const Profile = () => {
     <Container className="mb-5" style={{ height: '100vh', borderRadius: '15px' }}>
       <Row style={{ height: '100%' }}>
 
-        <Header className="col-12 header  p-5">
+        <Header className="col-12 header p-5">
         </Header>
 
         <div className="col-4" style={{ background: '#F4E7DE', height: '100%' }}>
-          <div className="m-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
+          <div className="ml-5 mt-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
 
             <div className="info">
-              <ProfilePicture image={loggedUser.profileImage} />
+              <ProfilePicture image={loggedUser.profileImage || 'https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg'} />
               <div className="info mt-5" style={{ color: 'white', fontSize: '2rem' }}>
                 <p>Username: {loggedUser.username}</p>
                 <p>Name: {loggedUser.name}</p>
@@ -61,7 +61,7 @@ const Profile = () => {
         </div>
 
         <div className="col-8" style={{ background: '#F4E7DE' }}>
-          <div className="m-5 p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px', color: 'white' }} >
+          <div className="ml-5 p-5  mt-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px', color: 'white' }} >
             <h3>Books To Read</h3>
             <h3>Reading</h3>
             <h3>Read</h3>

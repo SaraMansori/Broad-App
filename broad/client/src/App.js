@@ -14,7 +14,6 @@ const authService = new AuthService();
 
 const App = props => {
 
-  //console.log(props)
   const [loggedUser, setLoggedUser] = useState(undefined)
 
   const storeUser = user => setLoggedUser(user)

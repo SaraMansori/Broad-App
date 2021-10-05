@@ -8,10 +8,12 @@ const BookItem = ({ book }) => {
 
   const { loggedUser, storeUser } = useContext(UserContext)
 
-  const [wantToExchange, setWantToExchange] = useState(loggedUser.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+  const [wantToExchange, setWantToExchange] = useState(loggedUser?.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
 
   useEffect(() => {
-    setWantToExchange(loggedUser.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+    if (loggedUser) {
+      setWantToExchange(loggedUser.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+    }
   }, [loggedUser])
 
   const bookId = book.id

@@ -20,6 +20,15 @@ $colDefault: #eaeaea;
 $colHighlight: #eaeaea;
 $dropDown: true;
 
+//scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+  border-left: 1px solid #f4e7de;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #159772;
+}
+
 //plain links
 .plain-link {
   text-decoration: none;
@@ -286,6 +295,19 @@ $dropDown: true;
   justify-content: center;
   align-items: end;
   flex-wrap: wrap;
+}
+
+.user-card {
+  background-color: #f4e7de !important;
+  margin: 10px;
+  border-width: 0px !important;
+  align-items: center;
+  text-align: center;
+}
+
+.request-card {
+  display: flex;
+  align-items: center;
 }
 
 // removes space between the send and input button in the chat
