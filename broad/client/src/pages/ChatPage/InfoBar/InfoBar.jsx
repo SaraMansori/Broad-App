@@ -3,12 +3,12 @@ import onlineIcon from '../../../components/icons/online-icon.png'
 import './InfoBar.css'
 
 
-const InfoBar = ({ room, handleClick }) => {
+const InfoBar = ({ otherUser, handleClick }) => {
   return (
     <div className="infoBar">
       <LeftInnerContainer>
         <img src={onlineIcon} alt="green light online" className="onlineIcon" />
-        <h3>{room}</h3>
+        <h3>{otherUser.username}</h3>
       </LeftInnerContainer>
       <RightInnerContainer>
         <svg onClick={() => handleClick()} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-x" viewBox="0 0 16 16">

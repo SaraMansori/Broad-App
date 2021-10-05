@@ -7,7 +7,7 @@ const Input = ({ message, sendMessage, setMessage }) => {
       <Row id="chatRow">
         <div className="col-10">
           <Form.Control
-            style={{ resize: "none", width: "100%" }} as="textarea" rows={3} placeHolder="Type a message..."
+            style={{ resize: "none", width: "100%" }} as="textarea" rows={3} placeholder="Type a message..."
             value={message}
             onChange={(e) => { setMessage(e.target.value) }}
             onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null} />

@@ -20,8 +20,8 @@ const Navtop = props => {
     authService
       .logout()
       .then(() => {
-        storeUser(undefined)
         history.push(`/`)
+        storeUser(undefined)
       })
       .catch(err => console.error(err))
 

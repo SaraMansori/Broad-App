@@ -22,6 +22,9 @@ const ChatContainer = styled.div`
   border-radius: 8px;
   height: 100%;
   width: 100%;
+    ::-webkit-scrollbar {
+    color: red;
+  }
   @media(min - width: 320px) and(max - width: 480px) {
     height: 100 %
   };

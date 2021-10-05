@@ -13,7 +13,6 @@ const io = socketio(server)
 
 io.on('connect', (socket) => {
 
-  console.log('We have a new connection')
 
   socket.on('join', ({ username, room }, callback) => {
 
@@ -33,7 +32,6 @@ io.on('connect', (socket) => {
 
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id)
-
     io.to(user.room).emit('message', { user: user.username, text: message })
 
     callback()

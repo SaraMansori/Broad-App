@@ -11,7 +11,12 @@ router.get('/', (req, res) => {
   Chat
     .find({ participants: id })
     .then(chats => res.status(200).json(chats))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chat requests", err }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chats", err }))
+})
+
+router.put('/update-message', (req, res) => {
+
+
 })
 
 // router.get('/user-chats', (req, res) => {
