@@ -14,7 +14,7 @@ import Profile from '../../pages/Profile';
 import ChatPage from '../../pages/ChatPage/ChatPage'
 import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
 import '../../App.scss';
-import UserDetails from '../../pages/UsersPage/UserDetails';
+import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage';
 
 
 const Routes = props => {
@@ -32,12 +32,12 @@ const Routes = props => {
         <Route exact path={PATHS.BOOK_RESULTS_ISBN} render={() => <BookResultsPage searchType='isbn' />} />
         <Route exact path={PATHS.BOOK_RESULTS_CATEGORY} render={() => <BookResultsPage searchType='category' />} />
         <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage />} />
-        <Route exact path={PATHS.USERS} render={(props) => <UsersPage {...props} />} />
+        <Route exact path={PATHS.USERS} render={() => <UsersPage />} />
         <Route exact path={PATHS.PROFILE} render={() => <Profile />} />
         <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage />} />
         <Route path={PATHS.CHATS} render={() => <ChatPage />} />
         <Route path={PATHS.BOOKS_EXCHANGED} render={() => <ExchangedBooksPage />} />
-        <Route exact path={PATHS.USER_DETAILS} render={(props) => <UserDetails {...props} />} />
+        <Route exact path={PATHS.USER_DETAILS} render={(props) => <UserDetailsPage {...props} />} />
 
       </Switch>
     </React.StrictMode>

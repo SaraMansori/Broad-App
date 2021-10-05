@@ -2,7 +2,13 @@ import { Card, Row, Col } from 'react-bootstrap'
 import defaultImages from '../../utils/defaultImages.js'
 
 
-const ExchangedBookItem = ({ owner, receiver, id, title, authors, image, endDate }) => {
+const ExchangedBookItem = ({ owner, receiver, id, title, authors, image, endDate, exchangeId }) => {
+
+
+  /* exchangeId necesario para crear un botón de intercambio finalizado que actualice 
+  el exchange y añada una endDate. Una vez haya endDate, se activará el rating de user 
+  router.put en exchanges routes */
+
 
   return (
     <Card>
