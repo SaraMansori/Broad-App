@@ -70,9 +70,14 @@ const BookItem = ({ book }) => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
 
-          <Card.Text>
-            Author: {authors?.map((author, id) => <span key={`author_${book.id}_${id}`}>{author}</span>)}
-          </Card.Text>
+          {authors &&
+            <Card.Text>Author: {
+              (authors.length > 1 ?
+                authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                :
+                authors[0])}
+            </Card.Text>
+          }
 
           <Card.Text>
             Published: {publishedDate}

@@ -54,8 +54,10 @@ router.post('/', (req, res) => {
   const { receiver, type } = req.body
   const owner = req.session.currentUser._id // sustituir por un id para probar en postman
 
+  const data = req.query.book ? { owner, receiver, type, book } : { owner, receiver, type }
+
   Request
-    .create({ owner, receiver, type })
+    .create(data)
     .then(() => res.status(200).json({ message: 'Request succesfully created' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating request", err }))
 })

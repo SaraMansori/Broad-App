@@ -16,7 +16,7 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
   const [buttonToShow, setButtonToShow] = useState('')
   const [chatExists, setChatExists] = useState(false)
 
-  const loggedUser = useContext(UserContext)
+  const { loggedUser } = useContext(UserContext)
   const currentUserId = loggedUser?._id
   const type = 'CHAT'
 
@@ -28,9 +28,9 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
     selectButtonToShow()
   }, [chatRequest])
 
-  // useEffect(() => {
-  //   checkChat()
-  // }, [id, ownerId])
+  useEffect(() => {
+    checkChat()
+  }, [id, ownerId])
 
 
   const handleChat = (e, promise) => {
@@ -62,6 +62,7 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
       .then(res => {
         if (res.data) {
           setChatRequest(res.data)
+          setButtonToShow()
         } else {
           setChatRequest(null)
           setButtonToShow('')
@@ -100,13 +101,14 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
           <Card.Body>
             <Card.Title>Title: {title}</Card.Title>
             <Card.Text>
-              <p>Author: {
-                authors.length > 1 ?
-                  authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
-                  :
-                  authors[0]
+              {authors &&
+                <p>Author: {
+                  (authors.length > 1 ?
+                    authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                    :
+                    authors[0])}
+                </p>
               }
-              </p>
               <p>Owner : {owner}</p>
             </Card.Text>
 

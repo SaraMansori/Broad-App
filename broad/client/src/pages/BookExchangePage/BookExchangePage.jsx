@@ -9,7 +9,7 @@ const usersService = new UsersService();
 const BookExchangePage = props => {
 
   const [booksToExchange, setBooksToExchange] = useState(null)
-
+  const [shouldRefresh, setShouldRefresh] = useState(false)
   const getBooksToExchange = () => {
 
     usersService
@@ -20,13 +20,14 @@ const BookExchangePage = props => {
 
   useEffect(() => {
     getBooksToExchange()
+    setShouldRefresh(!shouldRefresh)
   }, [])
 
   return (
     <Container>
       <h1>Available Books To Exchange</h1>
       {booksToExchange?.length ?
-        <BooksToExchangeList getBooksToExchange={getBooksToExchange} booksToExchange={booksToExchange} />
+        <BooksToExchangeList shouldRefresh={shouldRefresh} getBooksToExchange={getBooksToExchange} booksToExchange={booksToExchange} />
         :
         <p>No books available.</p>
       }
