@@ -279,17 +279,10 @@ $dropDown: true;
   align-items: end;
   flex-wrap: wrap;
 }
-<<<<<<< HEAD
 
 // removes space between the send and input button in the chat
 #chatRow {
   --bs-gutter-x: 0;
 }
-=======
-// removes space between the send and input button in the chat
-#chatRow {
-  --bs-gutter-x: 0
-  }
->>>>>>> 09c49be9387163e95906c540ac3ec66eb9ce58a9
 
 @import '~bootstrap/scss/bootstrap';
