@@ -101,10 +101,12 @@ const BookToExchangeItem = ({ getBooksToExchange, id, owner, ownerId, title, aut
             <Card.Title>Title: {title}</Card.Title>
             <Card.Text>
               <p>Author: {
-                authors.length > 1 ?
-                  authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
-                  :
-                  authors[0]
+                authors && (
+                  authors?.length > 1 ?
+                    authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                    :
+                    authors[0]
+                )
               }
               </p>
               <p>Owner : {owner}</p>

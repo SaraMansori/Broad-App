@@ -57,6 +57,7 @@ const Navtop = props => {
                 <NavDropdown.Item as={Link} to={CHATS}>My chats</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="#">Settings</NavDropdown.Item>
                 <NavDropdown.Divider />
+                {/* REDIRECCIONAR A HOME */}
                 <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
               </NavDropdown>
             </Nav>) :
