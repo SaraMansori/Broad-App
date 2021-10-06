@@ -1,10 +1,11 @@
-const express = require("express")
-const router = express.Router()
+const router = require("express").Router()
 
-const Chat = require('../models/Chat.model');
-const Message = require('../models/Message.model');
+const { isLoggedIn } = require('../middleware')
+const Chat = require('../models/Chat.model')
+const Message = require('../models/Message.model')
 
-router.get('/', (req, res) => {
+
+router.get('/', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.post('/', (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
   const { otherUserId } = req.body
@@ -28,7 +29,7 @@ router.post('/', (req, res) => {
 })
 
 
-router.put('/messages', (req, res) => {
+router.put('/', isLoggedIn, (req, res) => {
 
   const { message, chat } = req.body
 

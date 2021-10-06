@@ -1,9 +1,11 @@
-import * as React from 'react';
-import { H2, H6, ImageReading, Welcome, Ready, NewLife, Hit, Hit2, Quote1, Quote2, Quote3, RectContainer, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadFeatures, BroadDesc, Icon } from '../components/styledComponents/styledPages/HomePageStyle';
-import { Link } from 'react-router-dom';
-import { SIGNUP } from '../utils/paths';
+import * as React from 'react'
+import { H2, H6, ImageReading, Welcome, Ready, NewLife, Hit, Hit2, Quote1, Quote2, Quote3, RectContainer, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadFeatures, BroadDesc, Icon } from '../components/styledComponents/styledPages/HomePageStyle'
+import { Link } from 'react-router-dom'
+import { SIGNUP } from '../utils/paths'
+
 
 const HomePage = () => {
+
   return (
     <div style={{ marginTop: '-30px' }}>
       <ImageReading />
@@ -80,7 +82,9 @@ const HomePage = () => {
         </PurpleRectangle>
       </RectContainer>
     </div>
-  );
-};
+  )
 
-export default HomePage;
+}
+
+
+export default HomePage

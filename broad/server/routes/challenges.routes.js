@@ -1,10 +1,11 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router()
 
+const { isLoggedIn, checkId } = require('../middleware')
 const User = require('./../models/User.model')
 const Challenge = require('./../models/Challenge.model')
 
-router.get('/', (req, res) => {
+
+router.get('/', isLoggedIn, (req, res) => {
   const { id } = req.session.currentUser._id
 
   Challenge
@@ -14,7 +15,8 @@ router.get('/', (req, res) => {
 
 })
 
-router.post('/create', (req, res) => {
+
+router.post('/create', isLoggedIn, (req, res) => {
   const { phrase, quantity, year, owner } = req.body
 
   Challenge
@@ -24,7 +26,8 @@ router.post('/create', (req, res) => {
 
 })
 
-router.put('/edit/:id', (req, res) => {
+
+router.put('/edit/:id', isLoggedIn, checkId, (req, res) => {
   const { id } = req.params
   const { phrase, quantity, year } = req.body
 
@@ -35,7 +38,8 @@ router.put('/edit/:id', (req, res) => {
 
 })
 
-router.delete('/delete/:id', (req, res) => {
+
+router.delete('/delete/:id', isLoggedIn, checkId, (req, res) => {
   const { id } = req.params
 
   Challenge
@@ -43,5 +47,6 @@ router.delete('/delete/:id', (req, res) => {
     .then(res.status(200).json({ message: 'Challenge deleted successfully' }))
     .catch((err) => console.error(err))
 })
+
 
 module.exports = router

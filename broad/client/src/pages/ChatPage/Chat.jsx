@@ -8,8 +8,9 @@ import UserContext from '../../UserContext'
 import io from 'socket.io-client'
 import ChatsService from '../../services/chats.service'
 
+let socket
 
-let socket;
+
 const Chat = ({ chat, otherUser, handleClick }) => {
 
   const ENDPOINT = 'http://localhost:5005'
@@ -96,7 +97,9 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
       </ChatContainer>
     </OuterContainer>
-  ) : "cargando..";
+  ) : "cargando.."
+
 }
 
-export default Chat;
+
+export default Chat

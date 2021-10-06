@@ -34,4 +34,4 @@ const RequestsList = ({ getRequests, requests }) => {
 }
 
 
-export default RequestsList;
+export default RequestsList
