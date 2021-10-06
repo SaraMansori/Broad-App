@@ -1,8 +1,18 @@
-* []Redireccionar a Home al hacer LogOut
+* [x]Redireccionar a Home al hacer LogOut
 * [x] Da error en authors.length si no hay books to exchange en el user
-* [] Petición want to exchange 
-* [] Revisar recarga de contexto al añadir libros a wantToExchange 
+* [x] Petición want to exchange 
+* [] Revisar recarga de contexto al añadir libros a wantToExchange -- [URGENT]
 * [] No salen users  en '/users' al ser usuario nuevo
 * [] Gestión de notificaciones
 * [] Los libros no se quedan al añadir y refrescar el perfil
 * [] Borrar query parser custom si no se usa
+* [] Añadir barra de búsqueda a la vista de 'usuarios'
+	*[paginación]
+* [] Añadir barra de búsqueda a la vista 'book-exchange'
+	*[paginación]
+* [] Cambiar botón de 'Add to my library' dependiendo del status
+* [] Rehacer el README.md
+* [] Persistencia de los mensajes del chat -- [URGENT]
+* [] Middlewares y mensajes 'toast' al usuario -- [URGENT]
+	-- https://react-hot-toast.com/
+* [] Edit user profile
