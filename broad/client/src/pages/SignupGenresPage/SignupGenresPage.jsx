@@ -37,8 +37,8 @@ const SignupGenresPage = props => {
 		usersService
 			.updateFavoriteGenres(favoriteGenres)
 			.then(() => {
-				clearState()
 				history.push('/signup/info')
+				clearState()
 			})
 			.catch(err => console.error(err))
 	}
