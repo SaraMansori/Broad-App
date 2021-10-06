@@ -9,13 +9,12 @@ const UsersList = ({ getUsers, users }) => {
   })
 
   return (
-    // users.length > 0 &&
     <Row>
-      {displayUsers(users)}
+      {displayUsers()}
     </Row>
-  );
+  )
 
 }
 
 
-export default UsersList;
+export default UsersList

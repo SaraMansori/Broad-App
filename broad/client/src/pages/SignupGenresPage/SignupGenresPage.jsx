@@ -1,38 +1,41 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { Container, Button } from 'react-bootstrap'
-import UsersService from '../../services/users.service';
-import genres from '../../utils/bookGenres';
+import UsersService from '../../services/users.service'
+import genres from '../../utils/bookGenres'
 
-const usersService = new UsersService();
+const usersService = new UsersService()
+
 
 const SignupGenresPage = props => {
 
-	const [favoriteGenres, setSignupGenresData] = useState([]);
+	const [favoriteGenres, setSignupGenresData] = useState([])
 
 	const clearState = () => {
-		setSignupGenresData([]);
-	};
+		setSignupGenresData([])
+	}
+
 
 	const handleClick = e => {
 		const currentGenre = e.target.innerText;
 
 		if (!favoriteGenres.includes(currentGenre)) {
-			setSignupGenresData(favoriteGenres => [...favoriteGenres, currentGenre]);
+			setSignupGenresData(favoriteGenres => [...favoriteGenres, currentGenre])
 		} else {
 			setSignupGenresData(favoriteGenres =>
 				favoriteGenres.filter(genre => genre !== currentGenre)
-			);
+			)
 		}
-	};
+	}
+
 
 	const handleSubmit = e => {
-		e.preventDefault();
+		e.preventDefault()
 
 		usersService
 			.updateFavoriteGenres(favoriteGenres)
 			.then(() => clearState())
-			.catch(err => console.error(err));
-	};
+			.catch(err => console.error(err))
+	}
 
 	return (
 		<Container>
@@ -49,7 +52,7 @@ const SignupGenresPage = props => {
 						>
 							{genre}
 						</Button>
-					);
+					)
 				})}
 
 				<Button type="submit" fullWidth variant="primary">
@@ -57,7 +60,8 @@ const SignupGenresPage = props => {
 				</Button>
 			</form>
 		</Container>
-	);
-};
+	)
+}
 
-export default SignupGenresPage;
+
+export default SignupGenresPage

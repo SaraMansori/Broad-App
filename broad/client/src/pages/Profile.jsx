@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react'
 import UserContext from '../UserContext'
-import UsersService from '../services/users.service';
+import UsersService from '../services/users.service'
 import { Container, Row, Button } from 'react-bootstrap'
 import { Header, ProfilePicture } from '../components/styledComponents/styledPages/ProfileStyle'
 import AuthService from '../services/auth.service'
@@ -77,11 +77,13 @@ const Profile = () => {
           </div>
         </div>
       </Row>
-    </Container >
+    </Container>
   )
     : (
       <h3>Loading...</h3>
-    );
-};
+    )
 
-export default Profile;
+}
+
+
+export default Profile

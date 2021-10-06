@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 import UserContext from '../../UserContext'
-import ImgLogo from '../styledComponents/atomicComponents/ImgLogo';
+import ImgLogo from '../styledComponents/atomicComponents/ImgLogo'
 import { Link, useHistory } from 'react-router-dom'
-import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS, REQUESTS, BOOK_RESULTS } from '../../utils/paths';
+import { HOMEPAGE, SIGNUP, LOGIN, PROFILE, CHATS, REQUESTS, BOOK_RESULTS } from '../../utils/paths'
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap/'
-import SearchBar from '../styledComponents/atomicComponents/SearchBar';
+import SearchBar from '../styledComponents/atomicComponents/SearchBar'
 import AuthService from '../../services/auth.service'
+
 
 const Navtop = props => {
 
@@ -46,7 +47,7 @@ const Navtop = props => {
           </Nav>
           {loggedUser &&
             <Nav>
-              <Navbar.Text style={{ color: 'white', marginRight: '3rem' }}>Welcome {loggedUser.username} &#9825; </Navbar.Text>
+              <Nav.Link style={{ marginRight: '3rem' }} as={Link} to={PROFILE}>Welcome {loggedUser.username} &#9825; </Nav.Link>
             </Nav>
           }
 
@@ -72,6 +73,8 @@ const Navtop = props => {
       </Container>
     </Navbar>
   )
+
 }
 
-export default Navtop;
+
+export default Navtop

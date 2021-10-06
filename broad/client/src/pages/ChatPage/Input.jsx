@@ -1,4 +1,5 @@
-import { Form, Row, Button } from 'react-bootstrap';
+import { Form, Row, Button } from 'react-bootstrap'
+
 
 const Input = ({ message, sendMessage, setMessage }) => {
   return (
@@ -20,4 +21,5 @@ const Input = ({ message, sendMessage, setMessage }) => {
   )
 }
 
-export default Input;
+
+export default Input

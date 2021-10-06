@@ -1,6 +1,8 @@
-import axios from 'axios';
+import axios from 'axios'
+
 
 class AuthService {
+
   constructor() {
     this.instance = axios.create({
       baseURL: `${process.env.REACT_APP_API_URL}/auth`,
@@ -9,10 +11,16 @@ class AuthService {
   }
 
   signup = (email, username, pwd) => this.instance.post("/signup", { email, username, pwd })
+
   login = (username, pwd) => this.instance.post("/login", { username, pwd })
+
   logout = () => this.instance.get("/logout")
+
   isLoggedIn = () => this.instance.post("/isloggedin")
+
   refreshSession = () => this.instance.post("/refreshSession")
+
 }
 
-export default AuthService;
+
+export default AuthService

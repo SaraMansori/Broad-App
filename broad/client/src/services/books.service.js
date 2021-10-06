@@ -1,6 +1,8 @@
-import axios from 'axios';
+import axios from 'axios'
+
 
 class BookService {
+
   constructor() {
     this.instance = axios.create({
       baseURL: `${process.env.REACT_APP_API_URL}/books`,
@@ -14,4 +16,5 @@ class BookService {
 
 }
 
-export default BookService;
+
+export default BookService

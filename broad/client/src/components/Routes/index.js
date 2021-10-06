@@ -1,23 +1,24 @@
-import React from 'react';
-import * as PATHS from '../../utils/paths';
-import { Route, Switch } from 'react-router-dom';
+import React from 'react'
+import * as PATHS from '../../utils/paths'
+import { Route, Switch } from 'react-router-dom'
 import HomePage from '../../pages/HomePage'
 import Login from '../../pages/auth/Login'
 import Signup from '../../pages/auth/Signup'
 import SignupInfoPage from '../../pages/SignupInfoPage/SignupInfoPage'
 import SignupGenresPage from '../../pages/SignupGenresPage/SignupGenresPage'
-import RequestsPage from '../../pages/RequestsPage/RequestsPage';
-import UsersPage from '../../pages/UsersPage/UsersPage';
-import BookResultsPage from '../../pages/BookResultsPage/BookResultsPage';
-import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage';
-import Profile from '../../pages/Profile';
+import RequestsPage from '../../pages/RequestsPage/RequestsPage'
+import UsersPage from '../../pages/UsersPage/UsersPage'
+import BookResultsPage from '../../pages/BookResultsPage/BookResultsPage'
+import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage'
+import Profile from '../../pages/Profile'
 import ChatPage from '../../pages/ChatPage/ChatPage'
 import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
-import '../../App.scss';
-import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage';
+import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage'
+import '../../App.scss'
 
 
 const Routes = props => {
+
   return (
     <React.StrictMode>
       <Switch>
@@ -38,11 +39,11 @@ const Routes = props => {
         <Route path={PATHS.CHATS} render={() => <ChatPage />} />
         <Route path={PATHS.BOOKS_EXCHANGED} render={() => <ExchangedBooksPage />} />
         <Route exact path={PATHS.USER_DETAILS} render={(props) => <UserDetailsPage {...props} />} />
-
       </Switch>
     </React.StrictMode>
-  );
-};
+  )
+
+}
 
 
-export default Routes;
+export default Routes

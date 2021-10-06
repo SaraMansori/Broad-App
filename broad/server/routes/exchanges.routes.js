@@ -1,12 +1,12 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router()
 
-const ExchangedBook = require("../models/ExchangedBook.model");
+const { isLoggedIn } = require('../middleware')
+const ExchangedBook = require("../models/ExchangedBook.model")
 const APIHandler = require('../services/APIHandler')
 const API = new APIHandler
 
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
 

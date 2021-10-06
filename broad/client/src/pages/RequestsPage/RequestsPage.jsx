@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
-import RequestsService from '../../services/requests.service';
+import RequestsService from '../../services/requests.service'
 import RequestsList from './RequestsList'
 
-const requestsService = new RequestsService();
+const requestsService = new RequestsService()
 
 
 const RequestsPage = props => {
@@ -31,9 +31,9 @@ const RequestsPage = props => {
         <p>No pending requests.</p>
       }
     </Container>
-  );
+  )
 
 }
 
 
-export default RequestsPage;
+export default RequestsPage

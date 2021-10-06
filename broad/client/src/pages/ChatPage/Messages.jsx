@@ -28,8 +28,10 @@ const Messages = ({ prevMessages, messages }) => {
         {displayMessages(messages)}
 
       </div>
-    </ ScrollToBottom>
-  );
+    </ScrollToBottom>
+  )
+
 }
 
-export default Messages;
+
+export default Messages

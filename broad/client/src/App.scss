@@ -65,8 +65,9 @@ $dropDown: true;
 }
 
 // dropdown menu button
-.dropdown-menu.show {
+[aria-labelledby='drop-full'] {
   min-width: 100% !important;
+  transform: translate(0px, 32px) !important;
 }
 
 //generic dropdown
@@ -289,7 +290,7 @@ $dropDown: true;
 .flex-book {
   display: flex !important;
   border-width: 0px !important;
-  margin-bottom: 5px;
+  margin-top: 5px;
   background-color: #f4e7de !important;
   align-content: stretch;
   justify-content: center;

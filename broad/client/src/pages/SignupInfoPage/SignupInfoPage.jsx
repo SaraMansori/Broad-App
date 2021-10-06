@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import TextField from '@mui/material/TextField'; // cambiar por bootstrap
-import { Link } from 'react-router-dom';
-import UsersService from '../../services/users.service';
-import UploadsService from '../../services/uploads.service';
+import TextField from '@mui/material/TextField' // cambiar por bootstrap
+import { Link } from 'react-router-dom'
+import UsersService from '../../services/users.service'
+import UploadsService from '../../services/uploads.service'
 
-const usersService = new UsersService();
-const uploadsService = new UploadsService();
+const usersService = new UsersService()
+const uploadsService = new UploadsService()
 
 
 const SignupInfoPage = props => {
@@ -17,21 +17,24 @@ const SignupInfoPage = props => {
     setFormData({ name: '', description: '', profileImage: '', location: '' })
   }
 
+
   const handleInput = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
+  }
+
 
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
 
     const { name, description, profileImage, location } = formData;
 
     usersService
       .updateSignupInfo(name, description, profileImage, location)
       .then(() => clearState())
-      .catch(err => console.error(err));
-  };
+      .catch(err => console.error(err))
+  }
+
 
   const handleFile = e => {
 
@@ -45,6 +48,7 @@ const SignupInfoPage = props => {
       .then(res => setFormData({ ...formData, isLoading: false, profileImage: res.data.cloudinary_url }))
       .catch(err => console.error(err)) // Gestionar error de cara al usuario
   }
+
 
   return (
     <>
@@ -114,7 +118,9 @@ const SignupInfoPage = props => {
         Skip
       </Link>
     </>
-  );
+  )
+
 }
 
-export default SignupInfoPage;
+
+export default SignupInfoPage

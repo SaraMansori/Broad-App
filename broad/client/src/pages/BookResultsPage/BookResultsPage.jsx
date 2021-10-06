@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Container, Row, Col } from 'react-bootstrap';
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { Form, Container, Row, Col } from 'react-bootstrap'
+import { useParams } from "react-router-dom"
 import BookService from '../../services/books.service'
-import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar';
-import BookItem from './BookItem'
+import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar'
+import BookItem from '../BookResultsPage/BookItem'
 
 
 const BookResultsPage = () => {
@@ -93,8 +93,9 @@ const BookResultsPage = () => {
         </Row>
       }
 
-    </Container >
-  );
+    </Container>
+  )
 }
 
-export default BookResultsPage;
+
+export default BookResultsPage
