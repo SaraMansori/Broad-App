@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import BookService from '../../services/books.service'
 import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar';
 import BookItem from '../BookResultsPage/BookItem'
-import BookItem2 from '../BookResultsPage/BookItem2'
 
 
 const BookResultsPage = props => {
@@ -87,17 +86,9 @@ const BookResultsPage = props => {
 
       {books &&
 
-        /*         <Row className='flex-book-row'>
-                  {books.map(book => {
-                    return (
-                      <BookItem key={`resultcard-${book.bookId}`} book={book} />
-                    )
-                  })}
-                </Row> */
-
         <Row xs={1} md={3} className="g-5">
           {books.map((book, i) => (
-            <BookItem2 key={`${book}-${i}`} book={book} />
+            <BookItem key={`${book}-${i}`} book={book} />
           ))}
         </Row>
       }

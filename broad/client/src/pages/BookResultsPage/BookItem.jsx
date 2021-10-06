@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import UserContext from '../../UserContext'
-import { Col, Card, DropdownButton, Dropdown, Button } from 'react-bootstrap';
+import { Col, Card, Dropdown, Button } from 'react-bootstrap';
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
 
@@ -62,29 +62,20 @@ const BookItem = ({ book }) => {
   }
 
   return (
-    <Col className='d-flex' md={4} style={{ height: '40%' }}>
-      <Card className='flex-book' >
-
-        <Card.Img
-          className='img-book-item'
-          style={{ width: '40%', alignSelf: 'center' }}
-          variant="top"
-          src={imageLinks?.thumbnail ? (imageLinks.largeThumbnail ? imageLinks.largeThumbnail : imageLinks.thumbnail) : defaultImages.bookCover}
-        >
-
-          <div style={{ width: '100%', height: '100%', background: 'red', zIndex: 1 }} className="prueba">
-          </div>
-        </Card.Img>
-
-        <Card.Body>
-          <Card.Title>{title}</Card.Title>
+    <Col>
+      <Card style={{ height: '100%' }}>
+        <Card.Img className="p-4" style={{ maxHeight: '200px', objectFit: 'contain' }} variant="top" src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
+        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Card.Title>{title?.length < 15 ? title : title}</Card.Title>
 
           {authors &&
-            <Card.Text>Author: {
-              (authors.length > 1 ?
-                authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
-                :
-                authors[0])}
+            <Card.Text>
+              {
+                (authors?.length > 1 ?
+                  authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                  :
+                  authors[0])
+              }
             </Card.Text>
           }
 
@@ -92,32 +83,31 @@ const BookItem = ({ book }) => {
             Published: {publishedDate}
           </Card.Text>
 
-          <div id="bookId" className="book-buttons" >
+          <div className="buttonsList">
 
-            {!wantToExchange ?
-              <Button onClick={(e) => handleExchangeClick(e)} style={{ width: '100%' }} variant="secondary">
-                I have this book and want to exchange it
-              </Button>
-              :
-              <Button onClick={(e) => handleExchangeClick(e)} style={{ width: '100%' }} variant="secondary">
-                I don't want to exchange this book anymore
-              </Button>
-            }
+            <Button style={{ width: '100%' }} variant="secondary">
+              {!wantToExchange ? 'I have this book and want to exchange it' : `I don't want to exchange this book anymore`}
+            </Button>
 
-            <DropdownButton id='drop-full' variant="primary" title="Add to my library" style={{ display: 'grid' }}>
-
-              <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
-              <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
-              <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
-
-            </DropdownButton>
+            <Dropdown >
+              <Dropdown.Toggle variant="primary" style={{ width: '100%' }} className="mt-2">
+                Add to my library
+              </ Dropdown.Toggle>
+              <Dropdown.Menu variant="dark" style={{ width: '100%' }}>
+                <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
+                <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
+                <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
+              </ Dropdown.Menu>
+            </ Dropdown>
 
           </div>
 
-        </Card.Body>
-      </Card>
-    </Col>
-  );
+
+        </ Card.Body>
+      </ Card>
+    </ Col>
+  )
+
 }
 
 export default BookItem;
