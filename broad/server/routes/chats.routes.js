@@ -43,7 +43,7 @@ router.put('/', isLoggedIn, (req, res) => {
 })
 
 
-// router.delete('/', (req, res) => { })
+// TODO router.delete('/', isLoggedIn, (req, res) => { })
 
 
 module.exports = router

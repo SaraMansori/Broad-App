@@ -1,47 +1,51 @@
-import React, { useState, useContext } from 'react';
-import UserContext from '../../UserContext';
+import React, { useState, useContext } from 'react'
+import UserContext from '../../UserContext'
 import { InputGroup, Button, FormControl, Container } from 'react-bootstrap/'
-import { Link, useHistory } from 'react-router-dom';
-import AuthService from '../../services/auth.service';
-import { SIGNUP } from '../../utils/paths';
+import { Link, useHistory } from 'react-router-dom'
+import AuthService from '../../services/auth.service'
+import { SIGNUP } from '../../utils/paths'
 
-const authService = new AuthService();
+const authService = new AuthService()
+
 
 const LoginForm = props => {
 
-	const [formData, setFormData] = useState({ username: '', pwd: '' });
+	const [formData, setFormData] = useState({ username: '', pwd: '' })
 
-	let history = useHistory();
-	const { storeUser } = useContext(UserContext);
+	let history = useHistory()
+	const { storeUser } = useContext(UserContext)
 
 
 	const clearState = () => {
-		setFormData({ username: '', pwd: '' });
-	};
+		setFormData({ username: '', pwd: '' })
+	}
 
 	const handleInput = e => {
-		const { name, value } = e.target;
-		setFormData({ ...formData, [name]: value });
-	};
+		const { name, value } = e.target
+		setFormData({ ...formData, [name]: value })
+	}
 
 	const handleSubmit = e => {
-		e.preventDefault();
+		e.preventDefault()
 
-		const { username, pwd } = formData;
+		const { username, pwd } = formData
 
 		authService
 			.login(username, pwd)
 			.then(res => {
 				storeUser(res.data)
 				history.push('/')
-				clearState();
+				clearState()
 			})
-			.catch(err => console.error(err));
-	};
+			.catch(err => console.error(err))
+	}
 
+	
 	return (
 		<Container className='d-flex justify-content-center flex-column align-items-center'>
+
 			<h3>Log In</h3>
+
 			<form onSubmit={handleSubmit}>
 				<InputGroup style={{ display: 'inline-block' }}>
 
@@ -71,6 +75,7 @@ const LoginForm = props => {
 					<Button className='block-button' type="submit" variant="primary">
 						Log In
 					</Button>
+
 				</InputGroup>
 			</form>
 
@@ -80,9 +85,7 @@ const LoginForm = props => {
 			</Link>
 			<br />
 
-			<h6>
-				Don't have an account?
-			</h6>
+			<h6>Don't have an account?</h6>
 
 
 			<Button className='block-button' as={Link} to={SIGNUP} type="submit" variant="primary">
@@ -90,7 +93,9 @@ const LoginForm = props => {
 			</Button>
 
 		</Container>
-	);
-};
+	)
 
-export default LoginForm;
+}
+
+
+export default LoginForm

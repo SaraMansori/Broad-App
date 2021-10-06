@@ -16,9 +16,9 @@ class AuthService {
 
   logout = () => this.instance.get("/logout")
 
-  isLoggedIn = () => this.instance.post("/isloggedin")
+  isLoggedIn = () => this.instance.post("/is-logged-in")
 
-  refreshSession = () => this.instance.post("/refreshSession")
+  refreshSession = () => this.instance.post("/refresh-session")
 
 }
 
