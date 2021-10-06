@@ -81,6 +81,14 @@ router.get('/logout', isLoggedIn, (req, res) => {
   req.session.destroy((err) => res.json({ message: 'Logout successful' }));
 })
 
+router.post("/refreshSession",/* isLoggedIn,*/(req, res) => {
+  User.findById(req.session.currentUser._id)
+    .then(user => {
+      req.session.currentUser = user
+      res.json(req.session.currentUser)
+    })
+    .catch(err => res.status(500).json({ code: 500, message: 'Error refreshing session' }))
+})
 
 router.post("/isloggedin", (req, res) => {
   req.session.currentUser ? res.json(req.session.currentUser) : res.status(401).json({ code: 401, message: 'Unauthorized' })

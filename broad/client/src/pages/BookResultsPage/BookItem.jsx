@@ -38,8 +38,8 @@ const BookItem = ({ book }) => {
       .updateUserBooks(book)
       .then(res => {
         console.log(res.data)
+        setWantToExchange(!wantToExchange)
         storeUser(res.data)
-        //setWantToExchange(!wantToExchange)
       })
       .catch(err => console.error(err))
   }

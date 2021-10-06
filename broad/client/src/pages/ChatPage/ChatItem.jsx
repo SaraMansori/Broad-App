@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../UserContext'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import UsersService from '../../services/users.service'
 import queryString from 'query-string'
 import { Card, Button } from 'react-bootstrap'
@@ -27,7 +27,7 @@ const ChatItem = ({ chat, handleChat, currentChat }) => {
       usersService
         .getUserInfo(chatUserId)
         .then(res => {
-          setOtherUser(res.data.user)
+          setOtherUser(res.data)
         })
         .catch(err => console.error(err))
     }

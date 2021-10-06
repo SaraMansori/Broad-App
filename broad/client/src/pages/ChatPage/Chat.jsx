@@ -10,7 +10,6 @@ import ChatsService from '../../services/chats.service'
 
 let socket
 
-
 const Chat = ({ chat, otherUser, handleClick }) => {
 
   const ENDPOINT = 'http://localhost:5005'
@@ -18,48 +17,65 @@ const Chat = ({ chat, otherUser, handleClick }) => {
   let chatsService = new ChatsService()
 
   const [room, setRoom] = useState('')
-  const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
+  const [message, setMessage] = useState('')
 
   const { loggedUser } = useContext(UserContext)
+
+  const updateMessages = (message) => setMessages([...messages, message])
+  const setInitialMessages = () => setMessages(chat.messages.map(message => parseMessage(message)))
+  const parseMessage = (message) => {
+    return {
+      text: message.text,
+      owner: message.owner,
+      hasBeenRead: message.hasBeenRead
+    }
+  }
+
+  const setSocketConfig = () => {
+    const username = loggedUser.username
+
+    socket = io(ENDPOINT, {
+      cors: {
+        origin: "http://localhost:5005",
+        credentials: true
+      }, transports: ['websocket']
+    })
+    const roomName = [...otherUser._id.split(""), ...loggedUser._id.split("")].sort().join("")
+    setRoom(`${roomName}`)
+
+    socket.emit('join', { username, room: room }, () => {
+      setInitialMessages()
+    })
+
+  }
 
   const sendMessage = (e) => {
 
     e.preventDefault()
 
-    if (message) {
-      socket.emit('sendMessage', message, () => setMessage(''))
-    }
-
     const parsedMessage = {
       text: message,
-      owner: loggedUser._id
+      owner: loggedUser._id,
+    }
+
+    if (message) {
+      socket.emit('sendMessage', message, () => {
+        setMessage('')
+      })
     }
 
     chatsService
       .addMessage(parsedMessage, chat._id)
-      .then(res => console.log(res))
+      .then(res => null)
       .catch(err => console.error(err))
 
   }
 
   useEffect(() => {
-
     if (loggedUser?.username && otherUser) {
 
-      const username = loggedUser.username
-
-      socket = io(ENDPOINT, {
-        cors: {
-          origin: "http://localhost:5005",
-          credentials: true
-        }, transports: ['websocket']
-      })
-      const roomName = [...otherUser._id.split(""), ...loggedUser._id.split("")].sort().join("")
-      setRoom(`${roomName}`)
-
-      socket.emit('join', { username, room: room }, () => {
-      })
+      setSocketConfig()
 
       return () => {
         socket.disconnect();
@@ -72,18 +88,11 @@ const Chat = ({ chat, otherUser, handleClick }) => {
   }, [ENDPOINT, location.search, loggedUser, otherUser])
 
   useEffect(() => {
-    if (loggedUser?.username && socket) {
+    socket.on('message', message => {
+      updateMessages(message)
+    })
+  }, [messages])
 
-      socket.on('message', (message) => {
-        setMessages([...messages, message])
-      })
-
-      //     /*  socket.on("roomData", ({ users }) => {
-      //        setUsers(users)
-      //      }) */
-    }
-
-  }, [messages, loggedUser, socket])
 
   return loggedUser ? (
     <OuterContainer>
@@ -91,13 +100,13 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
         <InfoBar otherUser={otherUser} handleClick={handleClick} />
         <MessageBox>
-          <Messages style={{ backgroundColor: 'red' }} messages={messages} username={loggedUser.username} />
+          <Messages style={{ backgroundColor: 'red' }} messages={messages} username={loggedUser.username} otherUser={otherUser} />
         </MessageBox>
         <Input message={message} sendMessage={sendMessage} setMessage={setMessage} />
 
       </ChatContainer>
     </OuterContainer>
-  ) : "cargando.."
+  ) : "Loading.."
 
 }
 

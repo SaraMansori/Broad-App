@@ -5,6 +5,7 @@ import UserContext from '../UserContext'
 import UsersService from '../services/users.service'
 import { Container, Row, Button } from 'react-bootstrap'
 import { Header, ProfilePicture } from '../components/styledComponents/styledPages/ProfileStyle'
+import AuthService from '../services/auth.service'
 import styled from 'styled-components'
 
 const Description = styled.div`
@@ -30,8 +31,8 @@ align-items: center;
 
 const Profile = () => {
 
-  const usersService = new UsersService();
-  const { loggedUser } = useContext(UserContext)
+  const authService = new AuthService();
+  const { loggedUser, storeUser } = useContext(UserContext)
 
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -43,7 +44,14 @@ const Profile = () => {
     favoriteGenres: [],
     books: [],
     friends: [],
-  });
+  })
+
+
+  useEffect(() => {
+    authService
+      .refreshSession()
+      .then(res => storeUser(res.data))
+  }, [])
 
   /*  DONT NEED THE CALL BECAUSE WE HAVE ALL THE INFO IN LOGGEDUSER
    
@@ -75,7 +83,8 @@ const Profile = () => {
                 <p><Description>"{loggedUser.description}" <br />
                   <div style={{ textAlign: 'right', fontWeight: '800' }}> {loggedUser.name}</div> </Description></p>
                 <p>Friends: {loggedUser.friends.length}</p>
-                <p>Books: {loggedUser.books.length}</p>
+                <p>Read books: {loggedUser.books.filter(book => book.status === 'READ').length}</p>
+                <p>Wants to Read: {loggedUser.books.filter(book => book.status === 'WANTSTOREAD').length}</p>
               </div>
             </div>
 

@@ -19,7 +19,7 @@ const UsersItem = ({ getUsers, user }) => {
   const [buttonToShow, setButtonToShow] = useState('')
   const [areFriends, setAreFriends] = useState(false)
 
-  const { loggedUser } = useContext(UserContext)
+  const { loggedUser, storeUser } = useContext(UserContext)
   const currentUserId = loggedUser?._id
   const type = 'FRIENDSHIP'
 
@@ -44,7 +44,9 @@ const UsersItem = ({ getUsers, user }) => {
       .then(() => {
         existFriendshipRequest()
         getUsers()
+        return usersService.getUserInfo(currentUserId)
       })
+      .then(res => storeUser(res.data))
       .catch(err => console.error(err))
   }
 

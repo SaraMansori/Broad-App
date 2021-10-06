@@ -17,7 +17,7 @@ const UserDetailsPage = (props) => {
         usersService
             .getUserInfo(userId)
             .then(res => {
-                setUser(res.data.user)
+                setUser(res.data)
             })
             .catch(err => console.error(err))
     }
