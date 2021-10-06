@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './components/Routes';
+import Routes from './components/Routes'
 import { UserProvider } from './UserContext'
-
-//BOOTSTRAP
-import './App.scss';
-
-
 import Navbar from './components/Layout/Navtop'
-import AuthService from './services/auth.service';
+import AuthService from './services/auth.service'
+import './App.scss'
 
-const authService = new AuthService();
+const authService = new AuthService()
+
 
 const App = props => {
 
@@ -28,19 +25,22 @@ const App = props => {
     fetchUser()
   }, [])
 
+
   return (
     <>
       <Router>
         <UserProvider value={{ loggedUser, storeUser, fetchUser }}>
           <Navbar {...props} />
 
-          <Routes {...props} />
+          {loggedUser !== undefined && <Routes {...props} />}
 
           {/* <Footer /> */}
         </UserProvider>
       </Router>
     </>
-  );
+  )
+
 }
 
-export default App;
+
+export default App

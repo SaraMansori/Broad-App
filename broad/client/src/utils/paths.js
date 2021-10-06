@@ -1,20 +1,17 @@
-export const HOMEPAGE = "/";
-export const SIGNUP = "/signup";
-export const SIGNUP_GENRES = "/signup/genres";
-export const SIGNUP_INFO = "/signup/info";
-export const LOGIN = "/login";
-export const PROFILE = '/profile';
-export const EDIT_PROFILE = '/profile/edit';
-export const BOOK_RESULTS_TEXT = "/book-results/:text";
-export const BOOK_RESULTS_TITLE = "/book-results/title/:text";
-export const BOOK_RESULTS_AUTHOR = "/book-results/author/:text";
-export const BOOK_RESULTS_ISBN = "/book-results/isbn/:text";
-export const BOOK_RESULTS_CATEGORY = "/book-results/category/:text";
-export const REQUESTS = "/requests";
-export const USERS = "/users";
-export const BOOK_EXCHANGE = "/book-exchange";
-export const CHATS = "/chats";
-export const BOOKS_EXCHANGED = "/my-books/exchanged";
-export const USER_DETAILS = "/users/:id";
-
-
+export const HOMEPAGE = "/"
+export const SIGNUP = "/signup"
+export const SIGNUP_GENRES = "/signup/genres"
+export const SIGNUP_INFO = "/signup/info"
+export const LOGIN = "/login"
+export const PROFILE = '/profile'
+export const BOOK_RESULTS_TEXT = "/book-results/:text"
+export const BOOK_RESULTS_TITLE = "/book-results/title/:text"
+export const BOOK_RESULTS_AUTHOR = "/book-results/author/:text"
+export const BOOK_RESULTS_ISBN = "/book-results/isbn/:text"
+export const BOOK_RESULTS_CATEGORY = "/book-results/category/:text"
+export const REQUESTS = "/requests"
+export const USERS = "/users"
+export const BOOK_EXCHANGE = "/book-exchange"
+export const CHATS = "/chats"
+export const BOOKS_EXCHANGED = "/my-books/exchanged"
+export const USER_DETAILS = "/users/:id"

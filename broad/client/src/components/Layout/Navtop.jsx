@@ -10,19 +10,19 @@ import AuthService from '../../services/auth.service'
 
 const Navtop = props => {
 
-  const authService = new AuthService();
-  const { loggedUser, storeUser } = useContext(UserContext);
-  let history = useHistory();
+  const authService = new AuthService()
+  const { loggedUser, storeUser } = useContext(UserContext)
+  let history = useHistory()
 
   const logout = (e) => {
 
-    e.preventDefault();
+    e.preventDefault()
 
     authService
       .logout()
       .then(() => {
+        storeUser(null)
         history.push(`/`)
-        storeUser(undefined)
       })
       .catch(err => console.error(err))
 

@@ -40,7 +40,10 @@ router.post('/signup', (req, res) => {
 
       User
         .create({ username, email, password: hashPass })
-        .then((user) => res.json({ code: 200, message: 'User created', user }))
+        .then(user => {
+          req.session.currentUser = user
+          res.json({ code: 200, message: 'User created', user })
+        })
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
     })
     .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err: err.message }))
@@ -81,7 +84,8 @@ router.get('/logout', isLoggedIn, (req, res) => {
   req.session.destroy((err) => res.json({ message: 'Logout successful' }));
 })
 
-router.post("/refreshSession",/* isLoggedIn,*/(req, res) => {
+
+router.post("/refresh-session", isLoggedIn, (req, res) => {
   User.findById(req.session.currentUser._id)
     .then(user => {
       req.session.currentUser = user
@@ -90,7 +94,8 @@ router.post("/refreshSession",/* isLoggedIn,*/(req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: 'Error refreshing session' }))
 })
 
-router.post("/isloggedin", (req, res) => {
+
+router.post("/is-logged-in", (req, res) => {
   req.session.currentUser ? res.json(req.session.currentUser) : res.status(401).json({ code: 401, message: 'Unauthorized' })
 })
 

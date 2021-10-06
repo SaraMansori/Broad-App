@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import UserContext from '../../UserContext';
+import UserContext from '../../UserContext'
 import { InputGroup, Button, FormControl, Container } from 'react-bootstrap/'
 import { Link, useHistory } from 'react-router-dom'
 import AuthService from '../../services/auth.service'
@@ -7,40 +7,46 @@ import { LOGIN } from '../../utils/paths'
 
 const authService = new AuthService()
 
+
 const SignupForm = () => {
+
 	const [formData, setFormData] = useState({ email: '', username: '', pwd: '' })
 
-	let history = useHistory();
+	let history = useHistory()
 	const { storeUser } = useContext(UserContext)
 
 	const clearState = () => {
 		setFormData({ email: '', username: '', pwd: '' })
-	};
+	}
 
 	const handleChange = e => {
-		const { value, name } = e.target;
+		const { value, name } = e.target
 		setFormData({ ...formData, [name]: value })
-	};
+	}
 
 	const handleSubmit = e => {
-		e.preventDefault();
 
-		const { email, username, pwd } = formData;
+		e.preventDefault()
+
+		const { email, username, pwd } = formData
 
 		authService
 			.signup(email, username, pwd)
 			.then(res => {
-				storeUser(res.data)
-				history.push('/signup/genres')
+				storeUser(res.data.user)
 				clearState()
+				history.push('/')
 			})
 			.catch(err => console.error(err))
-	};
+	}
 
 	return (
 		<Container className='d-flex justify-content-center flex-column align-items-center'>
+
 			<h3>Sign Up</h3>
+
 			<form onSubmit={handleSubmit}>
+
 				<InputGroup style={{ display: 'inline-block' }}>
 
 					<FormControl
@@ -53,7 +59,6 @@ const SignupForm = () => {
 						value={formData.email}
 						onChange={e => handleChange(e)}
 					/>
-
 
 					<FormControl
 						style={{ width: '300px', margin: '15px' }}
@@ -80,21 +85,20 @@ const SignupForm = () => {
 					<Button className='block-button' type="submit" variant="primary">
 						Sign Up
 					</Button>
+
 				</InputGroup>
 			</form>
 
-
-			<h6>
-				Already have an account?
-			</h6>
-
+			<h6>Already have an account?</h6>
 
 			<Button className='block-button' as={Link} to={LOGIN} type="submit" variant="primary">
 				Log In
 			</Button>
 
+		</Container>
+	)
 
-		</Container>)
 }
 
-export default SignupForm;
+
+export default SignupForm
