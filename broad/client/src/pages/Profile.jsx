@@ -7,7 +7,7 @@ import AuthService from '../services/auth.service'
 
 const Profile = () => {
 
-  const authService = new AuthService();
+  const authService = new AuthService()
   const { loggedUser, storeUser } = useContext(UserContext)
 
   const [userInfo, setUserInfo] = useState({
