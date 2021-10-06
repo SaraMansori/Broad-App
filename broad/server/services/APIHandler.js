@@ -1,4 +1,5 @@
-const axios = require('axios');
+const axios = require('axios')
+
 
 class APIHandler {
 
@@ -23,4 +24,5 @@ class APIHandler {
 
 }
 
-module.exports = APIHandler;
+
+module.exports = APIHandler

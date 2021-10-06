@@ -20,15 +20,15 @@ const SignupInfoPage = props => {
 
 
   const handleInput = e => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
 
 
   const handleSubmit = e => {
     e.preventDefault()
 
-    const { name, description, profileImage, location } = formData;
+    const { name, description, profileImage, location } = formData
 
     usersService
       .updateSignupInfo(name, description, profileImage, location)

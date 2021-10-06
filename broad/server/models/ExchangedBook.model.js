@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const userSchema = new Schema({
   
@@ -29,8 +29,8 @@ const userSchema = new Schema({
 
   swappedBookId: String
 
-}, { timestamps: true });
+}, { timestamps: true })
 
-const ExchangedBook = model("ExchangedBook", userSchema);
+const ExchangedBook = model("ExchangedBook", userSchema)
 
-module.exports = ExchangedBook;
+module.exports = ExchangedBook

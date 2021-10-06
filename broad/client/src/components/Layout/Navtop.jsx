@@ -37,37 +37,37 @@ const Navtop = props => {
         <Navbar.Brand style={{ marginTop: '0px', marginRight: '4rem', padding: '0px' }} as={Link} to={HOMEPAGE}><ImgLogo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse style={{ backgroundColor: '#805d93', padding: '5px', borderRadius: '10px', justifyContent: 'flex-end' }}>
-          {loggedUser ?
-            (<>
-              <Nav id="responsive-navbar-nav" className="me-auto">
-                <Nav.Link as={Link} to="/book-exchange">Swap!</Nav.Link>
-                <Nav.Link as={Link} to="/book-results/+">Discover Books</Nav.Link>
-                <Nav.Link as={Link} to="/users">Community</Nav.Link>
-              </Nav>
-              <Nav className="me-auto">
-                <SearchBar />
-              </Nav>
-              <Nav>
-                <Nav.Link style={{ marginRight: '3rem' }} as={Link} to={PROFILE}>Welcome {loggedUser.username} &#9825; </Nav.Link>
-              </Nav>
+          {
+            loggedUser ?
+              (<>
+                <Nav id="responsive-navbar-nav" className="me-auto">
+                  <Nav.Link as={Link} to="/book-exchange">Swap!</Nav.Link>
+                  <Nav.Link as={Link} to="/book-results/+">Discover Books</Nav.Link>
+                  <Nav.Link as={Link} to="/users">Community</Nav.Link>
+                </Nav>
+                <Nav className="me-auto">
+                  <SearchBar />
+                </Nav>
+                <Nav>
+                  <Nav.Link style={{ marginRight: '3rem' }} as={Link} to={PROFILE}>Welcome {loggedUser.username} &#9825; </Nav.Link>
+                </Nav>
 
-              <Nav>
-                <NavDropdown title="Profile" align="end">
-                  <NavDropdown.Item as={Link} to={PROFILE}>My Profile</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={REQUESTS}>My Requests</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={CHATS}>My chats</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="#">Settings</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  {/* REDIRECCIONAR A HOME */}
-                  <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
-                </NavDropdown>
+                <Nav>
+                  <NavDropdown title="Profile" align="end">
+                    <NavDropdown.Item as={Link} to={PROFILE}>My Profile</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={REQUESTS}>My Requests</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={CHATS}>My chats</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="#">Settings</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+              </>) :
+              (<Nav>
+                <Nav.Link as={Link} to={LOGIN}>Log In</Nav.Link>
+                <Nav.Link as={Link} to={SIGNUP}>Sign Up</Nav.Link>
               </Nav>
-            </>) :
-            (<Nav>
-              <Nav.Link as={Link} to={LOGIN}>Log In</Nav.Link>
-              <Nav.Link as={Link} to={SIGNUP}>Sign Up</Nav.Link>
-            </Nav>
-            )
+              )
           }
         </Navbar.Collapse>
       </Container>

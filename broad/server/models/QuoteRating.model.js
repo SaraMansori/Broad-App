@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const quoteRatingSchema = new Schema({
   rating: {
@@ -11,8 +11,8 @@ const quoteRatingSchema = new Schema({
     ref: 'User',
     required: true
   }
-}, { timestamps: true });
+}, { timestamps: true })
 
-const QuoteRating = model("QuoteRating", quoteRatingSchema);
+const QuoteRating = model("QuoteRating", quoteRatingSchema)
 
-module.exports = QuoteRating;
+module.exports = QuoteRating

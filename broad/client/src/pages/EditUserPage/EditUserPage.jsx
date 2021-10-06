@@ -11,7 +11,7 @@ const uploadsService = new UploadsService()
 
 const EditUserPage = props => {
 
-  let history = useHistory();
+  let history = useHistory()
   const { loggedUser, storeUser } = useContext(UserContext)
   const [formData, setFormData] = useState({ name: '', email: '', description: '', profileImage: '', location: '' })
 
@@ -26,19 +26,23 @@ const EditUserPage = props => {
 
 
   const handleInput = e => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
 
 
   const handleSubmit = e => {
     e.preventDefault()
     //incluir campos nuevos
-    const { name, email, description, profileImage, location } = formData;
-    //revisar
+    const { name, email, description, profileImage, location } = formData
+    // TODO revisar
     usersService
       .editUserInfo(name, email, description, profileImage, location)
-      .then(() => { clearState(); history.push('/profile') })
+      .then(res => { 
+        storeUser(res.data)
+        clearState()
+        history.push('/profile')
+      })
       .catch(err => console.error(err))
   }
 

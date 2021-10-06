@@ -1,4 +1,4 @@
-const { Mongoose } = require("mongoose");
+const { Mongoose } = require("mongoose")
 
 module.exports = {
 
@@ -18,8 +18,8 @@ module.exports = {
     let day = '' + date.getDate()
     let year = date.getFullYear()
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+    if (month.length < 2) month = '0' + month
+    if (day.length < 2) day = '0' + day
 
     return [year, month, day].join('-')
   },
@@ -36,7 +36,7 @@ module.exports = {
 
   /*
   handleValidationError: (err) => {
-    const errors = [];
+    const errors = []
 
     if (err instanceof mongoose.Error.ValidationError) Object.values(err.errors).forEach(el => errors.push(elm.message))
     

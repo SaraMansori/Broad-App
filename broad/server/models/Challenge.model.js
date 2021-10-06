@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const challengeSchema = new Schema({
 
@@ -24,8 +24,8 @@ const challengeSchema = new Schema({
     required: true
   }
 
-}, { timestamps: true });
+}, { timestamps: true })
 
-const Challenge = model("Challenge", challengeSchema);
+const Challenge = model("Challenge", challengeSchema)
 
-module.exports = Challenge;
+module.exports = Challenge

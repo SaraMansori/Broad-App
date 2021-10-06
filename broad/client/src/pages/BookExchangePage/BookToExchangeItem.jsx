@@ -7,8 +7,8 @@ import defaultImages from '../../utils/defaultImages.js'
 import RequestsService from '../../services/requests.service'
 import ChatsService from '../../services/chats.service'
 
-const requestsService = new RequestsService();
-const chatsService = new ChatsService();
+const requestsService = new RequestsService()
+const chatsService = new ChatsService()
 
 
 const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
@@ -34,7 +34,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
 
   const handleClick = (e, promise) => {
 
-    e.preventDefault();
+    e.preventDefault()
 
     promise
       .then(() => {
@@ -55,7 +55,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
 
   const createChat = e => {
 
-    e.preventDefault();
+    e.preventDefault()
 
     chatsService
       .createChat(ownerId)
@@ -77,7 +77,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
           setButtonToShow('')
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
   }
 
 
@@ -145,8 +145,6 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
             </Button>
           }
 
-
-
           {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
             <Button
               onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
@@ -154,10 +152,6 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
               Cancel Request
             </Button>
           }
-
-
-
-
 
         </Card.Body>
       </Card>

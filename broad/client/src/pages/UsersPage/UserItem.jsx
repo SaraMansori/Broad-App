@@ -38,7 +38,7 @@ const UsersItem = ({ getUsers, user }) => {
 
   const handleFriendship = (e, promise) => {
 
-    e.preventDefault();
+    e.preventDefault()
 
     promise
       .then(() => {
@@ -66,7 +66,7 @@ const UsersItem = ({ getUsers, user }) => {
           setButtonToShow('')
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
   }
 
   const userIsOwner = () => friendshipRequest.owner === currentUserId

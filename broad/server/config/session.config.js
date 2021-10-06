@@ -1,8 +1,8 @@
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
 module.exports = app => {
-  app.set('trust proxy', 1);
+  app.set('trust proxy', 1)
   app.use(
     session({
       secret: process.env.SESS_SECRET,
@@ -16,5 +16,5 @@ module.exports = app => {
       },
       store: MongoStore.create({ mongoUrl: process.env.DB_REMOTE }),
     })
-  );
-};
+  )
+}

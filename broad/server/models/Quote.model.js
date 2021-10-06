@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const quoteSchema = new Schema({
   
@@ -44,8 +44,8 @@ const quoteSchema = new Schema({
     required: true
   }
 
-}, { timestamps: true });
+}, { timestamps: true })
 
-const Quote = model("Quote", quoteSchema);
+const Quote = model("Quote", quoteSchema)
 
-module.exports = Quote;
+module.exports = Quote

@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const requestSchema = new Schema({
 
@@ -34,6 +34,6 @@ const requestSchema = new Schema({
 
 }, { timestamps: true })
 
-const Request = model("Request", requestSchema);
+const Request = model("Request", requestSchema)
 
-module.exports = Request;
+module.exports = Request

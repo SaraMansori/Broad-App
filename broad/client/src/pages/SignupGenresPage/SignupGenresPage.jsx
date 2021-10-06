@@ -19,7 +19,7 @@ const SignupGenresPage = props => {
 
 
 	const handleClick = e => {
-		const currentGenre = e.target.innerText;
+		const currentGenre = e.target.innerText
 
 		if (!favoriteGenres.includes(currentGenre)) {
 			setSignupGenresData(favoriteGenres => [...favoriteGenres, currentGenre])

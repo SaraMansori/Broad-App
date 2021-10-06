@@ -1,13 +1,13 @@
-require("dotenv/config");
-require("./db");
+require("dotenv/config")
+require("./db")
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/chatUsers')
 
-const express = require("express");
+const express = require("express")
 const socketio = require("socket.io")
 const http = require("http")
 
-const app = express();
+const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
@@ -45,12 +45,12 @@ io.on('connect', (socket) => {
   })
 })
 
-require("./config")(app);
-require('./config/session.config')(app);
+require("./config")(app)
+require('./config/session.config')(app)
 
-const allRoutes = require("./routes");
-app.use("/api", allRoutes);
+const allRoutes = require("./routes")
+app.use("/api", allRoutes)
 
-require("./error-handling")(app);
+require("./error-handling")(app)
 
-module.exports = server;
+module.exports = server

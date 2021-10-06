@@ -4,6 +4,9 @@ const { isLoggedIn, checkId } = require('../middleware')
 const Challenge = require('./../models/Challenge.model')
 
 
+// TODO After bootcamp
+
+/*
 router.get('/', isLoggedIn, (req, res) => {
 
   const { id } = req.session.currentUser._id
@@ -47,6 +50,6 @@ router.delete('/:id', isLoggedIn, checkId, (req, res) => {
     .then(res.status(200).json({ message: 'Challenge successfully deleted' }))
     .catch((err) => console.error(err))
 })
-
+*/
 
 module.exports = router

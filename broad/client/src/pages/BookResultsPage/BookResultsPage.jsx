@@ -15,7 +15,7 @@ const BookResultsPage = () => {
 
   let bookService = new BookService()
 
-  const { text } = useParams();
+  const { text } = useParams()
 
   const getBooksByType = () => {
 

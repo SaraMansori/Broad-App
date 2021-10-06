@@ -33,7 +33,7 @@ const ExchangedBooksPage = props => {
         <p>No books exchanged yet.</p>
       }
     </Container>
-  );
+  )
 
 }
 

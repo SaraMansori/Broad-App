@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
 const chatSchema = new Schema({
 
@@ -13,8 +13,8 @@ const chatSchema = new Schema({
     ref: 'Message',
   }]
 
-}, { timestamps: true });
+}, { timestamps: true })
 
-const Chat = model('Chat', chatSchema);
+const Chat = model('Chat', chatSchema)
 
-module.exports = Chat;
+module.exports = Chat

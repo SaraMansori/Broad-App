@@ -26,8 +26,7 @@ class UsersService {
 
   getUserInfo = id => this.instance.get(`/${id}`)
 
-  //incluir el userData
-  editUserInfo = (name, email, description, profileImage, location) => this.instance.put(`/edit/profile`, { name, email, description, profileImage, location });
+  editUserInfo = (name, email, description, profileImage, location) => this.instance.put(`/edit/profile`, { name, email, description, profileImage, location })
 
   getBooksToExchange = () => this.instance.get('/books-to-exchange')
 

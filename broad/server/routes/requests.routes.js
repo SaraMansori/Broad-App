@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, (req, res) => {
   Request
     .find({ receiver: id, status: 'PENDING' })
     .populate('owner')
-    .select('owner type') // filtrar los datos de owner. lean? depende de lo que queramos mostrar en la página de requests
+    .select('owner type book') // TODO filtrar los datos de owner. lean? depende de lo que queramos mostrar en la página de requests
     .then(requests => res.status(200).json(requests))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving requests", err }))
 })

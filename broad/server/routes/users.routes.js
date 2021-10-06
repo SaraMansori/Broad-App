@@ -27,7 +27,7 @@ router.get('/', isLoggedIn, (req, res) => {
 
         const userScoreArr = usersRating.filter(rating => rating.receiver === user._id)
 
-        const reducer = (previousValue, currentValue) => previousValue + currentValue;
+        const reducer = (previousValue, currentValue) => previousValue + currentValue
 
         let sum = 0
         let average = 0

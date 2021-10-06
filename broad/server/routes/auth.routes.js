@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
 
 
 router.get('/logout', isLoggedIn, (req, res) => {
-  req.session.destroy((err) => res.json({ message: 'Logout successful' }));
+  req.session.destroy((err) => res.json({ message: 'Logout successful' }))
 })
 
 

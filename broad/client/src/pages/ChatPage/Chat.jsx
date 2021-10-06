@@ -78,7 +78,7 @@ const Chat = ({ chat, otherUser, handleClick }) => {
       setSocketConfig()
 
       return () => {
-        socket.disconnect();
+        socket.disconnect()
         socket.off()
         setMessages([])
       }
