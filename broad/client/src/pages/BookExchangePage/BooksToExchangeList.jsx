@@ -14,7 +14,7 @@ const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
 
   return (
     booksToExchange.length > 0 &&
-    <Row>
+    <Row xs={1} md={3} className="g-5">
       {displayBooksToExchange(booksToExchange)}
     </Row>
   )
