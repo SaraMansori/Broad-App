@@ -24,6 +24,8 @@ class UsersService {
 
   getUserInfo = id => this.instance.get(`/${id}`);
 
+  updateUserInfo = id => this.instance.put(`/${id}`);
+
   getBooksToExchange = () => this.instance.get('/books-to-exchange')
 
 }

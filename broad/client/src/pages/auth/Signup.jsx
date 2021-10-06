@@ -78,7 +78,7 @@ const SignupForm = () => {
 					/>
 
 					<Button className='block-button' type="submit" variant="primary">
-						Sign up
+						Sign Up
 					</Button>
 				</InputGroup>
 			</form>
@@ -90,7 +90,7 @@ const SignupForm = () => {
 
 
 			<Button className='block-button' as={Link} to={LOGIN} type="submit" variant="primary">
-				Log in
+				Log In
 			</Button>
 
 

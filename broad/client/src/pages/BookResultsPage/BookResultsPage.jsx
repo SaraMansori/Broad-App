@@ -93,7 +93,7 @@ const BookResultsPage = props => {
         </Row>
       }
 
-    </Container >
+    </Container>
   );
 }
 
