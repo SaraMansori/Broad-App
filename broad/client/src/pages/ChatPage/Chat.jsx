@@ -10,7 +10,6 @@ import ChatsService from '../../services/chats.service'
 
 let socket
 
-
 const Chat = ({ chat, otherUser, handleClick }) => {
 
   const ENDPOINT = 'http://localhost:5005'
@@ -23,6 +22,15 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
   const { loggedUser } = useContext(UserContext)
 
+  const updateMessages = (message) => setMessages([...messages, message])
+  const setInitialMessages = () => setMessages(chat.messages.map(message => parseMessage(message)))
+  const parseMessage = (message) => {
+    return {
+      text: message.text,
+      owner: message.owner,
+      hasBeenRead: message.hasBeenRead
+    }
+  }
 
   const setSocketConfig = () => {
     const username = loggedUser.username
@@ -40,39 +48,31 @@ const Chat = ({ chat, otherUser, handleClick }) => {
       setInitialMessages()
     })
 
-    socket.on('message', (message) => {
-      updateMessages(message)
-    })
   }
-  const setInitialMessages = () => setMessages(chat.messages)
+
   const sendMessage = (e) => {
 
     e.preventDefault()
 
     const parsedMessage = {
       text: message,
-      owner: loggedUser._id
+      owner: loggedUser._id,
     }
 
     if (message) {
       socket.emit('sendMessage', message, () => {
         setMessage('')
-        updateMessages(parsedMessage)
       })
     }
 
     chatsService
       .addMessage(parsedMessage, chat._id)
-      .then(res => console.log(res))
+      .then(res => null)
       .catch(err => console.error(err))
 
   }
-  const updateMessages = (message) => setMessages([...messages, message])
-
-
 
   useEffect(() => {
-    //config socket
     if (loggedUser?.username && otherUser) {
 
       setSocketConfig()
@@ -87,6 +87,12 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
   }, [ENDPOINT, location.search, loggedUser, otherUser])
 
+  useEffect(() => {
+    socket.on('message', message => {
+      updateMessages(message)
+    })
+  }, [messages])
+
 
   return loggedUser ? (
     <OuterContainer>
@@ -94,13 +100,13 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
         <InfoBar otherUser={otherUser} handleClick={handleClick} />
         <MessageBox>
-          <Messages style={{ backgroundColor: 'red' }} prevMessages={chat?.messages} messages={messages} username={loggedUser.username} />
+          <Messages style={{ backgroundColor: 'red' }} messages={messages} username={loggedUser.username} otherUser={otherUser} />
         </MessageBox>
         <Input message={message} sendMessage={sendMessage} setMessage={setMessage} />
 
       </ChatContainer>
     </OuterContainer>
-  ) : "cargando.."
+  ) : "Loading.."
 
 }
 

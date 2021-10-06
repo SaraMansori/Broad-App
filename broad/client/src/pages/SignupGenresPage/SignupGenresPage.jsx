@@ -47,7 +47,7 @@ const SignupGenresPage = props => {
 		<Container>
 			<Row className="d-flex justify-content-center">
 				<Col md={6} xs={12}>
-					<h2 className="mb-5">Choose your favorite genres</h2>
+					<h2 className="mb-5">Choose your favorite genres 📚 </h2>
 
 					<form onSubmit={handleSubmit}>
 						<div className='buttonsList' style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>

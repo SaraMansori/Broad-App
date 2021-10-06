@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { InputGroup, Button, Form, FormControl, Container, Row, Col } from 'react-bootstrap/'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import UsersService from '../../services/users.service'
 import UploadsService from '../../services/uploads.service'
 
@@ -9,6 +9,8 @@ const uploadsService = new UploadsService()
 
 
 const SignupInfoPage = props => {
+
+  let history = useHistory()
 
   const [formData, setFormData] = useState({ name: '', description: '', profileImage: '', location: '' })
 
@@ -30,7 +32,10 @@ const SignupInfoPage = props => {
 
     usersService
       .updateSignupInfo(name, description, profileImage, location)
-      .then(() => clearState())
+      .then(() => {
+        history.push('/profile')
+        clearState()
+      })
       .catch(err => console.error(err))
   }
 
@@ -111,7 +116,7 @@ const SignupInfoPage = props => {
 
         </Col>
       </Row>
-      <Link to="/profile" className='plain-link' style={{ margin: '15px 0px' }} as={Link} to={'#'} type="submit" variant="primary">
+      <Link to="/profile" className='plain-link' style={{ margin: '15px 0px' }} type="submit" variant="primary">
         Skip
       </Link>
     </Container>

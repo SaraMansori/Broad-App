@@ -3,26 +3,13 @@ import React, { useContext } from 'react'
 import Message from './Message'
 import UserContext from '../../UserContext'
 
-const Messages = ({ prevMessages, messages }) => {
-
-  console.log('messaaageees', messages)
+const Messages = ({ messages, otherUser }) => {
 
   const { loggedUser } = useContext(UserContext)
-
-  const parsedPrevMessages = prevMessages.map(message => {
-
-    return {
-      user: message.owner,
-      text: message.text
-    }
-  })
-
-  console.log(parsedPrevMessages)
-
-  const displayMessages = (messagesToShow) => messagesToShow.map((message, i) => <Message key={i} message={message} username={loggedUser.username} />)
+  const displayMessages = (messagesToShow) => messagesToShow.map((message, i) => <Message key={`message${loggedUser}${i}`} message={message} otherUser={otherUser} />)
 
   return (
-    <ScrollToBottom >
+    <ScrollToBottom initialScrollBehavior='smooth' mode='bottom' >
       <div style={{ maxHeight: "60vh" }}>
 
         {displayMessages(messages)}
