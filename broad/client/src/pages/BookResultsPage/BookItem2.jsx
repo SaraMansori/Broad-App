@@ -64,18 +64,20 @@ const BookItem = ({ book }) => {
   return (
     <Col>
       <Card style={{ height: '100%' }}>
-        <Card.Img style={{ maxHeight: '200px', objectFit: 'cover' }} variant="top" src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
+        <Card.Img className="p-4" style={{ maxHeight: '200px', objectFit: 'contain' }} variant="top" src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
         <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <Card.Title>{title.length < 15 ? title : title}</Card.Title>
+          <Card.Title>{title?.length < 15 ? title : title}</Card.Title>
 
-          <Card.Text>
-            {
-              (authors.length > 1 ?
-                authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
-                :
-                authors[0])
-            }
-          </Card.Text>
+          {authors &&
+            <Card.Text>
+              {
+                (authors?.length > 1 ?
+                  authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                  :
+                  authors[0])
+              }
+            </Card.Text>
+          }
 
           <Card.Text>
             Published: {publishedDate}
@@ -88,7 +90,7 @@ const BookItem = ({ book }) => {
             </Button>
 
             <Dropdown >
-              <Dropdown.Toggle variant="primary" style={{ width: '100%' }} className="mt-4">
+              <Dropdown.Toggle variant="primary" style={{ width: '100%' }} className="mt-2">
                 Add to my library
               </ Dropdown.Toggle>
               <Dropdown.Menu variant="dark" style={{ width: '100%' }}>
