@@ -8,7 +8,7 @@ const BookItem = ({ book }) => {
 
   const { loggedUser, storeUser } = useContext(UserContext)
 
-  const [wantToExchange, setWantToExchange] = useState(loggedUser?.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+  const [wantToExchange, setWantToExchange] = useState(false)
 
   useEffect(() => {
     if (loggedUser) {
@@ -36,6 +36,7 @@ const BookItem = ({ book }) => {
     usersService
       .updateUserBooks(book)
       .then(res => {
+        console.log(res.data)
         storeUser(res.data)
         //setWantToExchange(!wantToExchange)
       })
@@ -85,7 +86,7 @@ const BookItem = ({ book }) => {
 
           <div className="buttonsList">
 
-            <Button style={{ width: '100%' }} variant="secondary">
+            <Button style={{ width: '100%' }} variant="secondary" onClick={(e) => handleExchangeClick(e)}>
               {!wantToExchange ? 'I have this book and want to exchange it' : `I don't want to exchange this book anymore`}
             </Button>
 

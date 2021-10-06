@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Container, Row, Col, Card, Button, Dropdown } from 'react-bootstrap';
+import { Form, Container, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import BookService from '../../services/books.service'
 import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar';
-import BookItem from '../BookResultsPage/BookItem'
+import BookItem from './BookItem'
 
 
 const BookResultsPage = props => {
