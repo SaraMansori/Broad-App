@@ -31,7 +31,7 @@ const SignupForm = () => {
 			.signup(email, username, pwd)
 			.then(res => {
 				storeUser(res.data)
-				history.push('/')
+				history.push('/signup/genres')
 				clearState()
 			})
 			.catch(err => console.error(err))

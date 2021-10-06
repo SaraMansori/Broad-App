@@ -53,7 +53,7 @@ const SignupInfoPage = props => {
     <Container className='d-flex justify-content-center flex-column align-items-center'>
       <Row className='d-flex justify-content-center'>
         <Col>
-          <h3>Complete your data</h3>
+          <h3>Last step! Now complete your data ✨</h3>
           <Form onSubmit={handleSubmit}>
             <InputGroup style={{ display: 'inline-block' }}>
 
@@ -111,7 +111,7 @@ const SignupInfoPage = props => {
 
         </Col>
       </Row>
-      <Link className='plain-link' style={{ margin: '15px 0px' }} as={Link} to={'#'} type="submit" variant="primary">
+      <Link to="/profile" className='plain-link' style={{ margin: '15px 0px' }} as={Link} to={'#'} type="submit" variant="primary">
         Skip
       </Link>
     </Container>
