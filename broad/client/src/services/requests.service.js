@@ -1,7 +1,8 @@
-import axios from 'axios';
-//import { generateQueryString } from '../utils/queryParser'
+import axios from 'axios'
+
 
 class RequestsService {
+
   constructor() {
     this.instance = axios.create({
       baseURL: `${process.env.REACT_APP_API_URL}/requests`,
@@ -23,4 +24,5 @@ class RequestsService {
 
 }
 
-export default RequestsService;
+
+export default RequestsService

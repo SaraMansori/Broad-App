@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 import { InputGroup, Button, FormControl } from 'react-bootstrap/'
 
 
 const SearchBar = (props) => {
+
 	const [text, setText] = useState('')
 	const [searchType, setSearchType] = useState(props.searchType)
 
@@ -15,7 +16,7 @@ const SearchBar = (props) => {
 	let history = useHistory()
 
 	const clearState = () => {
-		setText('');
+		setText('')
 	};
 
 	const handleInput = e => {
@@ -53,6 +54,8 @@ const SearchBar = (props) => {
 
 		</form>
 	)
-};
 
-export default SearchBar;
+}
+
+
+export default SearchBar

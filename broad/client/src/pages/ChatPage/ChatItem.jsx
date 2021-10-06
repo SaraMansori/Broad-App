@@ -3,8 +3,8 @@ import UserContext from '../../UserContext'
 import { useLocation, useHistory } from 'react-router-dom'
 import UsersService from '../../services/users.service'
 import queryString from 'query-string'
+import { Card, Button } from 'react-bootstrap'
 
-import { Card, Button } from 'react-bootstrap';
 
 const ChatItem = ({ chat, handleChat, currentChat }) => {
 
@@ -59,6 +59,8 @@ const ChatItem = ({ chat, handleChat, currentChat }) => {
       }
     </>
   )
+
 }
 
-export default ChatItem;
+
+export default ChatItem

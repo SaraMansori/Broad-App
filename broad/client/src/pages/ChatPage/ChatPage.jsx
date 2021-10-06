@@ -8,6 +8,7 @@ import queryString from 'query-string'
 import Chat from './Chat'
 import ChatsService from '../../services/chats.service'
 
+
 const ChatPage = () => {
 
   const { loggedUser } = useContext(UserContext)
@@ -78,7 +79,9 @@ const ChatPage = () => {
         </Row>
       </Container>
     </>
-  );
+  )
+
 }
 
-export default ChatPage;
+
+export default ChatPage

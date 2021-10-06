@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import { Header, ProfilePicture } from '../../components/styledComponents/styledPages/ProfileStyle';
-import UsersService from '../../services/users.service';
+import { Header, ProfilePicture } from '../../components/styledComponents/styledPages/ProfileStyle'
+import UsersService from '../../services/users.service'
 
 
-const usersService = new UsersService();
+const usersService = new UsersService()
 
 
 const UserDetailsPage = (props) => {
@@ -60,9 +60,9 @@ const UserDetailsPage = (props) => {
         </Container>
     )
         :
-        (<p>Loading User Details...</p>);
+        (<p>Loading User Details...</p>)
 
 }
 
 
-export default UserDetailsPage;
+export default UserDetailsPage

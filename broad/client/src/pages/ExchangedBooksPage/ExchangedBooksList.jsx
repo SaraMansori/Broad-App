@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from 'react'
 import UserContext from '../../UserContext'
 import ExchangedBookItem from './ExchangedBookItem'
 
@@ -38,4 +38,4 @@ const ExchangedBooksList = ({ exchangedBooks, getExchangedBooks }) => {
 }
 
 
-export default ExchangedBooksList;
+export default ExchangedBooksList
