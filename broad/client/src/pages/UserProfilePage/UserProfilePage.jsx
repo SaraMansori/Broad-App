@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { EDIT_PROFILE } from '../utils/paths'
-import UserContext from '../UserContext'
-import UsersService from '../services/users.service'
+import { EDIT_PROFILE, BOOKS_EXCHANGED } from '../../utils/paths'
+import UserContext from '../../UserContext'
 import { Container, Row, Button } from 'react-bootstrap'
-import { Header, ProfilePicture } from '../components/styledComponents/styledPages/ProfileStyle'
-import AuthService from '../services/auth.service'
+import { Header, ProfilePicture } from '../../components/styledComponents/styledPages/ProfileStyle'
+import AuthService from '../../services/auth.service'
 import styled from 'styled-components'
+
+const authService = new AuthService()
 
 const Description = styled.div`
 
@@ -29,49 +30,24 @@ align-items: center;
 `
 
 
-const Profile = () => {
+const UserProfilePage = () => {
 
-  const authService = new AuthService()
   const { loggedUser, storeUser } = useContext(UserContext)
-
-  const [userInfo, setUserInfo] = useState({
-    email: '',
-    username: '',
-    description: '',
-    profileImage: '',
-    name: '',
-    locationInfo: {},
-    favoriteGenres: [],
-    books: [],
-    friends: [],
-  })
 
 
   useEffect(() => {
     authService
       .refreshSession()
       .then(res => storeUser(res.data))
+      .catch(err => console.error(err))
   }, [])
 
-  /*  DONT NEED THE CALL BECAUSE WE HAVE ALL THE INFO IN LOGGEDUSER
-   
-      useEffect(() => {
-      console.log(loggedUser)
-      if (loggedUser)
-        usersService
-          .getUserInfo(loggedUser._id)
-          .then(response => {
-            // setUserInfo(???);
-            console.log(response)
-          });
-    }, [loggedUser]); */
 
   return loggedUser ? (
     <Container className="mb-5" style={{ height: '100vh', borderRadius: '15px' }}>
       <Row style={{ minHeight: '60vh' }}>
 
-        <Header className="col-12 header p-5">
-        </Header>
+        <Header className="col-12 header p-5"></Header>
 
         <div className="col-4" style={{ background: '#F4E7DE', height: '100%' }}>
           <div className="ml-5 mt-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
@@ -95,10 +71,11 @@ const Profile = () => {
 
         <div className="col-8" style={{ background: '#F4E7DE' }}>
           <div className="ml-5 p-5  mt-5" style={{ background: '#805D93', height: '100%', borderRadius: '15px', color: 'white' }} >
-            <h3>Books To Read</h3>
+            <h1>My Books</h1>
+            <h3>I Want To Read</h3>
             <h3>Reading</h3>
             <h3>Read</h3>
-            <h3>Available for exchange</h3>
+            <Link to={BOOKS_EXCHANGED}><h3>Exchanged Books</h3></Link>
           </div>
         </div>
       </Row>
@@ -111,4 +88,4 @@ const Profile = () => {
 }
 
 
-export default Profile
+export default UserProfilePage

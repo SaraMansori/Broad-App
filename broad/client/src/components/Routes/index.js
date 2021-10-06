@@ -3,7 +3,7 @@ import UserContext from '../../UserContext'
 import * as PATHS from '../../utils/paths'
 import BookResultsRoutes from './BookResultsRoutes'
 import { Route, Switch } from 'react-router-dom'
-import HomePage from '../../pages/HomePage'
+import HomePage from '../../pages/HomePage/HomePage'
 import Login from '../../pages/auth/Login'
 import Signup from '../../pages/auth/Signup'
 import SignupInfoPage from '../../pages/SignupInfoPage/SignupInfoPage'
@@ -11,8 +11,8 @@ import SignupGenresPage from '../../pages/SignupGenresPage/SignupGenresPage'
 import RequestsPage from '../../pages/RequestsPage/RequestsPage'
 import UsersPage from '../../pages/UsersPage/UsersPage'
 import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage'
-import Profile from '../../pages/Profile'
-import EditUserInfoPage from '../../pages/EditUserInfoPage/EditUserInfoPage'
+import UserProfilePage from '../../pages/UserProfilePage/UserProfilePage'
+import EditUserPage from '../../pages/EditUserPage/EditUserPage'
 import ChatPage from '../../pages/ChatPage/ChatPage'
 import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
 import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage'
@@ -38,7 +38,8 @@ const Routes = props => {
           <BookResultsRoutes />
           <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage />} />
           <Route exact path={PATHS.USERS} render={() => <UsersPage />} />
-          <Route exact path={PATHS.PROFILE} render={() => <Profile />} />
+          <Route exact path={PATHS.PROFILE} render={() => <UserProfilePage />} />
+          <Route exact path={PATHS.EDIT_PROFILE} render={() => <EditUserPage />} />
           <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage />} />
           <Route path={PATHS.CHATS} render={() => <ChatPage />} />
           <Route path={PATHS.BOOKS_EXCHANGED} render={() => <ExchangedBooksPage />} />

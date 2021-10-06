@@ -4,6 +4,7 @@ export const SIGNUP_GENRES = "/signup/genres"
 export const SIGNUP_INFO = "/signup/info"
 export const LOGIN = "/login"
 export const PROFILE = '/profile'
+export const EDIT_PROFILE = '/profile/edit'
 export const BOOK_RESULTS_TEXT = "/book-results/:text"
 export const BOOK_RESULTS_TITLE = "/book-results/title/:text"
 export const BOOK_RESULTS_AUTHOR = "/book-results/author/:text"
