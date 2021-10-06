@@ -42,4 +42,4 @@ const ExchangedBookItem = ({ owner, receiver, id, title, authors, image, endDate
 }
 
 
-export default ExchangedBookItem;
+export default ExchangedBookItem

@@ -1,6 +1,7 @@
 import { MessageContainerEnd, MessageContainerStart, PurpleMessage, LightMessage, AdminMessage } from "../../components/styledComponents/ChatStyle"
 import ReactEmoji from 'react-emoji'
 
+
 const Message = ({ message: { user, text }, username }) => {
 
   let isSentByCurrentUser = false
@@ -50,4 +51,5 @@ const Message = ({ message: { user, text }, username }) => {
 
 }
 
-export default Message;
+
+export default Message

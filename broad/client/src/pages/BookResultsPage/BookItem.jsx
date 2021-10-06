@@ -1,8 +1,9 @@
 import { useState, useContext, useEffect } from 'react'
 import UserContext from '../../UserContext'
-import { Col, Card, Dropdown, Button } from 'react-bootstrap';
+import { Col, Card, Dropdown, Button } from 'react-bootstrap'
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
+
 
 const BookItem = ({ book }) => {
 
@@ -92,22 +93,23 @@ const BookItem = ({ book }) => {
             <Dropdown >
               <Dropdown.Toggle variant="primary" style={{ width: '100%' }} className="mt-2">
                 Add to my library
-              </ Dropdown.Toggle>
+              </Dropdown.Toggle>
               <Dropdown.Menu variant="dark" style={{ width: '100%' }}>
                 <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
                 <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
                 <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
-              </ Dropdown.Menu>
-            </ Dropdown>
+              </Dropdown.Menu>
+            </Dropdown>
 
           </div>
 
 
-        </ Card.Body>
-      </ Card>
-    </ Col>
+        </Card.Body>
+      </Card>
+    </Col>
   )
 
 }
 
-export default BookItem;
+
+export default BookItem

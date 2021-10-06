@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { Button, Row, Col } from 'react-bootstrap'
-import RequestsService from '../../services/requests.service';
+import RequestsService from '../../services/requests.service'
 
-const requestsService = new RequestsService();
+const requestsService = new RequestsService()
 
 
 const RequestsItem = ({ _id, owner, getRequests }) => {
@@ -16,7 +16,7 @@ const RequestsItem = ({ _id, owner, getRequests }) => {
     requestsService
       .manageRequest(_id, status)
       .then(() => getRequests())
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
   };
 
   return (
@@ -35,9 +35,9 @@ const RequestsItem = ({ _id, owner, getRequests }) => {
         </Row>
       </Col>
     </Row>
-  );
+  )
 
 }
 
 
-export default RequestsItem;
+export default RequestsItem

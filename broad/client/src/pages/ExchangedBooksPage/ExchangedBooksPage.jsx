@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import ExchangedBooksList from './ExchangedBooksList'
-import ExchangesService from '../../services/exchangedBooks.service';
+import ExchangesService from '../../services/exchangedBooks.service'
 
-const exchangesService = new ExchangesService();
+const exchangesService = new ExchangesService()
 
 
 const ExchangedBooksPage = props => {
@@ -38,4 +38,4 @@ const ExchangedBooksPage = props => {
 }
 
 
-export default ExchangedBooksPage;
+export default ExchangedBooksPage

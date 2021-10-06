@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext, } from 'react';
+import { useState, useEffect, useContext, } from 'react'
 import UserContext from '../../UserContext'
 import { Button, Card, Row, Col } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom';
-import { CHATS } from '../../utils/paths';
+import { Link, useHistory } from 'react-router-dom'
+import { CHATS } from '../../utils/paths'
 import defaultImages from '../../utils/defaultImages.js'
-import RequestsService from '../../services/requests.service';
-import ChatsService from '../../services/chats.service';
+import RequestsService from '../../services/requests.service'
+import ChatsService from '../../services/chats.service'
 
 const requestsService = new RequestsService();
 const chatsService = new ChatsService();
@@ -30,7 +30,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
   useEffect(() => {
     selectButtonToShow()
   }, [exchangeRequest])
-  
+
 
   const handleClick = (e, promise) => {
 
@@ -65,7 +65,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
 
 
   const existExchangeRequest = () => {
- 
+
     requestsService
       .getExchangeRequest(ownerId, id)
       .then(res => {
@@ -164,4 +164,4 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
 }
 
 
-export default BookToExchangeItem;
+export default BookToExchangeItem

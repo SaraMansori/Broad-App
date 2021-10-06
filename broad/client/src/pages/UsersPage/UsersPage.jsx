@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
-import UsersService from '../../services/users.service';
+import UsersService from '../../services/users.service'
 import UsersList from './UsersList'
 
-const usersService = new UsersService();
+const usersService = new UsersService()
 
 
 const UsersPage = () => {
@@ -30,9 +30,9 @@ const UsersPage = () => {
         <p>No users to show.</p>
       }
     </Container>
-  );
+  )
 
 }
 
 
-export default UsersPage;
+export default UsersPage

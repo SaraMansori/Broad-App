@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react'
 import UserContext from '../../UserContext'
 import { Button, Card, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
-import UsersService from '../../services/users.service';
-import RequestsService from '../../services/requests.service';
+import { Link } from 'react-router-dom'
+import UsersService from '../../services/users.service'
+import RequestsService from '../../services/requests.service'
 import { ProfilePicture } from '../../components/styledComponents/styledPages/ProfileStyle'
 
-const usersService = new UsersService();
-const requestsService = new RequestsService();
+const usersService = new UsersService()
+const requestsService = new RequestsService()
 
 
 const UsersItem = ({ getUsers, user }) => {
@@ -138,9 +138,9 @@ const UsersItem = ({ getUsers, user }) => {
 
       </Card>
     </Col>
-  );
+  )
 
 }
 
 
-export default UsersItem;
+export default UsersItem

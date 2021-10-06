@@ -17,9 +17,9 @@ const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
     <Row>
       {displayBooksToExchange(booksToExchange)}
     </Row>
-  );
+  )
 
 }
 
 
-export default BooksToExchangeList;
+export default BooksToExchangeList

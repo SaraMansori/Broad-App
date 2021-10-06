@@ -1,13 +1,12 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router()
 
-const Request = require('../models/Request.model');
-const User = require("../models/User.model");
-//const Chat = require("../models/Chat.model");
-const ExchangedBook = require("../models/ExchangedBook.model");
+const { isLoggedIn } = require('../middleware')
+const Request = require('../models/Request.model')
+const User = require("../models/User.model")
+const ExchangedBook = require("../models/ExchangedBook.model")
 
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
 
@@ -20,7 +19,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/exchange', (req, res) => {
+router.get('/exchange', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
   const { otherUserId, bookId } = req.query
@@ -29,11 +28,10 @@ router.get('/exchange', (req, res) => {
     .findOne({ receiver: otherUserId, owner: id, 'book.id': bookId })
     .then(request => res.status(200).json(request))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving request", err }))
-
 })
 
 
-router.get('/:type', (req, res) => {
+router.get('/:type', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
   const { type } = req.params
@@ -50,7 +48,7 @@ router.get('/:type', (req, res) => {
 })
 
 
-router.post('/', (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
 
   // comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra
   // esto está gestionado desde el front con el cambio de botones, pero hay que hacerlo en back
@@ -66,7 +64,7 @@ router.post('/', (req, res) => {
 })
 
 
-router.put('/', (req, res) => {
+router.put('/', isLoggedIn, (req, res) => {
 
   const { id, status } = req.body
 
@@ -110,11 +108,10 @@ router.put('/', (req, res) => {
       }
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating request", err }))
-
 })
 
 
-router.delete('/', (req, res) => {
+router.delete('/', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
   const { otherUserId, type } = req.body

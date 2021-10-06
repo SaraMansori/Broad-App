@@ -2,21 +2,18 @@ const mongoose = require("mongoose")
 
 module.exports = {
 
-  // HAY QUE ADAPTAR TODOS LOS MIDDLEWARE PARA REACT
+  isLoggedIn: (req, res, next) => {
+    req.session.currentUser ? next() : res.status(401).json({ code: 401, message: 'Unauthorized' })
+  },
+
+  checkId: (req, res, next) => {
+    mongoose.Types.ObjectId.isValid(req.params.id) ? next() : res.status(401).json({ code: 400, message: 'Bad Request: invalid ID' })
+  },
 
   /*
-  isLoggedIn: (req, res, next) => {
-    req.session.currentUser ? next() : res.render('pages/AuthPage/login', { errorMsg: 'Login to continue' })
-  },
-
   checkRoles: (...roles) => (req, res, next) => {
-    roles.includes(req.session.currentUser.role) ? next() : res.redirect('/login')
-  },
-
-  // Esto desde front (utils en back)
-  checkId: (req, res, next) => {
-    mongoose.Types.ObjectId.isValid(req.params.id) ? next() : res.redirect('/')
-  },
+   roles.includes(req.session.currentUser.role) ? next() : res.status(401).json({ code: 401, message: 'Unauthorized' })
+  }
   */
 
 }
