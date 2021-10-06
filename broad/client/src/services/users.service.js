@@ -1,11 +1,13 @@
-import axios from 'axios';
+import axios from 'axios'
+
 
 class UsersService {
+
   constructor() {
     this.instance = axios.create({
       baseURL: `${process.env.REACT_APP_API_URL}/users`,
       withCredentials: true,
-    });
+    })
   }
 
   updateSignupInfo = (name, description, profileImage, location) => {
@@ -22,10 +24,11 @@ class UsersService {
 
   updateUserBooks = book => this.instance.put(`/update/books`, { book })
 
-  getUserInfo = id => this.instance.get(`/${id}`);
+  getUserInfo = id => this.instance.get(`/${id}`)
 
   getBooksToExchange = () => this.instance.get('/books-to-exchange')
 
 }
 
-export default UsersService;
+
+export default UsersService

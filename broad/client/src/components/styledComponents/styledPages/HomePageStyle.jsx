@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import reading from '../../../vanreading.png';
+import reading from '../../../vanreading.png'
 import bookcover from '../../../bookcover.jpg'
-import LongButton from '../atomicComponents/LongButton';
+import LongButton from '../atomicComponents/LongButton'
 
 
 const H2 = styled.h2` 
@@ -26,7 +26,7 @@ const ImageReading = styled.div`
   border-radius: 0px;
   }
 
-`;
+`
 
 const Welcome = styled.div`
 

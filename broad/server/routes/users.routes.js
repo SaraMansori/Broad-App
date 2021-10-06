@@ -1,14 +1,14 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router()
 
+const { isLoggedIn, checkId } = require('../middleware')
 const User = require('../models/User.model')
 const Rating = require('../models/Rating.model')
-const ExchangedBooks = require('../models/ExchangedBook.model');
+const ExchangedBooks = require('../models/ExchangedBook.model')
 const APIHandler = require('../services/APIHandler')
 const API = new APIHandler
 
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
 
@@ -64,10 +64,10 @@ router.get('/', (req, res) => {
       res.status(200).json(usersWithFilteredData)
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving users", err }))
-
 })
 
-router.put('/update/books', (req, res) => {
+
+router.put('/update/books', isLoggedIn, (req, res) => {
   //meter middleware que si no peta si el user no está logged
   console.log('----------------- HELLOOO')
   const userId = req.session.currentUser._id
@@ -108,16 +108,13 @@ router.put('/update/books', (req, res) => {
           return User.findByIdAndUpdate(userId, { $push: { books: book } })
         }
       }
-
-
     })
     .then((user) => res.status(200).json(user))
     .catch(err => res.status(500).json({ code: 500, message: "Error updating the user's books", err }))
-
 })
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isLoggedIn, checkId, (req, res) => {
 
   const { id } = req.params
 
@@ -125,12 +122,11 @@ router.delete('/:id', (req, res) => {
     .findByIdAndDelete(id)
     .then(() => res.status(200).json({ message: 'User successfully deleted' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error deleting user", err }))
-
 })
 
 //let newUserInfo = req.body --> TEO 
 
-router.put('/edit/:infoToUpdate', (req, res) => {
+router.put('/edit/:infoToUpdate', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
   const { infoToUpdate } = req.params
@@ -157,7 +153,7 @@ router.put('/edit/:infoToUpdate', (req, res) => {
 })
 
 
-router.put('/delete-friend', (req, res) => {
+router.put('/delete-friend', isLoggedIn, (req, res) => {
 
   //revisar si funciona al cambiar las rutas
 
@@ -173,7 +169,7 @@ router.put('/delete-friend', (req, res) => {
 })
 
 
-router.get('/books-to-exchange', (req, res) => {
+router.get('/books-to-exchange', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
 
@@ -241,10 +237,7 @@ router.get('/books-to-exchange', (req, res) => {
 })
 
 
-//router.post('/:id/vote', (req, res) => { })
-
-
-router.get('/:id', (req, res) => {
+router.get('/:id', isLoggedIn, checkId, (req, res) => {
 
   const { id } = req.params
 
@@ -257,7 +250,6 @@ router.get('/:id', (req, res) => {
     .select('email username profileImage name description locationInfo favoriteGenres books friends')
     .then(user => res.status(200).json({ user }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
-
 })
 
 

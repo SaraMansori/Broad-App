@@ -2,6 +2,7 @@ import ScrollToBottom from 'react-scroll-to-bottom'
 import Message from './Message'
 
 const Messages = ({ messages, username }) => {
+
   return (
     <ScrollToBottom >
       <div style={{ maxHeight: "60vh" }}>
@@ -10,8 +11,10 @@ const Messages = ({ messages, username }) => {
             <Message message={message} username={username} />
           </div>)}
       </div>
-    </ ScrollToBottom>
-  );
+    </ScrollToBottom>
+  )
+
 }
 
-export default Messages;
+
+export default Messages

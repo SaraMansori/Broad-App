@@ -1,9 +1,11 @@
-const router = require("express").Router();
+const router = require("express").Router()
+
+const { isLoggedIn } = require('../middleware')
 const APIHandler = require('../services/APIHandler')
 const API = new APIHandler
 
 
-router.get('/search-book/:text', (req, res) => {
+router.get('/search-book/:text', isLoggedIn, (req, res) => {
 
   const { text } = req.params
 
@@ -15,7 +17,7 @@ router.get('/search-book/:text', (req, res) => {
 })
 
 
-router.get('/search-book-by/:type/:text', (req, res) => {
+router.get('/search-book-by/:type/:text', isLoggedIn, (req, res) => {
 
   const { type, text } = req.params
   if (text.length === 0) text = ''
@@ -34,4 +36,4 @@ router.get('/search-book-by/:type/:text', (req, res) => {
 })
 
 
-module.exports = router;
+module.exports = router

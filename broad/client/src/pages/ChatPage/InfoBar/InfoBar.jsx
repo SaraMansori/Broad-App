@@ -4,6 +4,7 @@ import './InfoBar.css'
 
 
 const InfoBar = ({ otherUser, handleClick }) => {
+
   return (
     <div className="infoBar">
       <LeftInnerContainer>
@@ -16,7 +17,9 @@ const InfoBar = ({ otherUser, handleClick }) => {
         </svg>
       </RightInnerContainer>
     </div>
-  );
+  )
+
 }
 
-export default InfoBar;
+
+export default InfoBar
