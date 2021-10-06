@@ -1,8 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { EDIT_PROFILE } from '../utils/paths'
 import UserContext from '../UserContext'
 import UsersService from '../services/users.service'
 import { Container, Row, Button } from 'react-bootstrap'
 import { Header, ProfilePicture } from '../components/styledComponents/styledPages/ProfileStyle'
+import styled from 'styled-components'
+
+const Description = styled.div`
+
+width: 90%;
+background: #FFFFFF;
+color: #000000;
+border-style:solid;
+border-width: 1px;
+border-color: rgba(0, 0, 0, 0.25);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+font-style: oblique;
+font-weight: normal;
+font-size: 13px;
+line-height: 19px;
+font-weight:500;
+text-align:center;
+padding:20px;
+align-items: center;
+`
 
 
 const Profile = () => {
@@ -37,7 +60,7 @@ const Profile = () => {
 
   return loggedUser ? (
     <Container className="mb-5" style={{ height: '100vh', borderRadius: '15px' }}>
-      <Row style={{ height: '100%' }}>
+      <Row style={{ minHeight: '60vh' }}>
 
         <Header className="col-12 header p-5">
         </Header>
@@ -48,20 +71,21 @@ const Profile = () => {
             <div className="info">
               <ProfilePicture image={loggedUser.profileImage || 'https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg'} />
               <div className="info mt-5" style={{ color: 'white', fontSize: '2rem' }}>
-                <p>Username: {loggedUser.username}</p>
-                <p>Name: {loggedUser.name}</p>
+                <p>{loggedUser.username}</p>
+                <p><Description>"{loggedUser.description}" <br />
+                  <div style={{ textAlign: 'right', fontWeight: '800' }}> {loggedUser.name}</div> </Description></p>
                 <p>Friends: {loggedUser.friends.length}</p>
                 <p>Books: {loggedUser.books.length}</p>
               </div>
             </div>
 
-            <Button style={{ width: '100%', alignSelf: 'flex-end' }} variant="secondary" size="lg"> Edit Profile </Button>
+            <Button style={{ width: '100%', alignSelf: 'flex-end' }} className='button-link' as={Link} to={EDIT_PROFILE} variant="secondary" size="lg"> Edit Profile </Button>
 
           </div>
         </div>
 
         <div className="col-8" style={{ background: '#F4E7DE' }}>
-          <div className="ml-5 p-5  mt-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px', color: 'white' }} >
+          <div className="ml-5 p-5  mt-5" style={{ background: '#805D93', height: '100%', borderRadius: '15px', color: 'white' }} >
             <h3>Books To Read</h3>
             <h3>Reading</h3>
             <h3>Read</h3>

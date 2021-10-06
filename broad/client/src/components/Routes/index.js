@@ -11,6 +11,7 @@ import UsersPage from '../../pages/UsersPage/UsersPage'
 import BookResultsPage from '../../pages/BookResultsPage/BookResultsPage'
 import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage'
 import Profile from '../../pages/Profile'
+import EditUserInfoPage from '../../pages/EditUserInfoPage/EditUserInfoPage'
 import ChatPage from '../../pages/ChatPage/ChatPage'
 import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
 import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage'
@@ -35,6 +36,7 @@ const Routes = props => {
         <Route exact path={PATHS.REQUESTS} render={() => <RequestsPage />} />
         <Route exact path={PATHS.USERS} render={() => <UsersPage />} />
         <Route exact path={PATHS.PROFILE} render={() => <Profile />} />
+        <Route exact path={PATHS.EDIT_PROFILE} render={() => <EditUserInfoPage />} />
         <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage />} />
         <Route path={PATHS.CHATS} render={() => <ChatPage />} />
         <Route path={PATHS.BOOKS_EXCHANGED} render={() => <ExchangedBooksPage />} />

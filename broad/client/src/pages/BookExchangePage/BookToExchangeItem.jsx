@@ -99,66 +99,69 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
 
 
   return (
-    <Card>
-      <Row>
+    <Col>
+      <Card style={{ height: '100%' }}>
+        <Card.Img className="p-4" style={{ maxHeight: '200px', objectFit: 'contain' }} variant="top" src={image ? image : defaultImages.bookCover} />
+        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Card.Title>{title?.length < 15 ? title : title}</Card.Title>
 
-        <Col md={2}>
-          <Card.Img variant="top" src={image ? image : defaultImages.bookCover} />
-        </Col>
-
-        <Col md={10}>
-          <Card.Body>
-            <Card.Title>Title: {title}</Card.Title>
+          {authors &&
             <Card.Text>
-              {authors &&
-                <p>Author: {
-                  (authors.length > 1 ?
-                    authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
-                    :
-                    authors[0])}
-                </p>
+              {
+                (authors?.length > 1 ?
+                  authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                  :
+                  authors[0])
               }
-              <p>Owner : {owner}</p>
+
             </Card.Text>
+          }
 
-            {!chatExists &&
-              <Button
-                onClick={e => createChat(e)}
-                variant="primary">
-                Start Chat
-              </Button>
-            }
+          <Card.Text>
+            <p>Owner : {owner}</p>
+          </Card.Text>
 
-            {chatExists &&
-              <Button
-                as={Link} to={CHATS}
-                variant="primary">
-                Open Chat
-              </Button>
-            }
+          {!chatExists &&
+            <Button
+              onClick={e => createChat(e)}
+              variant="secondary">
+              Start Chat
+            </Button>
+          }
 
-            {!exchangeRequest &&
-              <Button
-                onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
-                variant="primary">
-                Send Exchange Request
-              </Button>
-            }
+          {chatExists &&
+            <Button
+              as={Link} to={CHATS}
+              variant="secondary">
+              Open Chat
+            </Button>
+          }
 
-            {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
-              <Button
-                onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
-                variant="primary">
-                Cancel Request
-              </Button>
-            }
+          {!exchangeRequest &&
+            <Button
+              onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
+              variant="primary">
+              Send Exchange Request
+            </Button>
+          }
 
-            <br />
-          </Card.Body>
-        </Col>
 
-      </Row>
-    </Card>
+
+          {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
+            <Button
+              onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
+              variant="primary">
+              Cancel Request
+            </Button>
+          }
+
+
+
+
+
+        </Card.Body>
+      </Card>
+    </Col>
   )
 
 }
