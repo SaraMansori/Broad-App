@@ -1,119 +1,64 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../UserContext'
+import { useLocation, useHistory } from 'react-router-dom'
+import UsersService from '../../services/users.service'
 import queryString from 'query-string'
-import io from 'socket.io-client'
-import { OuterContainer, ChatContainer, MessageBox } from '../../components/styledComponents/ChatStyle'
-import InfoBar from './InfoBar/InfoBar'
-import Input from './Input'
-import Messages from './Messages'
 
-import { useLocation } from 'react-router-dom'
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
-let socket;
-
-const ChatPage = () => {
-
-  const ENDPOINT = 'http://localhost:5005'
-
-  const location = useLocation()
+const ChatItem = ({ chat, handleChat, currentChat }) => {
 
   const { loggedUser } = useContext(UserContext)
+  const chatUserId = chat.participants.find(participant => participant !== loggedUser._id)
+  const usersService = new UsersService()
 
-  const [room, setRoom] = useState('')
-  const [otherUser, setOtherUser] = useState(null)
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-  const [users, setUsers] = useState('');
-  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [otherUser, setOtherUser] = useState(undefined)
+  const [isThisChatOpen, setIsThisChatOpen] = useState(false)
 
-  useEffect(() => {
-
-    if (loggedUser?.username) {
-
-      const username = loggedUser.username
-      const data = queryString.parse(location.search)
-
-      socket = io(ENDPOINT, {
-        cors: {
-          origin: "http://localhost:5005",
-          credentials: true
-        }, transports: ['websocket']
-      })
-
-      setRoom('room')
-      socket.emit('join', { username, room }, () => {
-      })
-
-
-      return () => {
-        socket.disconnect();
-        socket.off()
-      }
-
-    }
-
-  }, [ENDPOINT, location.search, loggedUser])
+  const location = useLocation()
+  const data = queryString.parse(location.search)
 
   useEffect(() => {
-    if (loggedUser?.username) {
+    setIsThisChatOpen(chat === currentChat)
+  }, [data])
 
-      socket.on('message', (message) => {
-        setMessages([...messages, message])
-      })
-
-      socket.on("roomData", ({ users }) => {
-        setUsers(users)
-      })
+  useEffect(() => {
+    if (loggedUser) {
+      usersService
+        .getUserInfo(chatUserId)
+        .then(res => {
+          setOtherUser(res.data.user)
+        })
+        .catch(err => console.error(err))
     }
-  }, [messages, loggedUser])
 
+  }, [loggedUser])
 
-  const handleClick = () => {
-    setIsChatOpen(!isChatOpen)
-  }
-
-  const size = isChatOpen ? 6 : 12
-
-  const sendMessage = (e) => {
-
-    e.preventDefault()
-
-    if (message) {
-      socket.emit('sendMessage', message, () => setMessage(''))
-    }
-  }
 
   return (
     <>
-
-      <Row>
-        <Col md={size}>
-          <Card body>
-            <p>Your Name: {loggedUser?.username}</p>
-            <p>This is some text within a card body.</p>
-            <Button onClick={() => handleClick()}>{`${isChatOpen ? 'Close' : 'Open'} Chat`}</Button>
+      {loggedUser &&
+        <div className="d-flex">
+          <Card style={{ width: '100%' }} body>
+            <h5>Chat with: {otherUser?.username}</h5>
+            {isThisChatOpen ?
+              (
+                <Button onClick={() => { handleChat(true, chat, otherUser) }}>
+                  Close Chat
+                </Button>
+              )
+              :
+              (
+                <Button onClick={() => { handleChat(false, chat, otherUser) }}>
+                  Open Chat
+                </Button>
+              )
+            }
           </Card>
-        </Col>
-
-        {isChatOpen &&
-          <Col md={size}>
-            <OuterContainer>
-              <ChatContainer>
-
-                <InfoBar room={room} otherUser={otherUser} handleClick={handleClick} />
-                <MessageBox>
-                  <Messages messages={messages} username={loggedUser.username} />
-                </MessageBox>
-                <Input message={message} sendMessage={sendMessage} setMessage={setMessage} />
-
-              </ChatContainer>
-            </OuterContainer>
-          </Col>}
-      </Row>
-
+        </div>
+      }
     </>
   )
 }
 
-export default ChatPage;
+export default ChatItem;

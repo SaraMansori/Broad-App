@@ -1,4 +1,5 @@
 import axios from 'axios';
+//import { generateQueryString } from '../utils/queryParser'
 
 class RequestsService {
   constructor() {
@@ -12,13 +13,13 @@ class RequestsService {
 
   manageRequest = (id, status) => this.instance.put('/', { id, status })
 
-  createRequest = (receiver, type) => this.instance.post('/', { receiver, type })
+  createRequest = (receiver, type, book) => this.instance.post('/', { receiver, type, book })
 
   deleteRequest = (otherUserId, type) => this.instance.delete('/', { data: { otherUserId, type } })
 
   getRequest = (otherUserId, type) => this.instance.get(`/${type}?otherUserId=${otherUserId}`)
 
-  getAcceptedChatRequests = () => this.instance.get(`/chat/accepted`)
+  getExchangeRequest = (otherUserId, bookId) => this.instance.get(`/exchange?otherUserId=${otherUserId}&bookId=${bookId}`)
 
 }
 

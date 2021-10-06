@@ -19,7 +19,7 @@ router.post('/create', (req, res) => {
 
   Challenge
     .create({ phrase, quantity, year, owner })
-    .then(res.status(200).json({ message: 'Challenge created succesfully' }))
+    .then(res.status(200).json({ message: 'Challenge created successfully' }))
     .catch((err) => console.error(err))
 
 })
@@ -30,7 +30,7 @@ router.put('/edit/:id', (req, res) => {
 
   Challenge
     .findByIdAndUpdate(id, { phrase, quantity, year })
-    .then(res.status(200).json({ message: 'Challenge modified succesfully' }))
+    .then(res.status(200).json({ message: 'Challenge modified successfully' }))
     .catch((err) => console.error(err))
 
 })
@@ -40,7 +40,7 @@ router.delete('/delete/:id', (req, res) => {
 
   Challenge
     .findByIdAndDelete(id)
-    .then(res.status(200).json({ message: 'Challenge deleted succesfully' }))
+    .then(res.status(200).json({ message: 'Challenge deleted successfully' }))
     .catch((err) => console.error(err))
 })
 

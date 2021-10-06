@@ -22,12 +22,15 @@ const userSchema = new Schema({
     required: true
   },
 
-  exchangedBookId: String,
+  id: {
+    type: String,
+    required: true
+  },
 
   swappedBookId: String
 
 }, { timestamps: true });
 
-const ExchangedBooks = model("ExchangedBooks", userSchema);
+const ExchangedBook = model("ExchangedBook", userSchema);
 
-module.exports = ExchangedBooks;
+module.exports = ExchangedBook;

@@ -10,6 +10,11 @@ const BookExchangePage = props => {
 
   const [booksToExchange, setBooksToExchange] = useState(null)
 
+  useEffect(() => {
+    getBooksToExchange()
+  }, [])
+
+  
   const getBooksToExchange = () => {
 
     usersService
@@ -18,9 +23,6 @@ const BookExchangePage = props => {
       .catch(err => console.error(err))
   }
 
-  useEffect(() => {
-    getBooksToExchange()
-  }, [])
 
   return (
     <Container>

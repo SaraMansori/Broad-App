@@ -124,7 +124,7 @@ router.delete('/:id', (req, res) => {
 
   User
     .findByIdAndDelete(id)
-    .then(() => res.status(200).json({ message: 'User succesfully deleted' }))
+    .then(() => res.status(200).json({ message: 'User successfully deleted' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error deleting user", err }))
 
 })
@@ -152,7 +152,7 @@ router.put('/edit/:infoToUpdate', (req, res) => {
     .findByIdAndUpdate(id, newUserInfo, { new: true })
     .then(updatedUser => {
       req.session.currentUser = updatedUser
-      res.status(200).json({ message: 'User succesfully updated' })
+      res.status(200).json({ message: 'User successfully updated' })
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error updating user", err }))
 })

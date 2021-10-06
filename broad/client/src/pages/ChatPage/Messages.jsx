@@ -3,7 +3,7 @@ import Message from './Message'
 
 const Messages = ({ messages, username }) => {
   return (
-    <ScrollToBottom>
+    <ScrollToBottom >
       <div style={{ maxHeight: "60vh" }}>
         {messages.map((message, i) =>
           <div key={i}>

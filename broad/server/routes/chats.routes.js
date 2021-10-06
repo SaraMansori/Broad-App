@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const Chat = require('../models/Chat.model');
-
+const Message = require('../models/Message.model');
 
 router.get('/', (req, res) => {
 
@@ -11,21 +11,39 @@ router.get('/', (req, res) => {
   Chat
     .find({ participants: id })
     .then(chats => res.status(200).json(chats))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chat requests", err }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chats", err }))
 })
 
-// router.get('/user-chats', (req, res) => {
 
-//   const id = req.session.currentUser._id
+router.post('/', (req, res) => {
 
-//   Chat
-//     .find({ participants: id })
-//     .then(chats => res.status(200).json(chats))
-//     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving chat requests", err }))
+  const id = req.session.currentUser._id
+  const { otherUserId } = req.body
 
-// })
+  Chat
+    .create({ participants: [id, otherUserId] })
+    .then(() => res.status(200).json({ message: 'Chat successfully created' }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error creating chat", err }))
 
-// router.post('/create/:userId', (req, res) => { })
-// router.post('/delete/:chatId', (req, res) => { })
+})
+
+
+router.put('/messages', (req, res) => {
+
+  const { message, chat } = req.body
+
+  Message
+    .create(message)
+    .then(message =>
+      Chat
+        .findByIdAndUpdate({ _id: chat }, { $push: { messages: message } }).new(true))
+    .then(chat => res.status(200).json({ message: 'Message successfully created' }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
+
+})
+
+
+// router.delete('/', (req, res) => { })
+
 
 module.exports = router

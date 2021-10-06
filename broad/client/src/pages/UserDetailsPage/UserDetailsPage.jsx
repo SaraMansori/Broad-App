@@ -7,7 +7,7 @@ import UsersService from '../../services/users.service';
 const usersService = new UsersService();
 
 
-const UserDetails = (props) => {
+const UserDetailsPage = (props) => {
 
     const [user, setUser] = useState(null)
 
@@ -57,7 +57,7 @@ const UserDetails = (props) => {
                     </div>
                 </div>
             </Row>
-        </Container >
+        </Container>
     )
         :
         (<p>Loading User Details...</p>);
@@ -65,4 +65,4 @@ const UserDetails = (props) => {
 }
 
 
-export default UserDetails;
+export default UserDetailsPage;
