@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Button } from 'react-bootstrap'
-import TextField from '@mui/material/TextField' // cambiar por bootstrap
+import { InputGroup, Button, Form, FormControl, Container, Row, Col } from 'react-bootstrap/'
 import { Link } from 'react-router-dom'
 import UsersService from '../../services/users.service'
 import UploadsService from '../../services/uploads.service'
@@ -51,73 +50,71 @@ const SignupInfoPage = props => {
 
 
   return (
-    <>
-      <h3>Complete your data</h3>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          // required
-          fullWidth
-          id="name"
-          label="Name"
-          name="name"
-          autoComplete="name"
-          type="text"
-          autoFocus
-          value={formData.name}
-          onChange={handleInput}
-        />
-        <TextField
-          // variant="outlined"
-          // margin="normal"
-          // required
-          fullWidth
-          id="description"
-          // label="Email Address"
-          name="description"
-          // autoComplete="email"
-          //autoFocus
-          id="outlined-multiline-static"
-          label="Description"
-          multiline
-          rows={4}
-          value={formData.description}
-          onChange={handleInput}
-        />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          // required
-          fullWidth
-          id="location"
-          label="Location"
-          name="location"
-          autoComplete="location"
-          type="location"
-          //autoFocus
-          value={formData.location}
-          onChange={handleInput}
-        />
-        <p>Profile image</p>
-        <input
-          type="file"
-          id="profileImage"
-          label="Profile image"
-          name="profileImage"
-          accept="image/png, image/jpeg, image/jpg"
-          onChange={(e) => handleFile(e)}
-        />
+    <Container className='d-flex justify-content-center flex-column align-items-center'>
+      <Row className='d-flex justify-content-center'>
+        <Col>
+          <h3>Complete your data</h3>
+          <Form onSubmit={handleSubmit}>
+            <InputGroup style={{ display: 'inline-block' }}>
 
-        <Button disabled={formData.isLoading} type="submit" fullWidth variant="contained" color="primary">
-          Save Data
-        </Button>
-      </form>
+              <FormControl
+                style={{ width: '100%', margin: '15px 0px' }}
+                placeholder="Name..."
+                aria-label="name"
+                aria-describedby="name"
+                name="name"
+                type="text"
+                autoFocus
+                value={formData.name}
+                onChange={handleInput}
+              />
+              <Form.Control
+                style={{ width: '100%', margin: '15px 0px' }}
+                placeholder="Description..."
+                aria-label="description"
+                aria-describedby="description"
+                name="description"
+                type="text"
+                as="textarea"
+                rows={6}
+                value={formData.description}
+                onChange={handleInput}
+              />
+              <FormControl
+                style={{ width: '100%', margin: '15px 0px' }}
+                placeholder="Location..."
+                aria-label="location"
+                aria-describedby="location"
+                name="location"
+                type="text"
+                value={formData.location}
+                onChange={handleInput}
+              />
+              <p>Profile image</p>
+              <div className='d-flex flex-column'>
+                <input
+                  style={{ maxWidth: '60vw' }}
+                  type="file"
+                  id="profileImage"
+                  aria-label="Profile image"
+                  name="profileImage"
+                  accept="image/png, image/jpeg, image/jpg"
+                  onChange={(e) => handleFile(e)}
+                />
 
-      <Link href="#" variant="body2">
+                <Button size='sm' style={{ marginTop: '15px' }} disabled={formData.isLoading} type="submit" variant="primary">
+                  Save Data
+                </Button>
+              </div>
+            </InputGroup>
+          </Form>
+
+        </Col>
+      </Row>
+      <Link className='plain-link' style={{ margin: '15px 0px' }} as={Link} to={'#'} type="submit" variant="primary">
         Skip
       </Link>
-    </>
+    </Container>
   )
 
 }
