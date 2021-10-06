@@ -57,7 +57,6 @@ const ChatPage = () => {
   }, [loggedUser])
 
   useEffect(() => {
-    console.log(data)
     data.user ? setIsChatOpen(true) : setIsChatOpen(false)
   }, [data])
 

@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const Chat = require('../models/Chat.model');
-
+const Message = require('../models/Message.model');
 
 router.get('/', (req, res) => {
 
@@ -28,9 +28,18 @@ router.post('/', (req, res) => {
 })
 
 
-router.put('/', (req, res) => {
+router.put('/messages', (req, res) => {
 
-  // TODO
+  const { message, chat } = req.body
+
+  Message
+    .create(message)
+    .then(message =>
+      Chat
+        .findByIdAndUpdate({ _id: chat }, { $push: { messages: message } }).new(true))
+    .then(chat => res.status(200).json({ message: 'Message successfully created' }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
+
 })
 
 

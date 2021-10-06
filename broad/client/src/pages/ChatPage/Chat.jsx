@@ -5,8 +5,8 @@ import Messages from './Messages'
 import { useLocation } from 'react-router-dom'
 import React, { useState, useEffect, useContext } from 'react'
 import UserContext from '../../UserContext'
-import queryString from 'query-string'
 import io from 'socket.io-client'
+import ChatsService from '../../services/chats.service'
 
 
 let socket;
@@ -14,6 +14,7 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
   const ENDPOINT = 'http://localhost:5005'
   const location = useLocation()
+  let chatsService = new ChatsService()
 
   const [room, setRoom] = useState('')
   const [message, setMessage] = useState('')
@@ -26,9 +27,19 @@ const Chat = ({ chat, otherUser, handleClick }) => {
     e.preventDefault()
 
     if (message) {
-      // console.log(message, "Vale jefa, no se moleste por favor.")
       socket.emit('sendMessage', message, () => setMessage(''))
     }
+
+    const parsedMessage = {
+      text: message,
+      owner: loggedUser._id
+    }
+
+    chatsService
+      .addMessage(parsedMessage, chat._id)
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
+
   }
 
   useEffect(() => {
@@ -36,8 +47,6 @@ const Chat = ({ chat, otherUser, handleClick }) => {
     if (loggedUser?.username && otherUser) {
 
       const username = loggedUser.username
-      // const data = queryString.parse(location.search)
-      // const otherParticipant = chat.participants.find(participant => participant !== loggedUser._id)
 
       socket = io(ENDPOINT, {
         cors: {
@@ -45,11 +54,10 @@ const Chat = ({ chat, otherUser, handleClick }) => {
           credentials: true
         }, transports: ['websocket']
       })
-      console.log("HE CREATO EL SOCKET MADAFAKA")
       const roomName = [...otherUser._id.split(""), ...loggedUser._id.split("")].sort().join("")
       setRoom(`${roomName}`)
 
-      socket.emit('join', { username, room: roomName }, () => {
+      socket.emit('join', { username, room: room }, () => {
       })
 
       return () => {

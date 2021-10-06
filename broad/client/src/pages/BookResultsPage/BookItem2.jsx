@@ -62,19 +62,58 @@ const BookItem = ({ book }) => {
   }
 
   return (
-    <Col className='d-flex' md={4} style={{ height: '40%' }}>
+    <Col>
+      <Card style={{ height: '100%' }}>
+        <Card.Img style={{ maxHeight: '200px', objectFit: 'cover' }} variant="top" src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
+        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Card.Title>{title.length < 15 ? title : title}</Card.Title>
+
+          <Card.Text>
+            {
+              (authors.length > 1 ?
+                authors.map((author, index) => index !== authors.length - 1 ? `${author}, ` : author)
+                :
+                authors[0])
+            }
+          </Card.Text>
+
+          <Card.Text>
+            Published: {publishedDate}
+          </Card.Text>
+
+          <div className="buttonsList">
+
+            <Button style={{ width: '100%' }} variant="secondary">
+              {!wantToExchange ? 'I have this book and want to exchange it' : `I don't want to exchange this book anymore`}
+            </Button>
+
+            <Dropdown >
+              <Dropdown.Toggle variant="primary" style={{ width: '100%' }} className="mt-4">
+                Add to my library
+              </ Dropdown.Toggle>
+              <Dropdown.Menu variant="dark" style={{ width: '100%' }}>
+                <Dropdown.Item data-status="WANTSTOREAD" onClick={(e) => handleBookChangeClick(e)}>Want to Read</Dropdown.Item>
+                <Dropdown.Item data-status="READING" onClick={(e) => handleBookChangeClick(e)}>Reading</Dropdown.Item>
+                <Dropdown.Item data-status="READ" onClick={(e) => handleBookChangeClick(e)}>Read</Dropdown.Item>
+              </ Dropdown.Menu>
+            </ Dropdown>
+
+          </div>
+
+
+        </ Card.Body>
+      </ Card>
+    </ Col>
+  )
+
+  {/* <Col className='d-flex' md={4} style={{ height: '40%' }}>
       <Card className='flex-book' >
 
         <Card.Img
           className='img-book-item'
           style={{ width: '40%', alignSelf: 'center' }}
           variant="top"
-          src={imageLinks?.thumbnail ? (imageLinks.largeThumbnail ? imageLinks.largeThumbnail : imageLinks.thumbnail) : defaultImages.bookCover}
-        >
-
-          <div style={{ width: '100%', height: '100%', background: 'red', zIndex: 1 }} className="prueba">
-          </div>
-        </Card.Img>
+          src={imageLinks?.thumbnail ? imageLinks.thumbnail : defaultImages.bookCover} />
 
         <Card.Body>
           <Card.Title>{title}</Card.Title>
@@ -116,8 +155,8 @@ const BookItem = ({ book }) => {
 
         </Card.Body>
       </Card>
-    </Col>
-  );
+    </Col> */}
+  //);
 }
 
 export default BookItem;

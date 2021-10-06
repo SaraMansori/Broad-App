@@ -11,17 +11,14 @@ const ChatItem = ({ chat, handleChat, currentChat }) => {
   const { loggedUser } = useContext(UserContext)
   const chatUserId = chat.participants.find(participant => participant !== loggedUser._id)
   const usersService = new UsersService()
-  //const [users, setUsers] = useState('');
 
   const [otherUser, setOtherUser] = useState(undefined)
   const [isThisChatOpen, setIsThisChatOpen] = useState(false)
 
-  let history = useHistory()
   const location = useLocation()
   const data = queryString.parse(location.search)
 
   useEffect(() => {
-    console.log(isThisChatOpen)
     setIsThisChatOpen(chat === currentChat)
   }, [data])
 
