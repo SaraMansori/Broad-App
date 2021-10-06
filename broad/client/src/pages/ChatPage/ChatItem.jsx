@@ -27,7 +27,7 @@ const ChatItem = ({ chat, handleChat, currentChat }) => {
       usersService
         .getUserInfo(chatUserId)
         .then(res => {
-          setOtherUser(res.data.user)
+          setOtherUser(res.data)
         })
         .catch(err => console.error(err))
     }

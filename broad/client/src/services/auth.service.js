@@ -12,6 +12,7 @@ class AuthService {
   login = (username, pwd) => this.instance.post("/login", { username, pwd })
   logout = () => this.instance.get("/logout")
   isLoggedIn = () => this.instance.post("/isloggedin")
+  refreshSession = () => this.instance.post("/refreshSession")
 }
 
 export default AuthService;

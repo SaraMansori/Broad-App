@@ -6,7 +6,7 @@ import SearchBar from '../../components/styledComponents/atomicComponents/Search
 import BookItem from './BookItem'
 
 
-const BookResultsPage = props => {
+const BookResultsPage = () => {
 
   const type = 'radio'
 
@@ -33,7 +33,7 @@ const BookResultsPage = props => {
 
   useEffect(() => {
     getBooksByType()
-  }, [text, props])
+  }, [text])
 
   return (
     <Container>

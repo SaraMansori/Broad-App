@@ -12,7 +12,7 @@ class ChatService {
 
   createChat = otherUserId => this.instance.post('/', { otherUserId })
 
-  addMessage = (message, chat) => this.instance.put('/messages', { message, chat })
+  addMessage = (message, chat) => this.instance.put('/', { message, chat })
 
 }
 

@@ -57,7 +57,7 @@ const ChatPage = () => {
   }, [loggedUser])
 
   useEffect(() => {
-    data.user ? setIsChatOpen(true) : setIsChatOpen(false)
+    setIsChatOpen(!!data)
   }, [data])
 
   return (
@@ -71,7 +71,7 @@ const ChatPage = () => {
             )}
           </Col>
           <Col md={6}>
-            {isChatOpen &&
+            {isChatOpen && currentChat &&
               <Chat otherUser={otherUser} chat={currentChat} />
             }
           </Col>

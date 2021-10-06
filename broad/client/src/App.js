@@ -31,7 +31,7 @@ const App = props => {
   return (
     <>
       <Router>
-        <UserProvider value={{ loggedUser, storeUser }}>
+        <UserProvider value={{ loggedUser, storeUser, fetchUser }}>
           <Navbar {...props} />
 
           <Routes {...props} />

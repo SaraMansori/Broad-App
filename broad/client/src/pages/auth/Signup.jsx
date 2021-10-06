@@ -30,7 +30,7 @@ const SignupForm = () => {
 		authService
 			.signup(email, username, pwd)
 			.then(res => {
-				storeUser(res.data.user)
+				storeUser(res.data)
 				history.push('/')
 				clearState()
 			})

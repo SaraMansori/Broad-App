@@ -19,11 +19,13 @@ const Message = ({ message: { user, text }, username }) => {
     isSentByCurrentUser ?
 
       (
-        <MessageContainerEnd>
-          <LightMessage className="mb-4" text={text}>
-            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
-          </LightMessage>
-        </MessageContainerEnd>
+        <div>
+          <MessageContainerEnd>
+            <LightMessage className="mb-4" text={text}>
+              <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
+            </LightMessage>
+          </MessageContainerEnd>
+        </div>
       )
 
       :
@@ -31,19 +33,23 @@ const Message = ({ message: { user, text }, username }) => {
       (isSentByAdmin ?
 
         (
-          <AdminMessage className="mb-4" text={text}>
-            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
-          </AdminMessage>
+          <div >
+            <AdminMessage className="mb-4" text={text}>
+              <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
+            </AdminMessage>
+          </div>
         )
 
         :
 
         (
-          <MessageContainerStart>
-            <PurpleMessage className="mb-4">
-              <p className="sentText colorDark pl-10 mb-4">{ReactEmoji.emojify(text)}</p>
-            </PurpleMessage>
-          </MessageContainerStart>
+          <div>
+            <MessageContainerStart>
+              <PurpleMessage className="mb-4">
+                <p className="sentText colorDark pl-10 mb-4">{ReactEmoji.emojify(text)}</p>
+              </PurpleMessage>
+            </MessageContainerStart>
+          </div>
         )
       )
   )

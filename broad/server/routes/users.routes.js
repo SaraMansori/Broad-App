@@ -69,7 +69,6 @@ router.get('/', (req, res) => {
 
 router.put('/update/books', (req, res) => {
   //meter middleware que si no peta si el user no está logged
-  console.log('----------------- HELLOOO')
   const userId = req.session.currentUser._id
   const { book } = req.body
   let hasBook = false
@@ -82,7 +81,7 @@ router.put('/update/books', (req, res) => {
 
       hasBook = user.books.some(userBook => userBook.id === book.id)
 
-      if (book.status) {
+      if (book.hasOwnProperty('status')) {
 
         if (hasBook) {
           const newBookStatus = book.status
@@ -94,10 +93,8 @@ router.put('/update/books', (req, res) => {
         } else {
           return User.findByIdAndUpdate(userId, { $push: { books: book } })
         }
-      } else if (book.wantsToExchange) {
+      } else if (book.hasOwnProperty('wantsToExchange')) {
         if (hasBook) {
-
-          console.log('----------------- HAS BOOK')
 
           return User.findOneAndUpdate({ _id: userId, books: { $elemMatch: { id: book.id } } },
             { $set: { 'books.$.wantsToExchange': book.wantsToExchange } },
@@ -255,7 +252,7 @@ router.get('/:id', (req, res) => {
   User
     .findById(id)
     .select('email username profileImage name description locationInfo favoriteGenres books friends')
-    .then(user => res.status(200).json({ user }))
+    .then(user => res.status(200).json(user))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving user", err }))
 
 })
