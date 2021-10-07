@@ -14,7 +14,6 @@ const path = require('path')
 
 io.on('connect', (socket) => {
 
-
   socket.on('join', ({ username, room }, callback) => {
 
     const { error, user } = addUser({ id: socket.id, username, room })
@@ -49,7 +48,7 @@ io.on('connect', (socket) => {
 require("./config")(app)
 require('./config/session.config')(app)
 
-app.use(express.static(path.join(__dirname, '..', "public")))
+app.use(express.static(path.join(__dirname, "public")))
 const allRoutes = require("./routes")
 app.use("/api", allRoutes)
 
