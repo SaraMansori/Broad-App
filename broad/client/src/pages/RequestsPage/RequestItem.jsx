@@ -22,16 +22,14 @@ const RequestsItem = ({ _id, owner, book, getRequests }) => {
   return (
     <Row>
       <Col md={3} style={{ marginTop: '10px' }}>
-        <Row className='request-card'>
+        <Row className='request-card mb-3'>
+          <p><b>{book?.title}</b></p>
           <Col className='col-3'>
             <Link className='plain-link' to={`/users/${owner._id}`}>{owner.username}</Link>
-            <p>would like to borrow the book: '{book.title}'</p>
           </Col>
           <Col className='col-8'>
-            <div>
-              <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="secondary">Accept</Button>
-              <Button onClick={changeRequestStatus} data-status="REJECTED" variant="primary">Reject</Button>
-            </div>
+            <Button onClick={changeRequestStatus} data-status="ACCEPTED" variant="secondary" style={{ marginRight: '3px' }}>Accept</Button>
+            <Button onClick={changeRequestStatus} data-status="REJECTED" variant="primary">Reject</Button>
           </Col>
         </Row>
       </Col>

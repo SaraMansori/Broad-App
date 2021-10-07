@@ -89,9 +89,12 @@ const UsersItem = ({ getUsers, user }) => {
     <Col md={3}>
       <Card className='user-card'>
 
-        <ProfilePicture variant="top" image={user.profileImage || 'https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg'} />
+
 
         <Card.Body>
+          <Link to={`/users/${user._id}`}>
+            <ProfilePicture variant="top" image={user.profileImage || 'https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg'} />
+          </Link>
           <Card.Title>{user.username}</Card.Title>
           <Link className='plain-link' to={`/users/${user._id}`}>Visit Profile</Link>
           <br />
@@ -115,7 +118,7 @@ const UsersItem = ({ getUsers, user }) => {
           {(buttonToShow === 'PENDING RECEIVER' || buttonToShow === 'REJECTED RECEIVER') &&
             <Button
               onClick={e => handleFriendship(e, requestsService.manageRequest(friendshipRequest._id, 'ACCEPTED'))}
-              variant="primary">
+              variant="primary" style={{ marginRight: '10px' }}>
               Accept
             </Button>
           }

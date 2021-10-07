@@ -4,7 +4,7 @@ import Routes from './components/Routes'
 import { UserProvider } from './UserContext'
 import Navbar from './components/Layout/Navtop'
 import AuthService from './services/auth.service'
-import './Css/App.css'
+import './Sass/App.scss'
 
 const authService = new AuthService()
 

@@ -22,6 +22,7 @@ const ProfilePicture = styled.div`
   z-index: 1;
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
 `
 
 export { Header, ProfilePicture }

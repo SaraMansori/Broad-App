@@ -12,11 +12,11 @@ const RequestsList = ({ getRequests, requests }) => {
   })
 
   return (
-    <Container>
+    <>
       {
         friendshipRequests.length > 0 &&
         <>
-          <h2>Friendship Requests</h2>
+          <h2 className="mt-5">Friendship Requests</h2>
           {displayRequests(friendshipRequests)}
         </>
       }
@@ -24,11 +24,11 @@ const RequestsList = ({ getRequests, requests }) => {
       {
         exchangeRequests.length > 0 &&
         <>
-          <h2>Exchange Requests</h2>
+          <h2 className="mt-5">Exchange Requests</h2>
           {displayRequests(exchangeRequests)}
         </>
       }
-    </Container>
+    </>
   )
 
 }
