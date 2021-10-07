@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Form, Container, Row, Col } from 'react-bootstrap'
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import BookService from '../../services/books.service'
 import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar'
 import BookItem from '../BookResultsPage/BookItem'
 
+const bookService = new BookService()
 
 const BookResultsPage = () => {
 
@@ -13,7 +14,7 @@ const BookResultsPage = () => {
   const [searchType, setSearchType] = useState('title')
   const [books, setBooks] = useState([])
 
-  let bookService = new BookService()
+  let location = useLocation()
 
   const { text } = useParams()
 
@@ -33,7 +34,7 @@ const BookResultsPage = () => {
 
   useEffect(() => {
     getBooksByType()
-  }, [text])
+  }, [text, location])
 
   return (
     <Container>

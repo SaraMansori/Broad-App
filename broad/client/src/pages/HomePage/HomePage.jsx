@@ -2,9 +2,11 @@ import * as React from 'react'
 import { H2, H6, ImageReading, Welcome, Ready, NewLife, Hit, Hit2, Quote1, Quote2, Quote3, RectContainer, GreenRectangle, BookCover, BookDesc, PurpleRectangle, BroadFeatures, BroadDesc, Icon } from '../../components/styledComponents/styledPages/HomePageStyle'
 import { Link } from 'react-router-dom'
 import { SIGNUP } from '../../utils/paths'
-
+import toast, { Toaster } from 'react-hot-toast';
 
 const HomePage = () => {
+
+  const notify = () => toast('Here is your toast.');
 
   return (
     <div style={{ marginTop: '-30px' }}>
@@ -70,8 +72,11 @@ const HomePage = () => {
             </BroadDesc>
           </BroadFeatures>
           <br />
+          <>
+            <H6 onClick={notify} style={{ textAlign: 'center' }}>This and much more awaits for you on Broad!</H6>
+            <Toaster />
+          </>
 
-          <H6 style={{ textAlign: 'center' }}>This and much more awaits for you on Broad!</H6>
           <br />
           <p style={{ textAlign: 'center' }}>
             <Hit2 className='button-link' as={Link} to={SIGNUP} type="submit">

@@ -47,10 +47,10 @@ const UserProfilePage = () => {
     <Container className="mb-5" style={{ height: '100vh', borderRadius: '15px' }}>
       <Row style={{ minHeight: '60vh' }}>
 
-        <Header className="col-12 header p-5"></Header>
+        <Header className="col-md-12 header p-5 mb-5" />
 
-        <div className="col-4" style={{ background: '#F4E7DE', height: '100%' }}>
-          <div className="ml-5 mt-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
+        <div className="col-md-4 col-sm-12 mb-3" style={{ background: '#F4E7DE', height: '100%' }}>
+          <div className="ml-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
 
             <div className="info">
               <ProfilePicture image={loggedUser.profileImage || 'https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg'} />
@@ -69,8 +69,8 @@ const UserProfilePage = () => {
           </div>
         </div>
 
-        <div className="col-8" style={{ background: '#F4E7DE' }}>
-          <div className="ml-5 p-5  mt-5" style={{ background: '#805D93', height: '100%', borderRadius: '15px', color: 'white' }} >
+        <div className="col-md-8 col-sm-12" style={{ background: '#F4E7DE' }}>
+          <div className="ml-5 p-5 " style={{ background: '#805D93', height: '100%', borderRadius: '15px', color: 'white' }} >
             <h1>My Books</h1>
             <h3>I Want To Read</h3>
             <h3>Reading</h3>

@@ -4,8 +4,6 @@ import RequestsService from '../../services/requests.service'
 import RequestsList from './RequestsList'
 
 const requestsService = new RequestsService()
-
-
 const RequestsPage = props => {
 
   const [requests, setRequests] = useState(null)

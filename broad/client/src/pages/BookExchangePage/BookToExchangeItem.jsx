@@ -124,7 +124,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
           {!chatExists &&
             <Button
               onClick={e => createChat(e)}
-              variant="secondary">
+              variant="info">
               Start Chat
             </Button>
           }
@@ -140,7 +140,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
           {!exchangeRequest &&
             <Button
               onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
-              variant="primary">
+              variant="primary" className="mt-2">
               Send Exchange Request
             </Button>
           }
@@ -148,7 +148,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
           {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
             <Button
               onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
-              variant="primary">
+              variant="danger" style={{ color: 'white' }} className="mt-2">
               Cancel Request
             </Button>
           }
