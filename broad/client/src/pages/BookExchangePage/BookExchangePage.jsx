@@ -27,7 +27,7 @@ const BookExchangePage = props => {
 
   return (
     <Container>
-      <h1 className="mb-5">Available Books To Exchange</h1>
+      <h1 className="mb-5 text-center">Available Books To Exchange</h1>
 
       <SearchBar />
 

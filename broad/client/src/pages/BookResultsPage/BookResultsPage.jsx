@@ -40,7 +40,7 @@ const BookResultsPage = () => {
     <Container>
       <Row>
         <Col style={{ marginBottom: '10px' }}>
-          <h1 className='mb-5'>These are your results</h1>
+          <h1 className='mb-5 text-center'>These are your results</h1>
 
           <SearchBar searchType={searchType} />
 

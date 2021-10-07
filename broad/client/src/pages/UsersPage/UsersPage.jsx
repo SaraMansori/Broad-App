@@ -23,7 +23,7 @@ const UsersPage = () => {
 
   return (
     <Container>
-      <h1>Broad Users</h1>
+      <h1 className="text-center mb-4">Broad Users</h1>
       {users?.length ?
         <UsersList getUsers={getUsers} users={users} />
         :
