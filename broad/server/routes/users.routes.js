@@ -102,7 +102,7 @@ router.put('/update/books', isLoggedIn, (req, res) => {
           )
 
         } else {
-          return User.findByIdAndUpdate(userId, { $push: { books: book } })
+          return User.findByIdAndUpdate(userId, { $push: { books: book } }, { new: true })
         }
       }
     })

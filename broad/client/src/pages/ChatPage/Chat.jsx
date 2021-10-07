@@ -28,7 +28,8 @@ const Chat = ({ chat, otherUser, handleClick }) => {
     return {
       text: message.text,
       owner: message.owner,
-      hasBeenRead: message.hasBeenRead
+      hasBeenRead: message.hasBeenRead,
+      user: message.user
     }
   }
 
@@ -89,7 +90,7 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
   useEffect(() => {
     socket.on('message', message => {
-      updateMessages(message)
+      updateMessages(parseMessage(message))
     })
   }, [messages])
 

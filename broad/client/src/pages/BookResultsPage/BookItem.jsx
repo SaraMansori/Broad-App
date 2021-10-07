@@ -57,6 +57,7 @@ const BookItem = ({ book }) => {
     usersService
       .updateUserBooks(book)
       .then(res => {
+        console.log(res.data)
         storeUser(res.data)
         //en un futuro actualizar estado para que el boton cambie dependiendo de lo que haya en la bbdd
       })

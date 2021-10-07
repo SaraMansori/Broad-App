@@ -25,14 +25,14 @@
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^12.1.0",
 		"@testing-library/user-event": "^13.2.1",
+		"cross-env": "^7.0.3",
 		"sass": "^1.42.1"
 	},
 	"scripts": {
-		"start": "REACT_APP_BASE_URL=http://localhost:5005/api react-scripts start",
-		"build": "REACT_APP_BASE_URL=https://broad-books.herokuapp.com/api react-scripts build",
+		"start": "cross-env REACT_APP_BASE_URL=http://localhost:5005/api react-scripts start",
+		"build": "cross-env REACT_APP_BASE_URL=https://donuts-planet.herokuapp.com/api react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"sass": "sass src/Sass:src/Css --watch --no-source-map"
+		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
 		"extends": [

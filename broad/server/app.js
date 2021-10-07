@@ -33,7 +33,7 @@ io.on('connect', (socket) => {
 
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id)
-    io.to(user.room).emit('message', { owner: user.id, text: message, hasBeenRead: false })
+    io.to(user.room).emit('message', { owner: user, text: message, hasBeenRead: false })
 
     callback()
   })
