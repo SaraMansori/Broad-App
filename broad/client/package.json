@@ -30,7 +30,7 @@
 	},
 	"scripts": {
 		"start": "cross-env REACT_APP_BASE_URL=http://localhost:5005/api react-scripts start",
-		"build": "cross-env REACT_APP_BASE_URL=https://donuts-planet.herokuapp.com/api react-scripts build",
+		"build": "cross-env REACT_APP_BASE_URL=https://broad-books.herokuapp.com/api react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"sass": "sass src/Sass:src/Css --watch --no-source-map"
