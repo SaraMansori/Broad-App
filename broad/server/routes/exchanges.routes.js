@@ -6,9 +6,9 @@ const APIHandler = require('../services/APIHandler')
 const API = new APIHandler
 
 
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/:id', isLoggedIn, (req, res) => {
 
-  const id = req.session.currentUser._id
+  const { id } = req.params
 
   ExchangedBook
     .find({ $or: [{ receiver: id }, { owner: id }] })

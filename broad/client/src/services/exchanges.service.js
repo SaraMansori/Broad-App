@@ -10,7 +10,7 @@ class ExchangesService {
     })
   }
 
-  getExchangedBooks = () => this.instance.get('/')
+  getExchangedBooks = id => this.instance.get(`/${id}`)
 
 }
 
