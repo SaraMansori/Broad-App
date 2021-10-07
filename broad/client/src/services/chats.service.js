@@ -5,7 +5,7 @@ class ChatService {
   
   constructor() {
     this.instance = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/chats`,
+      baseURL: `${process.env.REACT_APP_BASE_URL}/chats`,
       withCredentials: true,
     })
   }

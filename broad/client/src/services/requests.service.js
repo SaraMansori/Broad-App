@@ -5,7 +5,7 @@ class RequestsService {
 
   constructor() {
     this.instance = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/requests`,
+      baseURL: `${process.env.REACT_APP_BASE_URL}/requests`,
       withCredentials: true
     })
   }

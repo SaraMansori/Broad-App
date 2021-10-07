@@ -17,8 +17,7 @@ import ChatPage from '../../pages/ChatPage/ChatPage'
 import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
 import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage'
 import ProtectedRoutes from './ProtectedRoutes'
-import '../../App.scss'
-
+  
 
 const Routes = props => {
 

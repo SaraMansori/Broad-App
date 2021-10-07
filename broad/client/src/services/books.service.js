@@ -5,7 +5,7 @@ class BookService {
 
   constructor() {
     this.instance = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}/books`,
+      baseURL: `${process.env.REACT_APP_BASE_URL}/books`,
       withCredentials: true
     })
   }
