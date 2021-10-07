@@ -107,7 +107,7 @@ const UsersItem = ({ getUsers, user }) => {
           {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
             <Button
               onClick={e => handleFriendship(e, requestsService.deleteRequest(user._id, type))}
-              variant="primary">
+              variant="info" style={{ color: 'white' }}>
               Cancel Request
             </Button>
           }
@@ -131,7 +131,7 @@ const UsersItem = ({ getUsers, user }) => {
           {areFriends &&
             <Button
               onClick={e => handleFriendship(e, usersService.deleteFriend(user._id))}
-              variant="primary">
+              variant="danger" style={{ color: 'white' }}>
               Delete Friend
             </Button>
           }

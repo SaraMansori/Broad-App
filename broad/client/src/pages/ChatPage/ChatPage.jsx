@@ -7,6 +7,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import queryString from 'query-string'
 import Chat from './Chat'
 import ChatsService from '../../services/chats.service'
+import chatAnimation from '../../Animations/chats'
 
 
 const ChatPage = () => {
@@ -36,13 +37,10 @@ const ChatPage = () => {
     }
   }
 
-  //const size = isChatOpen ? 6 : 6
-
-  /*   const handleClick = (otherUser, chat, btnStatus) => {
-      setIsChatOpen(!btnStatus)
-      !data.otherUser ? history.push(`/chats?otherUser=${otherUser._id}`) : history.push(`/chats`)
-      setChat(chat)
-    } */
+  const handleClick = () => {
+    history.push(`/chats`)
+    setCurrentChat(undefined)
+  }
 
   const changeActiveChatUser = user => setOtherUser(user)
 
@@ -64,7 +62,7 @@ const ChatPage = () => {
   return (
     <>
       <Container>
-        <h1>Tus chats disponibles</h1>
+        <h1 className='mb-5'>Your chats 💬</h1>
         <Row>
           <Col md={6}>
             {chats.map((chat, i) =>
@@ -73,7 +71,10 @@ const ChatPage = () => {
           </Col>
           <Col md={6}>
             {isChatOpen && currentChat &&
-              <Chat otherUser={otherUser} chat={currentChat} />
+              <Chat otherUser={otherUser} chat={currentChat} handleClick={handleClick} />
+            }
+            {!isChatOpen &&
+              <div>{chatAnimation}</div>
             }
           </Col>
         </Row>

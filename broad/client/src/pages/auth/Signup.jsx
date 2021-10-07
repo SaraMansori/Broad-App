@@ -4,11 +4,15 @@ import { InputGroup, Button, FormControl, Container } from 'react-bootstrap/'
 import { Link, useHistory } from 'react-router-dom'
 import AuthService from '../../services/auth.service'
 import { LOGIN } from '../../utils/paths'
+import toast, { Toaster } from 'react-hot-toast';
 
 const authService = new AuthService()
+const wrongPassword = () => toast.error("Wrong password, please try again.")
+
 
 const SignupForm = () => {
 	const [formData, setFormData] = useState({ email: '', username: '', pwd: '' })
+	const [toasts, setToasts] = useState()
 
 	let history = useHistory();
 	const { storeUser } = useContext(UserContext)
@@ -31,14 +35,18 @@ const SignupForm = () => {
 			.signup(email, username, pwd)
 			.then(res => {
 				storeUser(res.data)
+				/* 				if (res.code === 401) {
+									setToasts(wrongPassword)
+								} */
 				history.push('/signup/genres')
 				clearState()
 			})
-			.catch(err => console.error(err))
+			.catch(err => console.error('hii', err))
 	};
 
 	return (
 		<Container className='d-flex justify-content-center flex-column align-items-center'>
+			{toasts}
 			<h3>Sign Up</h3>
 			<form onSubmit={handleSubmit}>
 				<InputGroup style={{ display: 'inline-block' }}>

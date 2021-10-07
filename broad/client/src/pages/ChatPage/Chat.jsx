@@ -106,7 +106,7 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
       </ChatContainer>
     </OuterContainer>
-  ) : "Loading.."
+  ) : "Loading..."
 
 }
 

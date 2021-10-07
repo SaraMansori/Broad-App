@@ -39,11 +39,11 @@ const ChatItem = ({ chat, handleChat, currentChat }) => {
     <>
       {loggedUser &&
         <div className="d-flex">
-          <Card style={{ width: '100%' }} body>
+          <Card className="mb-4" style={{ width: '100%' }} body>
             <h5>Chat with: {otherUser?.username}</h5>
             {isThisChatOpen ?
               (
-                <Button onClick={() => { handleChat(true, chat, otherUser) }}>
+                <Button variant='info' onClick={() => { handleChat(true, chat, otherUser) }}>
                   Close Chat
                 </Button>
               )
