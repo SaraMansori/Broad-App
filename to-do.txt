@@ -1,18 +1,45 @@
 * [x]Redireccionar a Home al hacer LogOut
 * [x] Da error en authors.length si no hay books to exchange en el user
 * [x] Petición want to exchange 
-* [] Revisar recarga de contexto al añadir libros a wantToExchange -- [URGENT]
-* [] No salen users  en '/users' al ser usuario nuevo
-* [] Gestión de notificaciones
-* [] Los libros no se quedan al añadir y refrescar el perfil
-* [] Borrar query parser custom si no se usa
+* [x] Revisar recarga de contexto al añadir libros a wantToExchange -- [URGENT]
+* [x] No salen users  en '/users' al ser usuario nuevo --> GESTIÓN DE MIDDLEWARES
+	* Pero da igual porque no va a poder verla
+* [x] Los libros no se quedan al añadir y refrescar el perfil
+* [x] Persistencia de los mensajes del chat -- [URGENT]
+	* [x] Crear mensajes y actualizar backend chat
+	* [x] Mostrar mensajes en el front cuando el usuario entra a sus chats
+* [x] Transformar signup/info y signuo/genres a Bootstrap [URGENT] -- vane 
+* [x] Redireccionar cuando haces 'SignUp' -> signup/info + signup/genres + home
 * [] Añadir barra de búsqueda a la vista de 'usuarios'
 	*[paginación]
 * [] Añadir barra de búsqueda a la vista 'book-exchange'
 	*[paginación]
-* [] Cambiar botón de 'Add to my library' dependiendo del status
-* [] Rehacer el README.md
-* [] Persistencia de los mensajes del chat -- [URGENT]
 * [] Middlewares y mensajes 'toast' al usuario -- [URGENT]
+	* [x] Middlewares backend
+	* [] Middlewares frontend y toast
 	-- https://react-hot-toast.com/
-* [] Edit user profile
+* [x] Edit user profile [URGENT]
+* [x] Eliminar materialUI y todas sus dependencias [URGENT] 
+* [] Style 'My requests' page
+* [] Rehacer el README.md
+* [] Eliminar 'Swap', 'Discover Books', 'Community' y 'SearchBar' si no hay user logged
+* [] Cambiar botón de 'Add to my library' dependiendo del status
+* [] Gestión de notificaciones
+* [] Borrar query parser custom si no se usa y cualquier libería innecesaria
+* [] Recuperar contraseña
+* [] Cuando edites el usuario que no elimine la imagen si no se pone ninguna o que el usuario no pueda acceder a signup/info o signup/genres  
+* [] Cuando haces clic en un elemento de la navbar que se cierre automaticamente
+* [] Enlaces del perfil a la pagina de detalles de los libros
+* [] Crear página de detalles de los libros
+* [] Arreglar Styling de Links
+* [] Utils de server
+* [] Buscar comentarios y TODOs para eliminarlos/gestionarlos [URGENT]
+* [] Desde requests la ruta del user profile PETA [URGENT]
+
+
+
+** PREGUNTAS PARA TEO **
+
+* [x] Por qué los friends no se actualizan en el otro usuario si no cierra sesion y la vuelve a abrir (cosa de contexto?)
+	-- solución: nueva ruta refreshSession
+* [x] Por qué en Messages.jsx la función displayMessages no funciona pero el map directamente sí (faltaba el return)
