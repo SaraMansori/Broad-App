@@ -37,7 +37,7 @@ const SearchBar = (props) => {
 	}
 
 	return (
-		<form id="toggle-search" onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit}>
 
 			<InputGroup>
 				<FormControl

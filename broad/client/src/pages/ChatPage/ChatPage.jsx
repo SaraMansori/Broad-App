@@ -7,7 +7,6 @@ import { useLocation, useHistory } from 'react-router-dom'
 import queryString from 'query-string'
 import Chat from './Chat'
 import ChatsService from '../../services/chats.service'
-import chatAnimation from '../../Animations/chats'
 
 
 const ChatPage = () => {
@@ -63,18 +62,18 @@ const ChatPage = () => {
     <>
       <Container>
         <h1 className='mb-5'>Your chats 💬</h1>
-        <Row>
-          <Col md={6}>
+        <Row style={{ height: '70vh' }}>
+          <Col style={{ maxHeight: '100%' }} md={6}>
             {chats.map((chat, i) =>
               <ChatItem key={`${chat}-${i}`} setIsChatOpen={setIsChatOpen} chat={chat} currentChat={currentChat} handleChat={handleChat} changeActiveChatUser={changeActiveChatUser} isChatOpen={isChatOpen} otherUser={otherUser} />
             )}
           </Col>
-          <Col md={6}>
+          <Col style={{ maxHeight: '100%' }} md={6}>
             {isChatOpen && currentChat &&
-              <Chat otherUser={otherUser} chat={currentChat} handleClick={handleClick} />
+              <Chat style={{ maxHeight: '100%' }} otherUser={otherUser} chat={currentChat} handleClick={handleClick} />
             }
             {!isChatOpen &&
-              <div>{chatAnimation}</div>
+              <p>Chat Animation</p>
             }
           </Col>
         </Row>

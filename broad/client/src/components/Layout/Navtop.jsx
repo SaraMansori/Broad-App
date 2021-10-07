@@ -46,7 +46,7 @@ const Navtop = props => {
                   <Nav.Link as={Link} to="/users">Community</Nav.Link>
                 </Nav>
                 <Nav className="me-auto">
-                  <SearchBar />
+                  <SearchBar id="toggle-search" />
                 </Nav>
                 <Nav>
                   <Nav.Link style={{ marginRight: '3rem' }} as={Link} to={PROFILE}>Welcome {loggedUser.username} &#9825; </Nav.Link>
