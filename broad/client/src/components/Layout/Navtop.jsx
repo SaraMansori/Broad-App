@@ -42,7 +42,7 @@ const Navtop = props => {
               (<>
                 <Nav id="responsive-navbar-nav" className="me-auto">
                   <Nav.Link as={Link} to="/book-exchange">Swap Books!</Nav.Link>
-                  <Nav.Link as={Link} to="/book-results/title/+">Discover Books</Nav.Link>
+                  <Nav.Link as={Link} to="/book-results/title/+">Discover</Nav.Link>
                   <Nav.Link as={Link} to="/users">Community</Nav.Link>
                 </Nav>
                 <Nav className="me-auto">
