@@ -41,12 +41,12 @@ const Navtop = props => {
             loggedUser ?
               (<>
                 <Nav id="responsive-navbar-nav" className="me-auto">
-                  <Nav.Link as={Link} to="/book-exchange">Swap!</Nav.Link>
-                  <Nav.Link as={Link} to="/book-results/+">Discover Books</Nav.Link>
+                  <Nav.Link as={Link} to="/book-exchange">Swap Books!</Nav.Link>
+                  <Nav.Link as={Link} to="/book-results/title/+">Discover Books</Nav.Link>
                   <Nav.Link as={Link} to="/users">Community</Nav.Link>
                 </Nav>
                 <Nav className="me-auto">
-                  <SearchBar id="toggle-search" />
+                  <SearchBar type='books' id="toggle-search" />
                 </Nav>
                 <Nav>
                   <Nav.Link style={{ marginRight: '3rem' }} as={Link} to={PROFILE}>Welcome {loggedUser.username} &#9825; </Nav.Link>
@@ -57,7 +57,6 @@ const Navtop = props => {
                     <NavDropdown.Item as={Link} to={PROFILE}>My Profile</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to={REQUESTS}>My Requests</NavDropdown.Item>
                     <NavDropdown.Item as={Link} to={CHATS}>My chats</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="#">Settings</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
                   </NavDropdown>
