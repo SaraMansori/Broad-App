@@ -6,6 +6,7 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/chatUs
 const express = require("express")
 const socketio = require("socket.io")
 const http = require("http")
+const cors = require("cors")
 
 const app = express()
 const server = http.createServer(app)
@@ -51,6 +52,7 @@ require('./config/session.config')(app)
 app.use(express.static(path.join(__dirname, "public")))
 const allRoutes = require("./routes")
 app.use("/api", allRoutes)
+app.use(cors())
 
 app.use((req, res) => res.sendFile(__dirname + "/public/index.html"))
 
