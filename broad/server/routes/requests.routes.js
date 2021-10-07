@@ -50,10 +50,11 @@ router.get('/:type', isLoggedIn, (req, res) => {
 
 router.post('/', isLoggedIn, (req, res) => {
 
-  // comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra
-  // esto está gestionado desde el front con el cambio de botones, pero hay que hacerlo en back
+  /* comprobar si existe ya una request del tipo que se intenta crear, y si es así, no crear otra
+  esto está gestionado desde el front con el cambio de botones, pero hay que hacerlo en back
+  (si existe una peticion de ese tipo entre ambos users, devolver error, si no: crearla) */
   const { receiver, type, book } = req.body
-  const owner = req.session.currentUser._id // sustituir por un id para probar en postman
+  const owner = req.session.currentUser._id
 
   const data = book ? { owner, receiver, type, book } : { owner, receiver, type }
 

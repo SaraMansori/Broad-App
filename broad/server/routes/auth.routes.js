@@ -86,7 +86,11 @@ router.get('/logout', isLoggedIn, (req, res) => {
 
 
 router.post("/refresh-session", isLoggedIn, (req, res) => {
-  User.findById(req.session.currentUser._id)
+
+  const id = req.session.currentUser._id
+
+  User
+    .findById(id)
     .then(user => {
       req.session.currentUser = user
       res.json(req.session.currentUser)
