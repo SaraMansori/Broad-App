@@ -10,6 +10,7 @@ const http = require("http")
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
+const path = require('path')
 
 io.on('connect', (socket) => {
 
@@ -48,10 +49,10 @@ io.on('connect', (socket) => {
 require("./config")(app)
 require('./config/session.config')(app)
 
+app.use(express.static(path.join(__dirname, '..', "public")))
 const allRoutes = require("./routes")
 app.use("/api", allRoutes)
 
-app.use(express.static(path.join(__dirname, "public")))
 app.use((req, res) => res.sendFile(__dirname + "/public/index.html"))
 
 module.exports = server
