@@ -5,11 +5,13 @@ import { useContext } from "react"
 
 const Message = ({ message, otherUser }) => {
 
+  console.log(message)
+
   const { loggedUser } = useContext(UserContext)
 
   return (
     <div>
-      {message.owner === loggedUser._id &&
+      {(message.owner === loggedUser._id || message.user === loggedUser.username) &&
 
         <MessageContainerEnd>
           <LightMessage className="mb-4" text={message.text}>
@@ -18,7 +20,14 @@ const Message = ({ message, otherUser }) => {
         </MessageContainerEnd>
 
       }
-      {message.owner === otherUser._id &&
+
+      {message.user === 'admin' &&
+        <AdminMessage className="mb-4" text={message.text}>
+          <p className="messageText colorWhite">{ReactEmoji.emojify(message.text)}</p>
+        </AdminMessage>
+      }
+
+      {message.owner !== loggedUser._id && message.user !== loggedUser.username && message.user !== 'admin' &&
 
         <MessageContainerStart>
           <PurpleMessage className="mb-4">
@@ -26,12 +35,6 @@ const Message = ({ message, otherUser }) => {
           </PurpleMessage>
         </MessageContainerStart>
 
-      }
-
-      {message.owner !== loggedUser._id && message.owner !== otherUser._id &&
-        <AdminMessage className="mb-4" text={message.text}>
-          <p className="messageText colorWhite">{ReactEmoji.emojify(message.text)}</p>
-        </AdminMessage>
       }
     </div>
 
