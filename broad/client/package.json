@@ -29,11 +29,12 @@
 		"sass": "^1.42.1"
 	},
 	"scripts": {
-		"start": "cross-env REACT_APP_BASE_URL=http://localhost:5005/api react-scripts start",
-		"build": "cross-env REACT_APP_BASE_URL=https://broad-books.herokuapp.com/api react-scripts build",
+		"start": "cross-env REACT_APP_SOCKET_URL=http://localhost:5005/api REACT_APP_BASE_URL=http://localhost:5005/api react-scripts start",
+		"build": "cross-env REACT_APP_SOCKET_URL=https://broad-books.herokuapp.com REACT_APP_BASE_URL=https://broad-books.herokuapp.com/api react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"sass": "sass src/Sass:src/Css --watch --no-source-map"
+		"sass": "sass src/Sass:src/Css --watch --no-source-map",
+		"linux_deploy": "rm -rf build/*; rm -rf ../server/public/*; npm run sass; npm run build; mv build/* ../server/public; cd ..; git add .; git commit -m deploy; git subtree push --prefix server heroku_app_master main"
 	},
 	"eslintConfig": {
 		"extends": [

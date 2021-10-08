@@ -121,38 +121,41 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
             <p>Owner : {owner}</p>
           </Card.Text>
 
-          {!chatExists &&
-            <Button
-              onClick={e => createChat(e)}
-              variant="info">
-              Start Chat
-            </Button>
-          }
+          <div className="mt-2 d-flex justify-content-center" >
+            {!chatExists &&
+              <Button
+                onClick={e => createChat(e)}
+                style={{ marginRight: '1rem' }}
+                variant="info">
+                Start Chat
+              </Button>
+            }
 
-          {chatExists &&
-            <Button
-              as={Link} to={CHATS}
-              variant="secondary">
-              Open Chat
-            </Button>
-          }
+            {chatExists &&
+              <Button
+                as={Link} to={CHATS}
+                variant="secondary"
+                style={{ marginRight: '1rem' }}>
+                Open Chat
+              </Button>
+            }
 
-          {!exchangeRequest &&
-            <Button
-              onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
-              variant="primary" className="mt-2">
-              Send Exchange Request
-            </Button>
-          }
+            {!exchangeRequest &&
+              <Button
+                onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
+                variant="primary">
+                Send Exchange Request
+              </Button>
+            }
 
-          {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
-            <Button
-              onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
-              variant="danger" style={{ color: 'white' }} className="mt-2">
-              Cancel Request
-            </Button>
-          }
-
+            {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
+              <Button
+                onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
+                variant="danger" style={{ color: 'white' }}>
+                Cancel Request
+              </Button>
+            }
+          </div>
         </Card.Body>
       </Card>
     </Col>
