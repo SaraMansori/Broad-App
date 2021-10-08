@@ -40,7 +40,7 @@ const BookExchangePage = props => {
       {booksToExchange?.length ?
         <BooksToExchangeList getBooksToExchange={getBooksToExchange} booksToExchange={booksToExchange} />
         :
-        <p>No books available.</p>
+        <p>Looking for books...</p>
       }
     </Container>
   )

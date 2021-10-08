@@ -38,7 +38,7 @@ const EditUserPage = props => {
     // TODO revisar
     usersService
       .editUserInfo(name, email, description, profileImage, location)
-      .then(res => { 
+      .then(res => {
         storeUser(res.data)
         clearState()
         history.push('/profile')
@@ -108,7 +108,8 @@ const EditUserPage = props => {
                 onChange={handleInput}
               />
 
-              <FormControl
+              {/* TODO */}
+              {/* <FormControl
                 style={{ width: '100%', margin: '15px 0px' }}
                 placeholder="Location..."
                 aria-label="location"
@@ -117,7 +118,7 @@ const EditUserPage = props => {
                 type="text"
                 value={formData.location}
                 onChange={handleInput}
-              />
+              /> */}
 
               <p>Profile image</p>
               <div className='d-flex flex-column'>

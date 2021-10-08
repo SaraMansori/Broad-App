@@ -16,7 +16,7 @@ const RequestsList = ({ getRequests, requests }) => {
       {
         friendshipRequests.length > 0 &&
         <>
-          <h2 className="mt-5">Friendship Requests</h2>
+          <h2 className="mt-5 mb-3">Friendship Requests</h2>
           {displayRequests(friendshipRequests)}
         </>
       }
@@ -24,7 +24,7 @@ const RequestsList = ({ getRequests, requests }) => {
       {
         exchangeRequests.length > 0 &&
         <>
-          <h2 className="mt-5">Exchange Requests</h2>
+          <h2 className="mt-5 mb-3">Exchange Requests</h2>
           {displayRequests(exchangeRequests)}
         </>
       }

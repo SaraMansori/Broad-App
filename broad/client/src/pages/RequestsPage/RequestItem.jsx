@@ -23,7 +23,7 @@ const RequestsItem = ({ _id, owner, book, getRequests }) => {
     <Row>
       <Col md={3} style={{ marginTop: '10px' }}>
         <Row className='request-card mb-3'>
-          <p><b>{book?.title}</b></p>
+          {book && <p><b>{book.title}</b></p>}
           <Col className='col-3'>
             <Link className='plain-link' to={`/users/${owner._id}`}>{owner.username}</Link>
           </Col>

@@ -103,7 +103,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
       <Card style={{ height: '100%' }}>
         <Card.Img className="p-4" style={{ maxHeight: '200px', objectFit: 'contain' }} variant="top" src={image ? image : defaultImages.bookCover} />
         <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <Card.Title>{title?.length < 15 ? title : title}</Card.Title>
+          <Card.Title><b>{title?.length < 15 ? title : title}</b></Card.Title>
 
           {authors &&
             <Card.Text>
@@ -118,7 +118,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
           }
 
           <Card.Text>
-            <p>Owner : {owner}</p>
+            <p><b>Owner:</b> {owner}</p>
           </Card.Text>
 
           <div className="mt-2 d-flex justify-content-center" >

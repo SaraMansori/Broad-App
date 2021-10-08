@@ -80,7 +80,8 @@ const UserProfilePage = () => {
             <Link className="plain-link-profile" to='#'><h3>→ I Want To Read</h3></Link>
             <Link className="plain-link-profile" to='#'><h3>→ Reading</h3></Link>
             <Link className="plain-link-profile" to='#'><h3>→ Read</h3></Link>
-            <Link className="plain-link-profile" to={`/${loggedUser._id}/exchanged`}><h3>→ Exchanged Books</h3></Link>
+            <Link className="plain-link-profile" to='#'><h3>→ To Exchange</h3></Link>
+            <Link className="plain-link-profile" to={`/${loggedUser._id}/exchanged`}><h3>→ Exchanged</h3></Link>
           </div>
         </div>
       </Row>

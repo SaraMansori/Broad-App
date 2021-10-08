@@ -52,10 +52,11 @@ const UserDetailsPage = props => {
           <div className="ml-5 p-5 " style={{ background: '#805D93', height: '100%', borderRadius: '15px', color: 'white' }} >
             <h1 className="mb-5">My Books 📚</h1>
             {/* TODO Create pages for the following */}
-            <Link className="plain-link-profile" to='#'><h3>→ I Want To Read</h3></Link>
+            <Link className="plain-link-profile" to='#'><h3>→ Wants To Read</h3></Link>
             <Link className="plain-link-profile" to='#'><h3>→ Reading</h3></Link>
             <Link className="plain-link-profile" to='#'><h3>→ Read</h3></Link>
-            <Link className="plain-link-profile" to={`/${id}/exchanged`}><h3>→ Exchanged Books</h3></Link>
+            <Link className="plain-link-profile" to='#'><h3>→ To Exchange</h3></Link>
+            <Link className="plain-link-profile" to={`/${id}/exchanged`}><h3>→ Exchanged</h3></Link>
           </div>
         </div>
       </Row>
