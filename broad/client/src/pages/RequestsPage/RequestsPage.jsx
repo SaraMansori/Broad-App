@@ -22,7 +22,7 @@ const RequestsPage = props => {
 
   return (
     <Container>
-      <h1>My Requests</h1>
+      <h1 className="mb-5">My Requests</h1>
       {requests?.length ?
         <RequestsList getRequests={getRequests} requests={requests} />
         :

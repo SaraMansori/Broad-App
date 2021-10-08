@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
-import { Form, Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { useParams, useLocation } from "react-router-dom"
 import BookService from '../../services/books.service'
 import SearchBar from '../../components/styledComponents/atomicComponents/SearchBar'
+import SearchBarFilters from '../../components/styledComponents/atomicComponents/SearchBarFilters'
 import BookItem from '../BookResultsPage/BookItem'
 
 const bookService = new BookService()
 
 const BookResultsPage = () => {
 
-  const type = 'radio'
 
+  const { text } = useParams()
   const [searchType, setSearchType] = useState('title')
   const [books, setBooks] = useState([])
 
   let location = useLocation()
 
-  const { text } = useParams()
 
   const getBooksByType = () => {
 
@@ -41,48 +41,10 @@ const BookResultsPage = () => {
       <Row>
         <Col style={{ marginBottom: '10px' }}>
           <h1 className='mb-5 text-center'>These are your results</h1>
+          <SearchBar type='books' searchType={searchType} />
+          <SearchBarFilters handleRadioClick={handleRadioClick} />
 
-          <SearchBar searchType={searchType} />
-
-          <Form className='mt-2 mb-5' >
-            <Form.Check
-              inline
-              label="Search By Title"
-              name="group1"
-              type={type}
-              id={`inline-${type}-1`}
-              value={"title"}
-              onClick={e => handleRadioClick(e)}
-            />
-            <Form.Check
-              inline
-              label="Search By Author"
-              name="group1"
-              type={type}
-              value={"author"}
-              id={`inline-${type}-2`}
-              onClick={e => handleRadioClick(e)}
-            />
-            <Form.Check
-              inline
-              label="Search By Genre"
-              name="group1"
-              type={type}
-              value={"category"}
-              id={`inline-${type}-2`}
-              onClick={e => handleRadioClick(e)}
-            />
-            <Form.Check
-              inline
-              label="Search By ISBN"
-              name="group1"
-              type={type}
-              value={"isbn"}
-              id={`inline-${type}-2`}
-              onClick={e => handleRadioClick(e)}
-            />
-          </Form>
-        </Col>
+        </Col >
       </Row>
 
       {books &&

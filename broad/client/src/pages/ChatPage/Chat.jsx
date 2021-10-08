@@ -23,13 +23,23 @@ const Chat = ({ chat, otherUser, handleClick }) => {
   const { loggedUser } = useContext(UserContext)
 
   const updateMessages = (message) => setMessages([...messages, message])
-  const setInitialMessages = () => setMessages(chat.messages.map(message => parseMessage(message)))
-  const parseMessage = (message) => {
-    return {
-      text: message.text,
-      owner: message.owner,
-      hasBeenRead: message.hasBeenRead,
-      user: message.user
+  const setInitialMessages = () => setMessages(chat.messages.map(message => parseMessage(message, 'db')))
+
+  const parseMessage = (message, type) => {
+
+    if (type === 'db') {
+      return {
+        text: message.text,
+        owner: message.owner,
+        hasBeenRead: message.hasBeenRead,
+      }
+    } else if (type === 'socket') {
+      return {
+        text: message.text,
+        owner: '',
+        hasBeenRead: false,
+        user: message.user
+      }
     }
   }
 
@@ -90,7 +100,7 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
   useEffect(() => {
     socket.on('message', message => {
-      updateMessages(parseMessage(message))
+      updateMessages(parseMessage(message, 'socket'))
     })
   }, [messages])
 

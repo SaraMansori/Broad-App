@@ -31,7 +31,6 @@ $dropDown: true;
   background-color: #159772;
 }
 
-//plain links
 .plain-link {
   text-decoration: none;
   color: $bgDefault !important;
@@ -39,6 +38,16 @@ $dropDown: true;
   &:focus,
   &:active {
     color: $bgHighlight !important;
+  }
+}
+
+.plain-link-profile {
+  text-decoration: none;
+  color: #edd6f3 !important;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ffffff !important;
   }
 }
 

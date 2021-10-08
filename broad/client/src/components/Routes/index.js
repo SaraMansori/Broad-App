@@ -42,7 +42,7 @@ const Routes = props => {
           <Route exact path={PATHS.BOOK_EXCHANGE} render={() => <BookExchangePage />} />
           <Route path={PATHS.CHATS} render={() => <ChatPage />} />
           <Route path={PATHS.BOOKS_EXCHANGED} render={() => <ExchangedBooksPage />} />
-          <Route exact path={PATHS.USER_DETAILS} render={props => <UserDetailsPage {...props} />} />
+          <Route exact path={PATHS.USER_DETAILS} render={() => <UserDetailsPage />} />
         </ProtectedRoutes>
 
       </Switch>
