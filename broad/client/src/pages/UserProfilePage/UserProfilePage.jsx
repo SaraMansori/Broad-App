@@ -52,7 +52,7 @@ const UserProfilePage = () => {
         <div className="col-md-4 col-sm-12 mb-3" style={{ background: '#F4E7DE', height: '100%' }}>
           <div className="ml-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
 
-            <div className="info">
+            <div className="info mt-5">
               <ProfilePicture image={loggedUser.profileImage || 'https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg'} />
               <div className="info mt-5" style={{ color: 'white', fontSize: '2rem' }}>
                 <p>{loggedUser.username}</p>
@@ -88,4 +88,4 @@ const UserProfilePage = () => {
 }
 
 
-export default UserProfilePage
+export { UserProfilePage, Description }

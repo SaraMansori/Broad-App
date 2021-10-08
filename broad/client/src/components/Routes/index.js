@@ -11,13 +11,13 @@ import SignupGenresPage from '../../pages/SignupGenresPage/SignupGenresPage'
 import RequestsPage from '../../pages/RequestsPage/RequestsPage'
 import UsersPage from '../../pages/UsersPage/UsersPage'
 import BookExchangePage from '../../pages/BookExchangePage/BookExchangePage'
-import UserProfilePage from '../../pages/UserProfilePage/UserProfilePage'
+import { UserProfilePage } from '../../pages/UserProfilePage/UserProfilePage'
 import EditUserPage from '../../pages/EditUserPage/EditUserPage'
 import ChatPage from '../../pages/ChatPage/ChatPage'
 import ExchangedBooksPage from '../../pages/ExchangedBooksPage/ExchangedBooksPage'
 import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage'
 import ProtectedRoutes from './ProtectedRoutes'
-  
+
 
 const Routes = props => {
 
