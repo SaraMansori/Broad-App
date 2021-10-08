@@ -41,7 +41,9 @@ const HomePage = () => {
 
         <PurpleRectangle>
           <BroadFeatures>
-            <Icon><H2>&#128366;</H2></Icon>
+            <Icon><span className="material-icons" style={{ marginTop: '5px' }}>
+              auto_stories
+            </span></Icon>
             <BroadDesc>
               <H2>Create your library</H2>
               <H6>Recreate your library with your favorite titles, the ones you've read, the ones you're reading at the moment, and those you wish to read</H6>
@@ -49,7 +51,9 @@ const HomePage = () => {
           </BroadFeatures>
           <br />
           <BroadFeatures>
-            <Icon><H2>&#128472;</H2></Icon>
+            <Icon><span className="material-icons" style={{ marginTop: '5px' }}>
+              autorenew
+            </span></Icon>
             <BroadDesc>
               <H2>Bookswapping!</H2>
               <H6>Exchange your books with other users, and give them a new life... Sharing is caring, and it's completely free!</H6>
@@ -57,7 +61,9 @@ const HomePage = () => {
           </BroadFeatures>
           <br />
           <BroadFeatures>
-            <Icon><H2>&#128489;</H2></Icon>
+            <Icon><span className="material-icons" style={{ marginTop: '5px' }}>
+              textsms
+            </span></Icon>
             <BroadDesc>
               <H2>Quotes</H2>
               <H6>Discover, create and share the best quotes of all times! Vote the ones you like, and save them in your collection.</H6>
@@ -65,7 +71,9 @@ const HomePage = () => {
           </BroadFeatures>
           <br />
           <BroadFeatures>
-            <Icon><H2>&#128505;</H2></Icon>
+            <Icon><span className="material-icons" style={{ marginTop: '5px' }}>
+              task_alt
+            </span></Icon>
             <BroadDesc>
               <H2>Challenges</H2>
               <H6>Take your reading to the next level, and set your personal goals... Challenge accepted?</H6>
