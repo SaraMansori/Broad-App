@@ -4,6 +4,9 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Header, ProfilePicture } from '../../components/styledComponents/styledPages/ProfileStyle'
 import UsersService from '../../services/users.service'
+import { Description } from '../UserProfilePage/UserProfilePage'
+
+
 
 
 const usersService = new UsersService()
