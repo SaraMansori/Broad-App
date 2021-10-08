@@ -274,7 +274,6 @@ border-bottom-left-radius: 50px;
 @media (min-width: 1300px){
   width: 650px;
   }
-
 `
 
 const BroadFeatures = styled.div`
