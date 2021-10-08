@@ -12,7 +12,7 @@ let socket
 
 const Chat = ({ chat, otherUser, handleClick }) => {
 
-  const ENDPOINT = 'http://localhost:5005'
+  const ENDPOINT = process.env.REACT_APP_SOCKET_URL
   const location = useLocation()
   let chatsService = new ChatsService()
 
@@ -48,7 +48,7 @@ const Chat = ({ chat, otherUser, handleClick }) => {
 
     socket = io(ENDPOINT, {
       cors: {
-        origin: "http://localhost:5005",
+        origin: process.env.REACT_APP_SOCKET_URL,
         credentials: true
       }, transports: ['websocket']
     })
