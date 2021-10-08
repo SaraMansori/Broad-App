@@ -13,7 +13,7 @@ const server = http.createServer(app)
 const io = socketio(server)
 const path = require('path')
 
-io.on('connect', (socket) => {
+io.on('connect', socket => {
 
   socket.on('join', ({ username, room }, callback) => {
 
