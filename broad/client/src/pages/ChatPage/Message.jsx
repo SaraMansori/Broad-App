@@ -5,8 +5,6 @@ import { useContext } from "react"
 
 const Message = ({ message, otherUser }) => {
 
-  console.log(message)
-
   const { loggedUser } = useContext(UserContext)
 
   return (

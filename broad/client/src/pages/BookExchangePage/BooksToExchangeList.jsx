@@ -2,7 +2,10 @@ import BookToExchangeItem from './BookToExchangeItem'
 import { Row } from 'react-bootstrap'
 
 
-const BooksToExchangeList = ({ getBooksToExchange, booksToExchange }) => {
+const BooksToExchangeList = ({ getBooksToExchange, booksToExchange, text }) => {
+
+  const filteredBooks = booksToExchange.filter(book => book.title.includes(text))
+  console.log(filteredBooks)
 
   const displayBooksToExchange = () => booksToExchange.map(bookToExchange => {
     return <BookToExchangeItem

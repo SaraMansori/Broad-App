@@ -6,14 +6,12 @@ import { useParams } from 'react-router'
 
 const exchangesService = new ExchangesService()
 
-
 const ExchangedBooksPage = props => {
 
   const [exchangedBooks, setExchangedBooks] = useState(null)
   const { id } = useParams()
 
   useEffect(() => {
-    console.log()
     getExchangedBooks()
   }, [id])
 
@@ -33,7 +31,7 @@ const ExchangedBooksPage = props => {
       {exchangedBooks?.length ?
         <ExchangedBooksList getExchangedBooks={getExchangedBooks} exchangedBooks={exchangedBooks} />
         :
-        <p>No books exchanged yet.</p>
+        <p>No books exchanged yet...</p>
       }
     </Container>
   )

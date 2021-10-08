@@ -43,7 +43,6 @@ const SignupForm = () => {
 								} */
 				history.push('/signup/genres')
 				clearState()
-				history.push('/')
 			})
 			.catch(err => err => console.error(err))
 	}

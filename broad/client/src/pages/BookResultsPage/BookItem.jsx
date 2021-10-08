@@ -3,19 +3,32 @@ import UserContext from '../../UserContext'
 import { Col, Card, Dropdown, Button } from 'react-bootstrap'
 import defaultImages from '../../utils/defaultImages.js'
 import UsersService from '../../services/users.service'
+import AuthService from '../../services/auth.service'
 
+const authService = new AuthService()
 
 const BookItem = ({ book }) => {
 
   const { loggedUser, storeUser } = useContext(UserContext)
 
+  const getStatus = () => loggedUser?.books.find(userbook => userbook.id === book.id)?.status
   const [wantToExchange, setWantToExchange] = useState(false)
+  const [bookStatus, setBookStatus] = useState(getStatus())
+
+  const parsedStatus = {
+    'WANTSTOREAD': 'Wants to read',
+    'READ': 'Read',
+    'READING': 'Reading'
+  }
+
 
   useEffect(() => {
     if (loggedUser) {
       setWantToExchange(loggedUser.books.some(userBook => userBook.id === book.id && userBook.wantsToExchange))
+      setBookStatus(getStatus())
+      console.log(bookStatus)
     }
-  }, [loggedUser])
+  }, [loggedUser, book.id, bookStatus])
 
   const bookId = book.id
   const { imageLinks, title, authors } = book.volumeInfo
@@ -23,10 +36,6 @@ const BookItem = ({ book }) => {
   let publishedDate = book.volumeInfo.publishedDate?.length !== 0 ? book.volumeInfo.publishedDate : 'Unknown'
 
   let usersService = new UsersService()
-
-  /*   const clearState = () => {
-      setWantToExchange(false)
-    } */
 
   const handleExchangeClick = (e) => {
     const book = {
@@ -37,7 +46,6 @@ const BookItem = ({ book }) => {
     usersService
       .updateUserBooks(book)
       .then(res => {
-        console.log(res.data)
         setWantToExchange(!wantToExchange)
         storeUser(res.data)
       })
@@ -57,9 +65,8 @@ const BookItem = ({ book }) => {
     usersService
       .updateUserBooks(book)
       .then(res => {
-        console.log(res.data)
         storeUser(res.data)
-        //en un futuro actualizar estado para que el boton cambie dependiendo de lo que haya en la bbdd
+        setBookStatus(res.data.books.find(userbook => userbook.id === book.id)?.status)
       })
       .catch(err => console.error(err))
   }
@@ -94,6 +101,7 @@ const BookItem = ({ book }) => {
 
             <Dropdown >
               <Dropdown.Toggle variant="primary" style={{ width: '100%' }} className="mt-2">
+                {/* {bookStatus ? `${parsedStatus[bookStatus]}` : 'Add to my library'} */}
                 Add to my library
               </Dropdown.Toggle>
               <Dropdown.Menu variant="dark" style={{ width: '100%' }}>

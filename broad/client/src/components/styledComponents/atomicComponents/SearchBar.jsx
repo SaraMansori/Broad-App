@@ -35,7 +35,7 @@ const SearchBar = (props) => {
 			if (!props.searchType) {
 				text ? history.push(`/book-exchange/title/${text}`) : history.push(`/book-exchange/`)
 			} else {
-				text ? history.push(`/book-exchange/${props.searchType}/${text}`) : history.push(`/book-results/${props.searchType}/+`)
+				text ? history.push(`/book-exchange/${props.searchType}/${text}`) : history.push(`/book-exchange/`)
 			}
 		}
 

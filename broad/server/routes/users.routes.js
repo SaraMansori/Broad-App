@@ -87,7 +87,7 @@ router.put('/update/books', isLoggedIn, (req, res) => {
           const newBookStatus = book.status
           return User.findOneAndUpdate({ _id: userId, books: { $elemMatch: { id: book.id } } },
             { $set: { 'books.$.status': newBookStatus } },
-            { new: true, 'upsert': true, 'safe': true }
+            { new: true, 'upsert': true }
           )
 
         } else {
@@ -98,7 +98,7 @@ router.put('/update/books', isLoggedIn, (req, res) => {
 
           return User.findOneAndUpdate({ _id: userId, books: { $elemMatch: { id: book.id } } },
             { $set: { 'books.$.wantsToExchange': book.wantsToExchange } },
-            { new: true, 'upsert': true, 'safe': true }
+            { new: true, 'upsert': true }
           )
 
         } else {

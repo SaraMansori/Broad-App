@@ -10,7 +10,6 @@ const bookService = new BookService()
 
 const BookResultsPage = () => {
 
-
   const { text } = useParams()
   const [searchType, setSearchType] = useState('title')
   const [books, setBooks] = useState([])

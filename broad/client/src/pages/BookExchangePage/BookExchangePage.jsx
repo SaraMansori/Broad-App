@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useParams, useLocation } from "react-router-dom"
 import { Container } from 'react-bootstrap'
 import BooksToExchangeList from './BooksToExchangeList'
 import UsersService from '../../services/users.service'
@@ -17,7 +18,6 @@ const BookExchangePage = props => {
     getBooksToExchange()
   }, [])
 
-
   const getBooksToExchange = () => {
 
     usersService
@@ -34,13 +34,13 @@ const BookExchangePage = props => {
     <Container>
       <h1 className="mb-5 text-center">Available Books To Exchange</h1>
 
-      <SearchBar type={'exchange'} />
+      <SearchBar type={'exchange'} searchType={searchType} />
       <SearchBarFilters type={'exchange'} handleRadioClick={handleRadioClick} />
 
       {booksToExchange?.length ?
         <BooksToExchangeList getBooksToExchange={getBooksToExchange} booksToExchange={booksToExchange} />
         :
-        <p>No books available.</p>
+        <p>No books available to exchange.</p>
       }
     </Container>
   )

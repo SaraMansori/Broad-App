@@ -121,12 +121,12 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
             <p>Owner : {owner}</p>
           </Card.Text>
 
-          <div className="mt-2 d-flex justify-content-center" >
+          <div className="mt-2" >
             {!chatExists &&
               <Button
                 onClick={e => createChat(e)}
-                style={{ marginRight: '1rem' }}
-                variant="info">
+                variant="info"
+                style={{ width: '100%', marginBottom: '0.5rem' }}>
                 Start Chat
               </Button>
             }
@@ -135,7 +135,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
               <Button
                 as={Link} to={CHATS}
                 variant="secondary"
-                style={{ marginRight: '1rem' }}>
+                style={{ width: '100%' }}>
                 Open Chat
               </Button>
             }
@@ -143,7 +143,8 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
             {!exchangeRequest &&
               <Button
                 onClick={e => handleClick(e, requestsService.createRequest(ownerId, type, { id, title }))}
-                variant="primary">
+                variant="primary"
+                style={{ width: '100%', marginBottom: '0.5rem' }}>
                 Send Exchange Request
               </Button>
             }
@@ -151,7 +152,7 @@ const BookToExchangeItem = ({ id, owner, ownerId, title, authors, image }) => {
             {(buttonToShow === 'PENDING OWNER' || buttonToShow === "REJECTED OWNER") &&
               <Button
                 onClick={e => handleClick(e, requestsService.deleteRequest(ownerId, type))}
-                variant="danger" style={{ color: 'white' }}>
+                variant="danger" style={{ color: 'white', width: '100%' }}>
                 Cancel Request
               </Button>
             }
