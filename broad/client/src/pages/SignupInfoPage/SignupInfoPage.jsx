@@ -85,7 +85,8 @@ const SignupInfoPage = props => {
                 value={formData.description}
                 onChange={handleInput}
               />
-              <FormControl
+              {/* TODO */}
+              {/* <FormControl
                 style={{ width: '100%', margin: '15px 0px' }}
                 placeholder="Location..."
                 aria-label="location"
@@ -94,7 +95,7 @@ const SignupInfoPage = props => {
                 type="text"
                 value={formData.location}
                 onChange={handleInput}
-              />
+              /> */}
               <p>Profile image</p>
               <div className='d-flex flex-column'>
                 <input

@@ -43,16 +43,18 @@ const BookResultsPage = () => {
           <SearchBar type='books' searchType={searchType} />
           <SearchBarFilters handleRadioClick={handleRadioClick} />
 
-        </Col >
+        </Col>
       </Row>
 
-      {books &&
+      {books ?
 
         <Row xs={1} md={3} className="g-5">
           {books.map((book, i) => (
             <BookItem key={`${book}-${i}`} book={book} />
           ))}
         </Row>
+        :
+        <p>No books found.</p>
       }
 
     </Container>

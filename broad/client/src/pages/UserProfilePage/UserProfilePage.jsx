@@ -46,11 +46,11 @@ const UserProfilePage = () => {
 
   return loggedUser ? (
     <Container className="mb-5" style={{ height: '100vh', borderRadius: '15px' }}>
-      <Row style={{ minHeight: '60vh' }}>
+      <Row style={{ minHeight: '60vh', paddingBottom: '2rem' }}>
 
-        <Header className="col-md-12 header p-5 mb-5" />
+        <Header className="d-none d-md-flex d-lg-flex col-md-12 header p-5 mb-5" />
 
-        <div className="col-md-4 col-sm-12 mb-3" style={{ background: '#F4E7DE', height: '100%' }}>
+        <div className="col-md-4 col-sm-12 mb-md-0 mb-lg-0 mb-3" style={{ background: '#F4E7DE', height: '100%' }}>
           <div className="ml-5 d-flex align-items-center justify-content-between flex-column p-5" style={{ background: '#805D93', height: '80%', borderRadius: '15px' }} >
 
             <div className="info">
@@ -80,7 +80,8 @@ const UserProfilePage = () => {
             <Link className="plain-link-profile" to='#'><h3>→ I Want To Read</h3></Link>
             <Link className="plain-link-profile" to='#'><h3>→ Reading</h3></Link>
             <Link className="plain-link-profile" to='#'><h3>→ Read</h3></Link>
-            <Link className="plain-link-profile" to={`/${loggedUser._id}/exchanged`}><h3>→ Exchanged Books</h3></Link>
+            <Link className="plain-link-profile" to='#'><h3>→ To Exchange</h3></Link>
+            <Link className="plain-link-profile" to={`/${loggedUser._id}/exchanged`}><h3>→ Exchanged</h3></Link>
           </div>
         </div>
       </Row>
@@ -93,4 +94,4 @@ const UserProfilePage = () => {
 }
 
 
-export default UserProfilePage
+export { UserProfilePage, Description }

@@ -1,4 +1,4 @@
-body{
+body {
   background-color: #f4e7de !important;
 }
 
@@ -6,8 +6,8 @@ body{
 $theme-colors: (
   'primary': #805d93,
   'secondary': #159772,
-  'info': #413B88,
-  'danger': #ff3257
+  'info': #413b88,
+  'danger': #ff3257,
 );
 
 $font-family-base: 'QuickSand';
@@ -327,4 +327,4 @@ $dropDown: true;
   --bs-gutter-x: 0;
 }
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import '../../node_modules/bootstrap/scss/bootstrap';

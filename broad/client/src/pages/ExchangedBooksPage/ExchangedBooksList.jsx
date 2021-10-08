@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import UserContext from '../../UserContext'
 import ExchangedBookItem from './ExchangedBookItem'
+import { Row } from 'react-bootstrap'
 
 
 const ExchangedBooksList = ({ exchangedBooks, getExchangedBooks }) => {
@@ -20,16 +21,20 @@ const ExchangedBooksList = ({ exchangedBooks, getExchangedBooks }) => {
       {
         booksUserIsOwner?.length > 0 &&
         <>
-          <h2>Lent Books</h2>
-          {displayExchangedBooks(booksUserIsOwner)}
+          <h2 className="mt-5">Lent Books</h2>
+          <Row xs={1} md={3} className="g-5 mt-2 mb-5">
+            {displayExchangedBooks(booksUserIsOwner)}
+          </Row>
         </>
       }
 
       {
         booksUserIsReceiver?.length > 0 &&
         <>
-          <h2>Borrowed Books</h2>
-          {displayExchangedBooks(booksUserIsReceiver)}
+          <h2 className="mt-5">Borrowed Books</h2>
+          <Row xs={1} md={3} className="g-5 mt-2 mb-5">
+            {displayExchangedBooks(booksUserIsReceiver)}
+          </Row>
         </>
       }
     </>
