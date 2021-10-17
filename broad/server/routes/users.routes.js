@@ -68,7 +68,7 @@ router.get('/', isLoggedIn, (req, res) => {
 
 
 router.put('/update/books', isLoggedIn, (req, res) => {
-  //meter middleware que si no peta si el user no está logged
+  
   const userId = req.session.currentUser._id
   const { book } = req.body
   let hasBook = false
@@ -152,8 +152,6 @@ router.put('/edit/:infoToUpdate', isLoggedIn, (req, res) => {
 
 
 router.put('/delete-friend', isLoggedIn, (req, res) => {
-
-  //revisar si funciona al cambiar las rutas
 
   const id = req.session.currentUser._id
   const { friendId } = req.body
