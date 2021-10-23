@@ -4,7 +4,7 @@
 
 ### Description
 
-**Broad** is a single page application (SPA) to to facilitate access to books for users and encourage reading.
+**Broad** is a single page application (SPA) to facilitate access to books for users and encourage reading.
 
 ### App functionalities
 
