@@ -59,10 +59,10 @@ const ChatPage = () => {
   }, [data])
 
   return (
-    <>
+    <div style={{ marginBottom: '6rem' }}>
       <Container>
         <h1 className='mb-5'>Your chats 💬</h1>
-        <Row style={{ height: '70vh' }}>
+        <Row>
           <Col style={{ maxHeight: '100%' }} md={6}>
             {chats.map((chat, i) =>
               <ChatItem key={`${chat}-${i}`} setIsChatOpen={setIsChatOpen} chat={chat} currentChat={currentChat} handleChat={handleChat} changeActiveChatUser={changeActiveChatUser} isChatOpen={isChatOpen} otherUser={otherUser} />
@@ -78,7 +78,7 @@ const ChatPage = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   )
 
 }
