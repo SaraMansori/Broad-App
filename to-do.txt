@@ -1,4 +1,17 @@
-* [x]Redireccionar a Home al hacer LogOut
+* [x] Los nuevos mensajes del chat no cogen el formato correcto al enviarse por diferencia de owner y receiver [URGENT]
+* [x] Hacer barra de filtros de búsqueda un componente
+* [] Incluir la barra de filtros en la barra de búsqueda de Exchanges
+* [] Barra de búsqueda y filtros en Community
+* [] Spinners y animaciones antes de que cargen los componentes
+* [] Eliminar las exchange requests cuando el status del wantsToExchange del libro es "false"
+
+TO DO NOW
+* [] Exchange book barra de búsqueda
+* [x] Mensaje cuando no encuentra libros
+* [x] Exchanged Books de My Profile - ARREGLAR ESTILOS
+* [] Mostrar libros en los que estás interesado en el chat ???
+
+* [x] Redireccionar a Home al hacer LogOut
 * [x] Da error en authors.length si no hay books to exchange en el user
 * [x] Petición want to exchange 
 * [x] Revisar recarga de contexto al añadir libros a wantToExchange -- [URGENT]
@@ -10,31 +23,40 @@
 	* [x] Mostrar mensajes en el front cuando el usuario entra a sus chats
 * [x] Transformar signup/info y signuo/genres a Bootstrap [URGENT] -- vane 
 * [x] Redireccionar cuando haces 'SignUp' -> signup/info + signup/genres + home
+* [x] Edit user profile [URGENT]
+* [x] Eliminar materialUI y todas sus dependencias [URGENT] 
+* [x] Eliminar 'Swap', 'Discover Books', 'Community' y 'SearchBar' si no hay user logged
+* [x] Cuando edites el usuario que no elimine la imagen si no se pone ninguna o que el usuario no pueda acceder a signup/info o signup/genres  
+* [x] Arreglar Styling de Links
+* [x] Desde requests la ruta del user profile PETA [URGENT]
+
 * [] Añadir barra de búsqueda a la vista de 'usuarios'
 	*[paginación]
-* [] Añadir barra de búsqueda a la vista 'book-exchange'
+
+* [] Añadir barra de búsqueda a la vista 'book-exchange' [URGENT]
 	*[paginación]
+
 * [] Middlewares y mensajes 'toast' al usuario -- [URGENT]
 	* [x] Middlewares backend
 	* [] Middlewares frontend y toast
 	-- https://react-hot-toast.com/
-* [x] Edit user profile [URGENT]
-* [x] Eliminar materialUI y todas sus dependencias [URGENT] 
+
+
 * [] Style 'My requests' page
 * [] Rehacer el README.md
-* [] Eliminar 'Swap', 'Discover Books', 'Community' y 'SearchBar' si no hay user logged
+* [] Redireccionar el botón de Skip de signup/info y signup/genre
 * [] Cambiar botón de 'Add to my library' dependiendo del status
 * [] Gestión de notificaciones
 * [] Borrar query parser custom si no se usa y cualquier libería innecesaria
 * [] Recuperar contraseña
-* [] Cuando edites el usuario que no elimine la imagen si no se pone ninguna o que el usuario no pueda acceder a signup/info o signup/genres  
+
 * [] Cuando haces clic en un elemento de la navbar que se cierre automaticamente
 * [] Enlaces del perfil a la pagina de detalles de los libros
 * [] Crear página de detalles de los libros
-* [] Arreglar Styling de Links
+
 * [] Utils de server
 * [] Buscar comentarios y TODOs para eliminarlos/gestionarlos [URGENT]
-* [] Desde requests la ruta del user profile PETA [URGENT]
+
 
 
 
