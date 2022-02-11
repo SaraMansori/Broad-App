@@ -286,7 +286,7 @@ body {
   --bs-gray-900: #212529;
   --bs-primary: #805d93;
   --bs-secondary: #159772;
-  --bs-info: #413B88;
+  --bs-info: #413b88;
   --bs-danger: #ff3257;
   --bs-primary-rgb: 128, 93, 147;
   --bs-secondary-rgb: 21, 151, 114;
@@ -3333,8 +3333,8 @@ textarea.form-control-lg {
 
 .btn-info {
   color: #fff;
-  background-color: #413B88;
-  border-color: #413B88;
+  background-color: #413b88;
+  border-color: #413b88;
 }
 .btn-info:hover {
   color: #fff;
@@ -3357,8 +3357,8 @@ textarea.form-control-lg {
 }
 .btn-info:disabled, .btn-info.disabled {
   color: #fff;
-  background-color: #413B88;
-  border-color: #413B88;
+  background-color: #413b88;
+  border-color: #413b88;
 }
 
 .btn-danger {
@@ -3442,27 +3442,27 @@ textarea.form-control-lg {
 }
 
 .btn-outline-info {
-  color: #413B88;
-  border-color: #413B88;
+  color: #413b88;
+  border-color: #413b88;
 }
 .btn-outline-info:hover {
   color: #fff;
-  background-color: #413B88;
-  border-color: #413B88;
+  background-color: #413b88;
+  border-color: #413b88;
 }
 .btn-check:focus + .btn-outline-info, .btn-outline-info:focus {
   box-shadow: 0 0 0 0.25rem rgba(65, 59, 136, 0.5);
 }
 .btn-check:checked + .btn-outline-info, .btn-check:active + .btn-outline-info, .btn-outline-info:active, .btn-outline-info.active, .btn-outline-info.dropdown-toggle.show {
   color: #fff;
-  background-color: #413B88;
-  border-color: #413B88;
+  background-color: #413b88;
+  border-color: #413b88;
 }
 .btn-check:checked + .btn-outline-info:focus, .btn-check:active + .btn-outline-info:focus, .btn-outline-info:active:focus, .btn-outline-info.active:focus, .btn-outline-info.dropdown-toggle.show:focus {
   box-shadow: 0 0 0 0.25rem rgba(65, 59, 136, 0.5);
 }
 .btn-outline-info:disabled, .btn-outline-info.disabled {
-  color: #413B88;
+  color: #413b88;
   background-color: transparent;
 }
 
@@ -6387,7 +6387,7 @@ textarea.form-control-lg {
 }
 
 .link-info {
-  color: #413B88;
+  color: #413b88;
 }
 .link-info:hover, .link-info:focus {
   color: #342f6d;
@@ -6799,7 +6799,7 @@ textarea.form-control-lg {
 }
 
 .border-info {
-  border-color: #413B88 !important;
+  border-color: #413b88 !important;
 }
 
 .border-danger {
